@@ -37,7 +37,7 @@ class ApplePusher extends BasePusher
      */
     public function getApnsServerHost()
     {
-        return self::APNS_SANDBOX_SERVER_HOST;
+        return true === $this->config['dev'] ? self::APNS_SANDBOX_SERVER_HOST : self::APNS_SERVER_HOST;
     } 
 
     /**

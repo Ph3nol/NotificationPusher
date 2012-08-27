@@ -46,6 +46,7 @@ use Sly\NotificationPusher\Pusher\ApplePusher;
  * Initialize Apple pusher service.
  */
 $pusher = new ApplePusher(array(
+    'dev'         => true, // Developer/Sandbox mode enabled
     'certificate' => '/path/to/your/certificate.pem',
 ));
 

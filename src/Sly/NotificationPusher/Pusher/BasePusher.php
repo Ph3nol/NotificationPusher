@@ -37,6 +37,7 @@ abstract class BasePusher implements BasePusherInterface
     protected function _getDefaultConfig()
     {
         return array(
+            'dev' => false,
         );
     }
 
