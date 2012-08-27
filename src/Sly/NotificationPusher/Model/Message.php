@@ -2,9 +2,9 @@
 
 namespace Sly\NotificationPusher\Model;
 
-use Sly\NotificationPusher\Model\PushInterface;
+use Sly\NotificationPusher\Model\MessageInterface;
 
-class Push implements PushInterface
+class Message implements MessageInterface
 {
     protected $message;
     protected $hasAlert;
@@ -16,8 +16,9 @@ class Push implements PushInterface
     /**
      * Constructor.
      */
-    public function __construct()
+    public function __construct($message = null)
     {
+        $this->message   = $message;
         $this->createdAt = new \DateTime();
     }
 

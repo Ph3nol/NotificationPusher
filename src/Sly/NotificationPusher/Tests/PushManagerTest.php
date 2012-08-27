@@ -15,7 +15,7 @@ class NotificationPusherTest extends \PHPUnit_Framework_TestCase
         $this->markTestIncomplete('To do.');
     }
 
-    public function testPushesCollection()
+    public function testMessagesCollection()
     {
         $this->markTestIncomplete('To do.');
     }

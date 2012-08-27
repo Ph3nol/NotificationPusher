@@ -39,11 +39,8 @@ You're ready to go.
 
 require_once '/path/to/your/vendor/autoload.php';
 
-use Sly\NotificationPusher\Model\Push;
+use Sly\NotificationPusher\Model\Message;
 use Sly\NotificationPusher\Pusher\ApplePusher;
-
-$push = new Push();
-$push->setMessage('Test');
 
 /**
  * Initialize Apple pusher service.
@@ -56,13 +53,15 @@ $pusher = new ApplePusher(array(
  * Add some test pushes.
  */
 for ($i = 1; $i <= 3; $i++) {
-    $push = new Push();
-    $push->setMessage(sprintf('This is Test #%d', $i));
+    $message = new Message(sprintf('This is Test #%d', $i));
+    // $message->setHasAlert(true);
+    // $message->setHasBadge(true);
+    // $message->setHasSound(true);
 
-    $pusher->addPush($push);
+    $pusher->addMessage($message);
 }
 
 /**
  * Push queue.
  */
-$pushedPushes = $pusher->push();
+$pushedMessages = $pusher->push();

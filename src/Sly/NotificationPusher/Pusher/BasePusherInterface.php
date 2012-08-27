@@ -2,9 +2,8 @@
 
 namespace Sly\NotificationPusher\Pusher;
 
-use Sly\NotificationPusher\Model\BasePushInterface;
-use Sly\NotificationPusher\Model\Push;
-use Sly\NotificationPusher\Model\PushInterface;
+use Sly\NotificationPusher\Model\Message;
+use Sly\NotificationPusher\Model\MessageInterface;
 use Sly\NotificationPusher\Collection\PushesCollection;
 
 /**
@@ -15,20 +14,20 @@ use Sly\NotificationPusher\Collection\PushesCollection;
 interface BasePusherInterface
 {
     /**
-     * Add a push.
+     * Add a message.
      * 
-     * @param PushInterface $push Push
+     * @param MessageInterface $message Message
      *
-     * @return PushesCollection
+     * @return MessagesCollection
      */
-    public function addPush(PushInterface $push);
+    public function addMessage(MessageInterface $message);
 
     /**
-     * Get pushes.
+     * Get messages.
      *
      * @return \ArrayCollection
      */
-    public function getPushes();
+    public function getMessages();
 
     /**
      * Get connection.

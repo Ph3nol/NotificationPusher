@@ -2,15 +2,15 @@
 
 namespace Sly\NotificationPusher\Collection;
 
-use Sly\NotificationPusher\Model\PushInterface;
+use Sly\NotificationPusher\Model\MessageInterface;
 
 /**
- * PushesCollection.
+ * MessagesCollection.
  *
  * @uses IteratorAggregate
  * @author Cédric Dugat <ph3@slynett.com>
  */
-class PushesCollection implements \IteratorAggregate
+class MessagesCollection implements \IteratorAggregate
 {
     protected $coll;
 
@@ -33,20 +33,19 @@ class PushesCollection implements \IteratorAggregate
     /**
      * Set method.
      *
-     * @param string        $name Push Name
-     * @param PushInterface $push Push
+     * @param MessageInterface $message Message
      */
-    public function set(PushInterface $push)
+    public function set(MessageInterface $message)
     {
-        $this->coll[] = $push;
+        $this->coll[] = $message;
     }
 
     /**
-     * Get pushes.
+     * Get messages.
      *
      * @return \ArrayIterator
      */
-    public function getPushes()
+    public function getMessages()
     {
         return $this->coll;
     }

@@ -3,8 +3,8 @@
 namespace Sly\NotificationPusher\Pusher;
 
 use Sly\NotificationPusher\Pusher\BasePusherInterface;
-use Sly\NotificationPusher\Collection\PushesCollection;
-use Sly\NotificationPusher\Model\PushInterface;
+use Sly\NotificationPusher\Collection\MessagesCollection;
+use Sly\NotificationPusher\Model\MessageInterface;
 
 /**
  * BasePusher.
@@ -15,7 +15,7 @@ use Sly\NotificationPusher\Model\PushInterface;
 abstract class BasePusher implements BasePusherInterface
 {
     protected $config;
-    protected $pushes;
+    protected $messages;
     protected $connection;
 
     /**
@@ -26,7 +26,7 @@ abstract class BasePusher implements BasePusherInterface
     public function __construct(array $config = array())
     {
         $this->config = array_merge($config, $this->_getDefaultConfig());
-        $this->pushes = new PushesCollection();
+        $this->messages = new MessagesCollection();
     }
 
     /**
@@ -43,19 +43,19 @@ abstract class BasePusher implements BasePusherInterface
     /**
      * {@inheritdoc}
      */
-    public function addPush(PushInterface $push)
+    public function addMessage(MessageInterface $message)
     {
-        $this->pushes->set($push);
+        $this->messages->set($message);
 
-        return $this->pushes;
+        return $this->messages;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getPushes()
+    public function getMessages()
     {
-        return $this->pushes->getPushes();
+        return $this->messages->getMessages();
     }
 
     /**
@@ -73,7 +73,7 @@ abstract class BasePusher implements BasePusherInterface
     {
         $this->connection = $this->initAndGetConnection();
 
-        foreach ($this->getPushes() as $push)
+        foreach ($this->getMessages() as $message)
         {
             /**
              * @todo

@@ -3,7 +3,6 @@
 namespace Sly\NotificationPusher\Pusher;
 
 use Sly\NotificationPusher\Pusher\BasePusher;
-use Sly\NotificationPusher\Push\PushInterface;
 
 /**
  * ApplePusher class.

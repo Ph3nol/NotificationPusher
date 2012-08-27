@@ -2,7 +2,7 @@
 
 namespace Sly\NotificationPusher\Model;
 
-interface PushInterface
+interface MessageInterface
 {
     /**
       * Get Message value.
