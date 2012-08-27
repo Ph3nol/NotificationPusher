@@ -25,7 +25,7 @@ abstract class BasePusher implements BasePusherInterface
      */
     public function __construct(array $config = array())
     {
-        $this->config = array_merge($config, $this->_getDefaultConfig());
+        $this->config   = array_merge($config, $this->_getDefaultConfig());
         $this->messages = new MessagesCollection();
     }
 
