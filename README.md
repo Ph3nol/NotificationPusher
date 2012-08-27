@@ -1,5 +1,7 @@
 # NotificationPusher library
 
+## WORK IN PROGRESS.
+
 [![Continuous Integration status](https://secure.travis-ci.org/Ph3nol/NotificationPusher.png)](http://travis-ci.org/Ph3nol/NotificationPusher)
 
 ## Requirements
