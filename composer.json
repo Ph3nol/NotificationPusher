@@ -1,0 +1,22 @@
+{
+    "name": "sly/notification-pusher",
+    "description": "Apple/Android notification messages pusher.",
+    "keywords": ["apple", "iphone", "android", "notification", "message", "push", "pusher"],
+    "homepage": "https://github.com/Ph3nol/NotificationPusher",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cédric Dugat",
+            "email": "ph3@slynett.com"
+        }
+    ],
+    "require": {
+        "kriswallsmith/buzz": ">= 0.6"
+    },
+    "autoload": {
+        "psr-0": {
+            "Sly": ["src/"]
+        }
+    }
+}
