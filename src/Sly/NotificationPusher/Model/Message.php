@@ -6,6 +6,7 @@ use Sly\NotificationPusher\Model\MessageInterface;
 
 class Message implements MessageInterface
 {
+    protected $status;
     protected $message;
     protected $hasAlert;
     protected $hasSound;
@@ -18,8 +19,25 @@ class Message implements MessageInterface
      */
     public function __construct($message = null)
     {
+        $this->status    = MessageInterface::STATUS_INIT;
         $this->message   = $message;
         $this->createdAt = new \DateTime();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 
     /**

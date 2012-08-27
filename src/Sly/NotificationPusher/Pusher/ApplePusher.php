@@ -35,7 +35,7 @@ class ApplePusher extends BasePusher
      * 
      * @return string
      */
-    public function getApnsServerHost()
+    protected function getApnsServerHost()
     {
         return true === $this->config['dev'] ? self::APNS_SANDBOX_SERVER_HOST : self::APNS_SERVER_HOST;
     } 
@@ -56,5 +56,32 @@ class ApplePusher extends BasePusher
         }
 
         return $connection;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function pushMessage(MessageInterface $message)
+    {
+        return (bool) $fwrite = fwrite($this->getConnection(), $message->getMessage());
+    }
+
+    public function push()
+    {
+        $connection = $this->getConnection();
+
+        foreach ($this->getMessages() as $message) {
+            $fwrite = fwrite($this->getConnection(), $message->getMessage());
+
+            if (false === $fwrite) {
+                /**
+                 * Not sent.
+                 */
+            } else {
+                $message->setSentAt(new \DateTime());
+            }
+        }
+
+        return $this->getSentMessages();
     }
 }

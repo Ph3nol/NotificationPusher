@@ -62,8 +62,28 @@ abstract class BasePusher implements BasePusherInterface
     /**
      * {@inheritdoc}
      */
+    public function getSentMessages()
+    {
+        $sentMessages = new MessagesCollection();
+
+        foreach ($this->getMessages() as $message) {
+            if (null !== $message->getSentAt()) {
+                $sentMessages->set($message);
+            }
+        }
+
+        return $sentMessages->getMessages();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getConnection()
     {
+        if (null === $this->connection) {
+            $this->connection = $this->initAndGetConnection();
+        }
+
         return $this->connection;
     }
 
@@ -76,9 +96,14 @@ abstract class BasePusher implements BasePusherInterface
 
         foreach ($this->getMessages() as $message)
         {
-            /**
-             * @todo
-             */
+            if (true === $this->pushMessage($message)) {
+                $message->setSentAt(new \DateTime());
+                $message->setStatus(MessageInterface::STATUS_SENT);
+            } else {
+                $message->setStatus(MessageInterface::STATUS_FAILED);
+            }
         }
+
+        return $this->getSentMessages();
     }
 }

@@ -10,4 +10,13 @@ interface PusherInterface
      * @return mixed
      */
     public function initAndGetConnection();
+
+    /**
+     * Push message.
+     *
+     * @param MessageInterface $message Message
+     *
+     * @return boolean
+     */
+    public function pushMessage(MessageInterface $message);
 }

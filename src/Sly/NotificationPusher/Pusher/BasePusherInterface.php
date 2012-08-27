@@ -30,6 +30,13 @@ interface BasePusherInterface
     public function getMessages();
 
     /**
+     * Get sent messages.
+     * 
+     * @return ArrayCollection
+     */
+    public function getSentMessages();
+
+    /**
      * Get connection.
      * 
      * @return mixed

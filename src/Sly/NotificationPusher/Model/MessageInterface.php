@@ -4,6 +4,25 @@ namespace Sly\NotificationPusher\Model;
 
 interface MessageInterface
 {
+    const STATUS_INIT    = 'initialized';
+    const STATUS_PENDING = 'pending';
+    const STATUS_SENT    = 'sent';
+    const STATUS_FAILED  = 'failed';
+
+    /**
+      * Get Status value.
+      *
+      * @return string Status value to get
+      */
+    public function getStatus();
+    
+    /**
+      * Set Status value.
+      *
+      * @param string $status Status value to set
+      */
+    public function setStatus($status);
+
     /**
       * Get Message value.
       *
