@@ -63,25 +63,6 @@ class ApplePusher extends BasePusher
      */
     public function pushMessage(MessageInterface $message)
     {
-        return (bool) $fwrite = fwrite($this->getConnection(), $message->getMessage());
-    }
-
-    public function push()
-    {
-        $connection = $this->getConnection();
-
-        foreach ($this->getMessages() as $message) {
-            $fwrite = fwrite($this->getConnection(), $message->getMessage());
-
-            if (false === $fwrite) {
-                /**
-                 * Not sent.
-                 */
-            } else {
-                $message->setSentAt(new \DateTime());
-            }
-        }
-
-        return $this->getSentMessages();
+        return (bool) fwrite($this->getConnection(), $message->getMessage());
     }
 }

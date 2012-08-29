@@ -15,13 +15,23 @@ class Message implements MessageInterface
     protected $sentAt;
 
     /**
-     * Constructor.
+     * __construct method.
      */
     public function __construct($message = null)
     {
         $this->status    = MessageInterface::STATUS_INIT;
         $this->message   = $message;
         $this->createdAt = new \DateTime();
+    }
+
+    /**
+     * __toString method.
+     * 
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->message;
     }
 
     /**
