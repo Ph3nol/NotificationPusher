@@ -2,6 +2,8 @@
 
 namespace Sly\NotificationPusher\Pusher;
 
+use Sly\NotificationPusher\Model\MessageInterface;
+
 interface PusherInterface
 {
     /**
