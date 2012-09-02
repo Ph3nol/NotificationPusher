@@ -47,7 +47,22 @@ class Message implements MessageInterface
      */
     public function setStatus($status)
     {
+        if (true === in_array($status, $this->getSentStatuses())) {
+            $this->setSentAt(new \DateTime());
+        }
+
         $this->status = $status;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSentStatuses()
+    {
+        return array(
+            MessageInterface::STATUS_SENT,
+            MessageInterface::STATUS_SIMULATED_SENT,
+        );
     }
 
     /**

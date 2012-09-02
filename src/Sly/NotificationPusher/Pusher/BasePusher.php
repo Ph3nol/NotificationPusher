@@ -81,8 +81,10 @@ abstract class BasePusher implements BasePusherInterface
 
         foreach ($this->getMessages() as $message)
         {
-            if (true === $this->config['simulate'] || true === $this->pushMessage($message)) {
-                $message->setSentAt(new \DateTime());
+            if (true === $this->config['simulate']) {
+                $message->setStatus(MessageInterface::STATUS_SIMULATED_SENT);
+            }
+            if (true === $this->pushMessage($message)) {
                 $message->setStatus(MessageInterface::STATUS_SENT);
             } else {
                 $message->setStatus(MessageInterface::STATUS_FAILED);
