@@ -13,6 +13,8 @@ use Sly\NotificationPusher\Model\MessageInterface;
  */
 class AndroidPusher extends BasePusher
 {
+    protected $apiKey;
+
     /**
      * Constructor.
      *
@@ -21,6 +23,12 @@ class AndroidPusher extends BasePusher
     public function __construct(array $config)
     {
         parent::__construct($config);
+
+        if (empty($this->config['apiKey']) || null === $this->config['apiKey']) {
+            throw new \Exception('You must set a Google account project API key');
+        }
+
+        $this->apiKey = $this->config['apiKey'];
     }
 
     /**

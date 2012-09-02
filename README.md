@@ -70,6 +70,44 @@ $pushedMessages = $pusher->push();
 
 ```
 
+### Android push
+
+* Requirements: get a Google account project API key
+
+``` php
+<?php
+
+require_once '/path/to/your/vendor/autoload.php';
+
+use Sly\NotificationPusher\Model\Message;
+use Sly\NotificationPusher\Pusher\AndroidPusher;
+
+/**
+ * Initialize Android pusher service.
+ */
+$pusher = new AndroidPusher(array(
+    'apiKey' => 'y0ur4p1k3y', // Your Google account project API key
+));
+
+/**
+ * Add some test pushes.
+ */
+for ($i = 1; $i <= 3; $i++) {
+    $message = new Message(sprintf('This is Test #%d', $i));
+    // $message->setHasAlert(true);
+    // $message->setHasBadge(true);
+    // $message->setHasSound(true);
+
+    $pusher->addMessage($message);
+}
+
+/**
+ * Push queue.
+ */
+$pushedMessages = $pusher->push();
+
+```
+
 ## Complements
 
 ### Create Apple SSL certificate
@@ -87,3 +125,9 @@ Getting the certificates in place. Reach for your mac and start doing the follow
 * 9. Finally, combine the two to get your **apns-dev.pem file**: `cat apns-dev-cert.pem apns-dev-key-noenc.pem > apns-dev.pem`.
 
 Source : [http://vxtindia.com/blog/push-notifications-for-your-iphone-app-with-php-and-ubuntu/](http://vxtindia.com/blog/push-notifications-for-your-iphone-app-with-php-and-ubuntu/)
+
+### Create a Google account project API key
+
+* 1. Go on [https://code.google.com/apis/console](Google APIs console dashboard)
+* 2. Create a new projet
+* 3. Click "Api Access" tab to obtain your API key
