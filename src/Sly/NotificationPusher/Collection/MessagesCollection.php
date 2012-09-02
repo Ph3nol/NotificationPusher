@@ -49,4 +49,38 @@ class MessagesCollection implements \IteratorAggregate
     {
         return $this->coll;
     }
+
+    /**
+     * __call method.
+     *
+     * @param string $method    Called method
+     * @param string $arguments Called method arguments
+     */
+    public function __call($method, $arguments)
+    {
+        if (true == preg_match('/get(.*)Messages/', $method, $matches)) {
+            switch ($matches[1]) {
+                case 'Sent':
+                    $messagesStatus = MessageInterface::STATUS_SENT;
+
+                    break;
+
+                case 'Failed':
+                    $messagesStatus = MessageInterface::STATUS_FAILED;
+
+                    break;
+            }
+
+            $statusedMessages = new $this;
+
+            foreach ($this->getMessages() as $message)
+            {
+                if ($messagesStatus == $message->getStatus()) {
+                    $statusedMessages->set($message);
+                }
+            }
+
+            return $statusedMessages;
+        }
+    }
 }

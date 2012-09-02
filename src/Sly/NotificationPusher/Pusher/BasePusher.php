@@ -63,22 +63,6 @@ abstract class BasePusher implements BasePusherInterface
     /**
      * {@inheritdoc}
      */
-    public function getSentMessages()
-    {
-        $sentMessages = new MessagesCollection();
-
-        foreach ($this->getMessages() as $message) {
-            if (null !== $message->getSentAt()) {
-                $sentMessages->set($message);
-            }
-        }
-
-        return $sentMessages->getMessages();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getConnection()
     {
         if (null === $this->connection) {
@@ -105,6 +89,6 @@ abstract class BasePusher implements BasePusherInterface
             }
         }
 
-        return $this->getSentMessages();
+        return $this->messages->getSentMessages();
     }
 }
