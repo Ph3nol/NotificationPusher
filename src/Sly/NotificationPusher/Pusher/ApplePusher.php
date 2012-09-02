@@ -4,6 +4,8 @@ namespace Sly\NotificationPusher\Pusher;
 
 use Sly\NotificationPusher\Pusher\BasePusher;
 use Sly\NotificationPusher\Model\MessageInterface;
+use Sly\NotificationPusher\Exception\ConfigurationException;
+use Sly\NotificationPusher\Exception\RuntimeException;
 
 /**
  * ApplePusher class.
@@ -27,7 +29,7 @@ class ApplePusher extends BasePusher
         parent::__construct($config);
 
         if (empty($this->config['certificate']) || null === $this->config['certificate']) {
-            throw new \Exception('You must set a SSL certificate to establish the connection');
+            throw new ConfigurationException('You must set a SSL certificate to establish the connection');
         }
     }
 
@@ -53,7 +55,7 @@ class ApplePusher extends BasePusher
         $connection = stream_socket_client($this->getApnsServerHost(), $error, $errorString, 100, (STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT), $ctx);
 
         if (false === $connection) {
-            throw new \RuntimeException(sprintf('Failed to establish APNS connection: %s', $errorString));
+            throw new RuntimeException(sprintf('Failed to establish APNS connection: %s', $errorString));
         }
 
         return $connection;

@@ -4,6 +4,8 @@ namespace Sly\NotificationPusher\Pusher;
 
 use Sly\NotificationPusher\Pusher\BasePusher;
 use Sly\NotificationPusher\Model\MessageInterface;
+use Sly\NotificationPusher\Exception\ConfigurationException;
+use Sly\NotificationPusher\Exception\RuntimeException;
 
 use Buzz\Browser;
 use Buzz\Client\MultiCurl;
@@ -31,17 +33,17 @@ class AndroidPusher extends BasePusher
         parent::__construct($config);
 
         if (empty($this->config['applicationID']) || null === $this->config['applicationID']) {
-            throw new \Exception('You must set a Google project application ID');
+            throw new ConfigurationException('You must set a Google project application ID');
         }
 
         if (empty($this->config['apiKey']) || null === $this->config['apiKey']) {
-            throw new \Exception('You must set a Google account project API key');
+            throw new ConfigurationException('You must set a Google account project API key');
         }
 
         $this->apiKey  = $this->config['apiKey'];
 
         if (count($this->getDevicesUUIDs()) > 1000) {
-            throw new \Exception('Devices UUIDs count cannot exceed 1000 entries');
+            throw new ConfigurationException('Devices UUIDs count cannot exceed 1000 entries');
         }
     }
 
@@ -90,7 +92,7 @@ class AndroidPusher extends BasePusher
                     $apiServerErrors[] = $result->error;
                 }
 
-                throw new \Exception(sprintf('API server has returned error(s): "%s"', implode(' / ', $apiServerErrors)));
+                throw new RuntimeException(sprintf('API server has returned error(s): "%s"', implode(' / ', $apiServerErrors)));
             }
         }
 

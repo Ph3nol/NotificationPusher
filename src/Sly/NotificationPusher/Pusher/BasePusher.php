@@ -5,6 +5,7 @@ namespace Sly\NotificationPusher\Pusher;
 use Sly\NotificationPusher\Pusher\BasePusherInterface;
 use Sly\NotificationPusher\Collection\MessagesCollection;
 use Sly\NotificationPusher\Model\MessageInterface;
+use Sly\NotificationPusher\Exception\ConfigurationException;
 
 /**
  * BasePusher.
@@ -30,7 +31,7 @@ abstract class BasePusher implements BasePusherInterface
         $this->messages = new MessagesCollection();
 
         if (empty($this->config['devices']) || null === $this->config['devices']) {
-            throw new \Exception('You must give an array of devices UUIDs to the pusher');
+            throw new ConfigurationException('You must give an array of devices UUIDs to the pusher');
         }
 
         $this->devicesUUIDs = $this->config['devices'];
