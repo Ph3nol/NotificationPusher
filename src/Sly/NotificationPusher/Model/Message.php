@@ -88,6 +88,14 @@ class Message implements MessageInterface
     {
         return $this->hasAlert;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasAlert()
+    {
+        return $this->hasAlert;
+    }
     
     /**
      * {@inheritdoc}
@@ -104,6 +112,14 @@ class Message implements MessageInterface
     {
         return $this->hasBadge;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasBadge()
+    {
+        return $this->hasBadge;
+    }
     
     /**
      * {@inheritdoc}
@@ -117,6 +133,14 @@ class Message implements MessageInterface
      * {@inheritdoc}
      */
     public function getHasSound()
+    {
+        return $this->hasSound;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasSound()
     {
         return $this->hasSound;
     }

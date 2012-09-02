@@ -127,7 +127,7 @@ Getting the certificates in place. Reach for your mac and start doing the follow
 * 8. From Ubuntu-9.04 server, we had to remove the passphrase, which can be done with `openssl rsa -in apns-dev-key.pem -out apns-dev-key-noenc.pem`.
 * 9. Finally, combine the two to get your **apns-dev.pem file**: `cat apns-dev-cert.pem apns-dev-key-noenc.pem > apns-dev.pem`.
 
-Source : [http://vxtindia.com/blog/push-notifications-for-your-iphone-app-with-php-and-ubuntu/](http://vxtindia.com/blog/push-notifications-for-your-iphone-app-with-php-and-ubuntu/)
+Source: [http://vxtindia.com/blog/push-notifications-for-your-iphone-app-with-php-and-ubuntu/](http://vxtindia.com/blog/push-notifications-for-your-iphone-app-with-php-and-ubuntu/)
 
 ### Create a Google account project ID and API key
 

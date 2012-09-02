@@ -69,22 +69,31 @@ class ApplePusher extends BasePusher
         $apiServerResponses = array();
 
         foreach ($this->getDevicesUUIDs() as $deviceToken) {
-            // $apsData = array();
+            $apsData = array();
 
-            // $apsData['aps'] = array(
-            //     'alert' => $message,
-            // );
+            $apsData['aps']['alert'] = (string) $message;
 
-            // if ($message->getHasSound()) {
-            //     $apsData['aps']['sound'] = 'default';
-            // }
+            if (true === $message->hasBadge()) {
+                $apsData['aps']['badge'] = 1;
+            }
 
-            // $apsData          = json_encode($apsData);
-            // $encryptedMessage = chr(0) . pack('n', 32) . pack('H*', $deviceToken) . pack('n', strlen($apsData)) . $apsData;
+            if (true === $message->hasSound()) {
+                $apsData['aps']['sound'] = 'default';
+            }
 
-            // $apiServerResponses[] = fwrite($this->getConnection(), $encryptedMessage, strlen($encryptedMessage));
+            $apsData = json_encode($apsData);
 
-            $apiServerResponses[] = fwrite($this->getConnection(), (string) $message);
+            $apsNotification =
+              chr(0) .
+              pack("n", 32) . pack('H*', str_replace(' ', '', bin2hex($deviceToken))) .
+              pack("n", strlen($apsData)) . $apsData;
+
+            $apiServerResponses[] = fwrite($this->getConnection(), $apsNotification);
+
+            /**
+             * No packing version, with no hexa/binary device token.
+             */
+            // $apiServerResponses[] = fwrite($this->getConnection(), (string) $message);
         }
 
         foreach ($apiServerResponses as $apiServerResponse) {

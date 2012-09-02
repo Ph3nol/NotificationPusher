@@ -51,6 +51,13 @@ interface MessageInterface
       * @return boolean HasAlert value to get
       */
     public function getHasAlert();
+
+    /**
+      * Get HasAlert value.
+      *
+      * @return boolean HasAlert value to get
+      */
+    public function hasAlert();
     
     /**
       * Set HasAlert value.
@@ -65,6 +72,13 @@ interface MessageInterface
       * @return boolean HasBadge value to get
       */
     public function getHasBadge();
+
+    /**
+      * Get HasBadge value.
+      *
+      * @return boolean HasBadge value to get
+      */
+    public function hasBadge();
     
     /**
       * Set HasBadge value.
@@ -79,6 +93,13 @@ interface MessageInterface
       * @return boolean HasSound value to get
       */
     public function getHasSound();
+
+    /**
+      * Get HasSound value.
+      *
+      * @return boolean HasSound value to get
+      */
+    public function hasSound();
     
     /**
       * Set HasSound value.
