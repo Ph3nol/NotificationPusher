@@ -49,6 +49,7 @@ $pusher = new ApplePusher(array(
     'dev'         => true,  // Developer/Sandbox mode enabled (default: false)
     'simulate'    => false, // Simulate sendings (default: false)
     'certificate' => '/path/to/your/certificate.pem',
+    'devices'     => array('UUID1', 'UUID2', 'UUID3'), // Devices UUIDs
 ));
 
 /**
@@ -86,7 +87,9 @@ use Sly\NotificationPusher\Pusher\AndroidPusher;
  * Initialize Android pusher service.
  */
 $pusher = new AndroidPusher(array(
-    'apiKey' => 'y0ur4p1k3y', // Your Google account project API key
+    'applicationID' => '123456789012', // Your Google project application ID
+    'apiKey'        => 'y0ur4p1k3y',   // Your Google account project API key
+    'devices'       => array('UUID1', 'UUID2', 'UUID3'), // Devices UUIDs
 ));
 
 /**
@@ -126,8 +129,9 @@ Getting the certificates in place. Reach for your mac and start doing the follow
 
 Source : [http://vxtindia.com/blog/push-notifications-for-your-iphone-app-with-php-and-ubuntu/](http://vxtindia.com/blog/push-notifications-for-your-iphone-app-with-php-and-ubuntu/)
 
-### Create a Google account project API key
+### Create a Google account project ID and API key
 
 * 1. Go on [https://code.google.com/apis/console](Google APIs console dashboard)
 * 2. Create a new projet
-* 3. Click "Api Access" tab to obtain your API key
+* 3. You are now on your new project homepage, with a URL like `https://code.google.com/apis/console/#project:123456789012`. `123456789012` is your application ID.
+* 4. Click "Api Access" tab to obtain your API key

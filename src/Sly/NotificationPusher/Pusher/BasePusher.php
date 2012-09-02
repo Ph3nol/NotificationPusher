@@ -15,8 +15,9 @@ use Sly\NotificationPusher\Model\MessageInterface;
 abstract class BasePusher implements BasePusherInterface
 {
     protected $config;
-    protected $messages;
     protected $connection;
+    protected $devicesUUIDs;
+    protected $messages;
 
     /**
      * Constructor.
@@ -27,6 +28,12 @@ abstract class BasePusher implements BasePusherInterface
     {
         $this->config   = array_merge($config, $this->_getDefaultConfig());
         $this->messages = new MessagesCollection();
+
+        if (empty($this->config['devices']) || null === $this->config['devices']) {
+            throw new \Exception('You must give an array of devices UUIDs to the pusher');
+        }
+
+        $this->devicesUUIDs = $this->config['devices'];
     }
 
     /**

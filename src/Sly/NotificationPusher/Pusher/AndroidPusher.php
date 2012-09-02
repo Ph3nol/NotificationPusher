@@ -24,6 +24,10 @@ class AndroidPusher extends BasePusher
     {
         parent::__construct($config);
 
+        if (empty($this->config['applicationID']) || null === $this->config['applicationID']) {
+            throw new \Exception('You must set a Google project application ID');
+        }
+
         if (empty($this->config['apiKey']) || null === $this->config['apiKey']) {
             throw new \Exception('You must set a Google account project API key');
         }
