@@ -49,7 +49,7 @@ $pusher = new ApplePusher(array(
     'dev'         => true,  // Developer/Sandbox mode enabled (default: false)
     'simulate'    => false, // Simulate sendings (default: false)
     'certificate' => '/path/to/your/certificate.pem',
-    'devices'     => array('UUID1', 'UUID2', 'UUID3'), // Devices UUIDs
+    'devices'     => array('UUID1', 'UUID2', 'UUID3'), // Devices UUIDs (Apple Device Tokens)
 ));
 
 /**
@@ -89,7 +89,7 @@ use Sly\NotificationPusher\Pusher\AndroidPusher;
 $pusher = new AndroidPusher(array(
     'applicationID' => '123456789012', // Your Google project application ID
     'apiKey'        => 'y0ur4p1k3y',   // Your Google account project API key
-    'devices'       => array('UUID1', 'UUID2', 'UUID3'), // Devices UUIDs
+    'devices'       => array('UUID1', 'UUID2', 'UUID3'), // Devices UUIDs (Register IDs)
 ));
 
 /**

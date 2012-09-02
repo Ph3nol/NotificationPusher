@@ -82,8 +82,18 @@ abstract class BasePusher implements BasePusherInterface
     /**
      * {@inheritdoc}
      */
+    public function getDevicesUUIDs()
+    {
+        return $this->devicesUUIDs;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function push()
     {
+        $this->prePush();
+
         $this->connection = $this->initAndGetConnection();
 
         foreach ($this->getMessages() as $message)
@@ -98,6 +108,24 @@ abstract class BasePusher implements BasePusherInterface
             }
         }
 
+        $this->postPush();
+
         return $this->messages->getSentMessages();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function prePush()
+    { 
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postPush()
+    {
+        return $this;
     }
 }

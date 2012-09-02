@@ -5,6 +5,9 @@ namespace Sly\NotificationPusher\Pusher;
 use Sly\NotificationPusher\Pusher\BasePusher;
 use Sly\NotificationPusher\Model\MessageInterface;
 
+use Buzz\Browser;
+use Buzz\Client\MultiCurl;
+
 /**
  * AndroidPusher class.
  *
@@ -13,6 +16,9 @@ use Sly\NotificationPusher\Model\MessageInterface;
  */
 class AndroidPusher extends BasePusher
 {
+    const API_SERVER_HOST         = 'https://android.googleapis.com/gcm/send';
+    const MAX_REGISTER_IDS_CHUNKS = 1000;
+
     protected $apiKey;
 
     /**
@@ -32,7 +38,11 @@ class AndroidPusher extends BasePusher
             throw new \Exception('You must set a Google account project API key');
         }
 
-        $this->apiKey = $this->config['apiKey'];
+        $this->apiKey  = $this->config['apiKey'];
+
+        if (count($this->getDevicesUUIDs()) > 1000) {
+            throw new \Exception('Devices UUIDs count cannot exceed 1000 entries');
+        }
     }
 
     /**
@@ -40,12 +50,7 @@ class AndroidPusher extends BasePusher
      */
     public function initAndGetConnection()
     {
-        /**
-         * @todo
-         */
-        $connection = null;
-
-        return $connection;
+        return new Browser(new MultiCurl());
     }
 
     /**
@@ -53,8 +58,42 @@ class AndroidPusher extends BasePusher
      */
     public function pushMessage(MessageInterface $message)
     {
-        /**
-         * @todo
-         */
+        $headers = array( 
+            'Authorization: key=' . $this->config['apiKey'],
+            'Content-Type: application/json',
+        );
+
+        $apiServerData = array(
+            'data' => array(
+                'message' => (string) $message,
+            ),
+        );
+
+        $registrationIDsChunks = array_chunk($this->getDevicesUUIDs(), self::MAX_REGISTER_IDS_CHUNKS);
+        $apiServerResponses    = array();
+
+        foreach ($registrationIDsChunks as $registrationIDs) {
+            $apiServerData['registration_ids'] = $registrationIDs;
+
+            $apiServerResponses[] = $this->getConnection()->post(self::API_SERVER_HOST, $headers, json_encode($apiServerData));
+        }
+
+        $this->getConnection()->getClient()->flush();
+
+        foreach ($apiServerResponses as $apiServerResponse) {
+            $apiServerResponse = json_decode($apiServerResponse->getContent());
+
+            if (true === (bool) $apiServerResponse->failure) {
+                $apiServerErrors = array();
+
+                foreach ($apiServerResponse->results as $result) {
+                    $apiServerErrors[] = $result->error;
+                }
+
+                throw new \Exception(sprintf('API server has returned error(s): "%s"', implode(' / ', $apiServerErrors)));
+            }
+        }
+
+        return (bool) $apiServerResponse->success;
     }
 }

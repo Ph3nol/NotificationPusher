@@ -64,6 +64,6 @@ class ApplePusher extends BasePusher
      */
     public function pushMessage(MessageInterface $message)
     {
-        return (bool) fwrite($this->getConnection(), $message->getMessage());
+        return (bool) fwrite($this->getConnection(), (string) $message);
     }
 }
