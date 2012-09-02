@@ -96,6 +96,6 @@ class AndroidPusher extends BasePusher
             }
         }
 
-        return (bool) $apiServerResponse->success;
+        return true;
     }
 }

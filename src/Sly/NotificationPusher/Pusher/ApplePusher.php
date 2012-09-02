@@ -66,6 +66,34 @@ class ApplePusher extends BasePusher
      */
     public function pushMessage(MessageInterface $message)
     {
-        return (bool) fwrite($this->getConnection(), (string) $message);
+        $apiServerResponses = array();
+
+        foreach ($this->getDevicesUUIDs() as $deviceToken) {
+            // $apsData = array();
+
+            // $apsData['aps'] = array(
+            //     'alert' => $message,
+            // );
+
+            // if ($message->getHasSound()) {
+            //     $apsData['aps']['sound'] = 'default';
+            // }
+
+            // $apsData          = json_encode($apsData);
+            // $encryptedMessage = chr(0) . pack('n', 32) . pack('H*', $deviceToken) . pack('n', strlen($apsData)) . $apsData;
+
+            // $apiServerResponses[] = fwrite($this->getConnection(), $encryptedMessage, strlen($encryptedMessage));
+
+            $apiServerResponses[] = fwrite($this->getConnection(), (string) $message);
+        }
+
+        foreach ($apiServerResponses as $apiServerResponse) {
+            /**
+             * @todo Check response and throw adapted needed exceptions.
+             */
+        }
+
+
+        return true;
     }
 }
