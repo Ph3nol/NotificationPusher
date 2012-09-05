@@ -69,31 +69,13 @@ class ApplePusher extends BasePusher
         $apiServerResponses = array();
 
         foreach ($this->getDevicesUUIDs() as $deviceToken) {
-            $apsData = array();
+            $payload = $this->__getPayloadFromMessage($message);
 
-            $apsData['aps']['alert'] = (string) $message;
+            if (null !== $payload) {
+                $packedMessage = $this->__getPackedMessage($message, $deviceToken, $payload);
 
-            if (true === $message->hasBadge()) {
-                $apsData['aps']['badge'] = 1;
+                $apiServerResponses[] = fwrite($this->getConnection(), $packedMessage);
             }
-
-            if (true === $message->hasSound()) {
-                $apsData['aps']['sound'] = 'default';
-            }
-
-            $apsData = json_encode($apsData);
-
-            $apsNotification =
-              chr(0) .
-              pack("n", 32) . pack('H*', str_replace(' ', '', bin2hex($deviceToken))) .
-              pack("n", strlen($apsData)) . $apsData;
-
-            $apiServerResponses[] = fwrite($this->getConnection(), $apsNotification);
-
-            /**
-             * No packing version, with no hexa/binary device token.
-             */
-            // $apiServerResponses[] = fwrite($this->getConnection(), (string) $message);
         }
 
         foreach ($apiServerResponses as $apiServerResponse) {
@@ -104,5 +86,47 @@ class ApplePusher extends BasePusher
 
 
         return true;
+    }
+
+    /**
+     * Get payload from message.
+     * 
+     * @param MessageInterface $message Message
+     * 
+     * @return array|null
+     */
+    private function __getPayloadFromMessage(MessageInterface $message)
+    {
+        if (true === $message->hasAlert()) {
+            $payload['aps']['alert'] = 1;
+        }
+
+        if (true === $message->hasBadge()) {
+            $payload['aps']['badge'] = 1;
+        }
+
+        if (true === $message->hasSound()) {
+            $payload['aps']['sound'] = 1;
+        }
+
+        return isset($payload) ? json_encode($payload) : null;
+    }
+
+    /**
+     * Get packed message.
+     * 
+     * @param MessageInterface $message     Message
+     * @param string           $deviceToken Device token
+     * @param string           $payload     Payload
+     * 
+     * @return array|null
+     */
+    private function __getPackedMessage(MessageInterface $message, $deviceToken, $payload = null)
+    {
+        if ($payload) {
+            return chr(0) . chr(0) . chr(32) . pack('H*', str_replace(' ', '', $deviceToken)) . chr(0) . chr(strlen($payload)) . $payload;
+        } else {
+            return null;
+        }
     }
 }
