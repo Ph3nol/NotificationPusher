@@ -52,16 +52,26 @@ interface MessageInterface
       * @return boolean
       */
     public function hasAlert();
+
+    /**
+      * Get alert value.
+      * 
+      * @return boolean|array
+      */
+    public function getAlert();
     
     /**
       * Set if message has to be displayed with push.
+      * Set specific alert (array) if needed.
       *
-      * @param boolean $hasAlert HasAlert value to set
+      * @see http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW1
+      *
+      * @param boolean|array $alert Alert value to set
       */
-    public function setAlert($hasAlert);
+    public function setAlert($alert);
 
     /**
-      * Get Badge value.
+      * Get badge value.
       *
       * @return boolean
       */

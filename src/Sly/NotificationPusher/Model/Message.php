@@ -87,9 +87,17 @@ class Message implements MessageInterface
     /**
      * {@inheritdoc}
      */
-    public function hasAlert()
+    public function getAlert()
     {
         return $this->alert;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasAlert()
+    {
+        return (bool) $this->alert;
     }
     
     /**
