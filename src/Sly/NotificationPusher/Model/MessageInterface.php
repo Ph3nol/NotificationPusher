@@ -13,7 +13,7 @@ interface MessageInterface
     /**
       * Get Status value.
       *
-      * @return string Status value to get
+      * @return string
       */
     public function getStatus();
     
@@ -34,7 +34,7 @@ interface MessageInterface
     /**
       * Get Message value.
       *
-      * @return string Message value to get
+      * @return string
       */
     public function getMessage();
     
@@ -46,72 +46,52 @@ interface MessageInterface
     public function setMessage($message);
 
     /**
-      * Get HasAlert value.
+      * Returns if message has an alert or not.
+      * Consider alert as push message.
       *
-      * @return boolean HasAlert value to get
-      */
-    public function getHasAlert();
-
-    /**
-      * Get HasAlert value.
-      *
-      * @return boolean HasAlert value to get
+      * @return boolean
       */
     public function hasAlert();
     
     /**
-      * Set HasAlert value.
+      * Set if message has to be displayed with push.
       *
-      * @param boolean  $hasAlert HasAlert value to set
+      * @param boolean $hasAlert HasAlert value to set
       */
-    public function setHasAlert($hasAlert);
+    public function setAlert($hasAlert);
 
     /**
-      * Get HasBadge value.
+      * Get Badge value.
       *
-      * @return boolean HasBadge value to get
+      * @return boolean
       */
-    public function getHasBadge();
-
-    /**
-      * Get HasBadge value.
-      *
-      * @return boolean HasBadge value to get
-      */
-    public function hasBadge();
+    public function getBadge();
     
     /**
-      * Set HasBadge value.
+      * Set badge value.
       *
-      * @param boolean $hasBadge HasBadge value to set
+      * @param integer $badge Badge value to set
       */
-    public function setHasBadge($hasBadge);
+    public function setBadge($badge);
 
     /**
-      * Get HasSound value.
+      * Get Sound value.
       *
-      * @return boolean HasSound value to get
+      * @return string
       */
-    public function getHasSound();
-
-    /**
-      * Get HasSound value.
-      *
-      * @return boolean HasSound value to get
-      */
-    public function hasSound();
+    public function getSound();
     
     /**
-      * Set HasSound value.
+      * Set sound value.
       *
-      * @param boolean $hasSound HasSound value to set
+      * @param string $hasSound Sound value to set
       */
-    public function setHasSound($hasSound);
+    public function setSound($sound);
 
     /**
       * Get CreatedAt value.
       *
-      * @return \DateTime CreatedAt value to get
+      * @return \DateTime
       */
     public function getCreatedAt();
     
@@ -125,7 +105,7 @@ interface MessageInterface
     /**
       * Get SentAt value.
       *
-      * @return \DateTime SentAt value to get
+      * @return \DateTime
       */
     public function getSentAt();
     

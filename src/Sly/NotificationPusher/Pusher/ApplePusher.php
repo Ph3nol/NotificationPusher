@@ -57,6 +57,7 @@ class ApplePusher extends BasePusher
         $ctx = stream_context_create();
 
         stream_context_set_option($ctx, 'ssl', 'local_cert', $this->config['certificate']);
+        // stream_context_set_option($ctx, 'ssl', 'passphrase', $pass);
         
         $connection = stream_socket_client($this->getApnsServerHost(), $error, $errorString, 100, (STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT), $ctx);
 
@@ -127,15 +128,12 @@ class ApplePusher extends BasePusher
      */
     private function __getPayloadFromMessage(MessageInterface $message)
     {
-        $payload['aps']['alert'] = (string) $message;
-
-        if (true === $message->hasBadge()) {
-            $payload['aps']['badge'] = 1;
+        if ($message->hasAlert()) {
+            $payload['aps']['alert'] = (string) $message;
         }
 
-        if (true === $message->hasSound()) {
-            $payload['aps']['sound'] = 1;
-        }
+        $payload['aps']['badge'] = $message->getBadge();
+        $payload['aps']['sound'] = $message->getSound();
 
         return isset($payload) ? json_encode($payload) : null;
     }

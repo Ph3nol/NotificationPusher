@@ -50,8 +50,8 @@ use Sly\NotificationPusher\Pusher\ApplePusher;
  * Initialize Apple pusher service.
  */
 $pusher = new ApplePusher(array(
-    'dev'         => true,  // Developer/Sandbox mode enabled (default: false)
-    'simulate'    => false, // Simulate sendings (default: false)
+    'dev'         => true,                             // Developer/Sandbox mode enabled (default: false)
+    'simulate'    => false,                            // Simulate sendings (default: false)
     'certificate' => '/path/to/your/certificate.pem',
     'devices'     => array('UUID1', 'UUID2', 'UUID3'), // Devices UUIDs (Apple Device Tokens)
 ));
@@ -61,9 +61,9 @@ $pusher = new ApplePusher(array(
  */
 for ($i = 1; $i <= 3; $i++) {
     $message = new Message(sprintf('This is Test #%d', $i));
-    // $message->setHasAlert(true);
-    // $message->setHasBadge(true);
-    // $message->setHasSound(true);
+    // $message->setAlert(false);           // Don't display message
+    // $message->setBadge(999);             // Display '999' badge
+    // $message->setSound('bingbong.aiff'); // Set specific sound
 
     $pusher->addMessage($message);
 }
@@ -101,9 +101,9 @@ $pusher = new AndroidPusher(array(
  */
 for ($i = 1; $i <= 3; $i++) {
     $message = new Message(sprintf('This is Test #%d', $i));
-    // $message->setHasAlert(true);
-    // $message->setHasBadge(true);
-    // $message->setHasSound(true);
+    // $message->setAlert(false);           // Don't display message
+    // $message->setBadge(999);             // Display '999' badge
+    // $message->setSound('bingbong.aiff'); // Set specific sound
 
     $pusher->addMessage($message);
 }

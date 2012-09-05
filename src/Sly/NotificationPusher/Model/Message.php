@@ -8,9 +8,9 @@ class Message implements MessageInterface
 {
     protected $status;
     protected $message;
-    protected $hasAlert;
-    protected $hasSound;
-    protected $hasBadge;
+    protected $alert;
+    protected $sound;
+    protected $badge;
     protected $createdAt;
     protected $sentAt;
 
@@ -21,6 +21,9 @@ class Message implements MessageInterface
     {
         $this->status    = MessageInterface::STATUS_INIT;
         $this->message   = $message;
+        $this->alert     = true;
+        $this->badge     = 0;
+        $this->sound     = 'default';
         $this->createdAt = new \DateTime();
     }
 
@@ -84,73 +87,49 @@ class Message implements MessageInterface
     /**
      * {@inheritdoc}
      */
-    public function getHasAlert()
-    {
-        return $this->hasAlert;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function hasAlert()
     {
-        return $this->hasAlert;
+        return $this->alert;
     }
     
     /**
      * {@inheritdoc}
      */
-    public function setHasAlert($hasAlert)
+    public function setAlert($alert)
     {
-        $this->hasAlert = $hasAlert;
+        $this->alert = $alert;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getHasBadge()
+    public function getBadge()
     {
-        return $this->hasBadge;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function hasBadge()
-    {
-        return $this->hasBadge;
+        return $this->badge;
     }
     
     /**
      * {@inheritdoc}
      */
-    public function setHasBadge($hasBadge)
+    public function setBadge($badge)
     {
-        $this->hasBadge = $hasBadge;
+        $this->badge = $badge;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getHasSound()
+    public function getSound()
     {
-        return $this->hasSound;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function hasSound()
-    {
-        return $this->hasSound;
+        return $this->sound;
     }
     
     /**
      * {@inheritdoc}
      */
-    public function setHasSound($hasSound)
+    public function setSound($sound)
     {
-        $this->hasSound = $hasSound;
+        $this->sound = $sound;
     }
 
     /**
