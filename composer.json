@@ -1,6 +1,6 @@
 {
     "name": "sly/notification-pusher",
-    "description": "Apple/Android notification messages pusher.",
+    "description": "PHP library for easy Apple/Android notification message pushing.",
     "keywords": ["apple", "iphone", "android", "notification", "message", "push", "pusher"],
     "homepage": "https://github.com/Ph3nol/NotificationPusher",
     "type": "library",

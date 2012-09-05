@@ -1,4 +1,6 @@
-# NotificationPusher library
+# NotificationPusher
+
+PHP library for easy Apple/Android notification message pushing.
 
 ## WORK IN PROGRESS.
 
