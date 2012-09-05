@@ -15,9 +15,11 @@ use Sly\NotificationPusher\Exception\RuntimeException;
  */
 class ApplePusher extends BasePusher
 {
-    const TTL                      = 3600;
-    const APNS_SERVER_HOST         = 'ssl://gateway.push.apple.com:2195';
-    const APNS_SANDBOX_SERVER_HOST = 'ssl://gateway.sandbox.push.apple.com:2195';
+    const TTL                               = 3600;
+    const APNS_SERVER_HOST                  = 'ssl://gateway.push.apple.com:2195';
+    const APNS_SANDBOX_SERVER_HOST          = 'ssl://gateway.sandbox.push.apple.com:2195';
+    const APNS_FEEDBACK_SERVER_HOST         = 'ssl://feedback.push.apple.com:2196';
+    const APNS_FEEDBACK_SANDBOX_SERVER_HOST = 'ssl://feedback.sandbox.push.apple.com:2196';
 
     /**
      * Constructor.
@@ -40,7 +42,11 @@ class ApplePusher extends BasePusher
      */
     protected function getApnsServerHost()
     {
-        return true === $this->config['dev'] ? self::APNS_SANDBOX_SERVER_HOST : self::APNS_SERVER_HOST;
+        if ($this->config['feedback']) {
+            return true === $this->config['dev'] ? self::APNS_FEEDBACK_SANDBOX_SERVER_HOST : self::APNS_FEEDBACK_SERVER_HOST;
+        } else {
+            return true === $this->config['dev'] ? self::APNS_SANDBOX_SERVER_HOST : self::APNS_SERVER_HOST;
+        }
     } 
 
     /**
@@ -59,6 +65,30 @@ class ApplePusher extends BasePusher
         }
 
         return $connection;
+    }
+
+    /**
+     * Get feedback to list all tokens to unregister (not used anymore).
+     *
+     * @return array
+     */
+    public function getFeedback()
+    {
+        $feedbackResponses = array();
+
+        while ($fbCon = fread($this->getConnection(), 38)) {
+            $arr    = unpack("H*", $fbCon);
+            $rawhex = trim(implode("", $arr));
+            $token  = substr($rawhex, 12, 64);
+
+            if (!empty($token)) {
+                $feedbackResponses[] = sprintf('Token was not registered anymore: %s', $token);
+            }
+        }
+
+        fclose($this->getConnection());
+
+        return $feedbackResponses;
     }
 
     /**

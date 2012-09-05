@@ -47,6 +47,7 @@ abstract class BasePusher implements BasePusherInterface
         return array(
             'dev'      => false,
             'simulate' => false,
+            'feedback' => false,
         );
     }
 
