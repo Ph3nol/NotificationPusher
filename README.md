@@ -9,6 +9,8 @@ PHP library for easy Apple/Android notification message pushing.
 ## Requirements
 
 * PHP 5.3+
+* PHP Curl extension - +SSL support (for AndroidPusher service)
+* PHP OpenSSL extension (for ApplePusher service)
 
 ## Installation
 
