@@ -8,7 +8,7 @@ use Sly\NotificationPusher\Exception\ConfigurationException;
 use Sly\NotificationPusher\Exception\RuntimeException;
 
 use Buzz\Browser;
-use Buzz\Client\MultiCurl;
+use Buzz\Client\Curl;
 
 /**
  * AndroidPusher class.
@@ -52,7 +52,7 @@ class AndroidPusher extends BasePusher
      */
     public function initAndGetConnection()
     {
-        return new Browser(new MultiCurl());
+        return new Browser(new Curl());
     }
 
     /**
@@ -79,8 +79,6 @@ class AndroidPusher extends BasePusher
 
             $apiServerResponses[] = $this->getConnection()->post(self::API_SERVER_HOST, $headers, json_encode($apiServerData));
         }
-
-        $this->getConnection()->getClient()->flush();
 
         foreach ($apiServerResponses as $apiServerResponse) {
             $apiServerResponse = json_decode($apiServerResponse->getContent());
