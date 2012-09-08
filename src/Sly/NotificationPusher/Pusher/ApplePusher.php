@@ -129,7 +129,7 @@ class ApplePusher extends BasePusher
     private function __getPayloadFromMessage(MessageInterface $message)
     {
         if (true === $message->hasAlert()) {
-            $payload['aps']['alert'] = is_array($message->getAlert()) ? $message->getAlert() || (string) $message;
+            $payload['aps']['alert'] = is_array($message->getAlert()) ? $message->getAlert() : (string) $message;
         }
 
         $payload['aps']['badge'] = $message->getBadge();
