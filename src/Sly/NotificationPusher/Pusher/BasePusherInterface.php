@@ -14,6 +14,13 @@ use Sly\NotificationPusher\Collection\PushesCollection;
 interface BasePusherInterface
 {
     /**
+     * Get configuration.
+     *
+     * @return array
+     */
+    public function getConfig();
+
+    /**
      * Add a message.
      * 
      * @param MessageInterface $message Message

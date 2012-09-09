@@ -13,7 +13,7 @@ use Sly\NotificationPusher\Exception\ConfigurationException;
  * @uses BasePusherInterface
  * @author Cédric Dugat <ph3@slynett.com>
  */
-abstract class BasePusher implements BasePusherInterface
+class BasePusher implements BasePusherInterface
 {
     protected $config;
     protected $connection;
@@ -49,6 +49,14 @@ abstract class BasePusher implements BasePusherInterface
             'simulate' => false,
             'feedback' => false,
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getConfig()
+    {
+        return $this->config;
     }
 
     /**
