@@ -34,7 +34,7 @@ class BasePusher extends atoum\test
             ->exception(function() {
                 $basePusher = new BaseBasePusher(array());
             })
-            ->isInstanceOf('Sly\NotificationPusher\Exception\ConfigurationException')
+                ->isInstanceOf('Sly\NotificationPusher\Exception\ConfigurationException')
         ;
     }
 
@@ -49,8 +49,8 @@ class BasePusher extends atoum\test
          */
         $this->assert
             ->array($basePusher->getDevicesUUIDs())
-            ->hasSize(2)
-            ->containsValues(array('ABC', 'DEF'))
+                ->hasSize(2)
+                ->containsValues(array('ABC', 'DEF'))
         ;
 
         /**
@@ -58,7 +58,7 @@ class BasePusher extends atoum\test
          */
         $this->assert
             ->object($basePusher->getMessages())
-            ->isInstanceOf('ArrayIterator')
+                ->isInstanceOf('ArrayIterator')
         ;
     }
 
@@ -71,27 +71,12 @@ class BasePusher extends atoum\test
         $basePusherConfig = $basePusher->getConfig();
 
         /**
-         * Check some config keys.
+         * Check some config keys and parameters.
          */
         $this->assert
-            ->array($basePusherConfig)
-            ->hasKeys(array('dev', 'simulate'))
-        ;
-
-        /**
-         * Check if 'dev' parameter is false by default.
-         */
-        $this->assert
-            ->boolean($basePusherConfig['dev'])
-            ->isFalse()
-        ;
-
-        /**
-         * Check if 'simulate' parameter is false by default.
-         */
-        $this->assert
-            ->boolean($basePusherConfig['simulate'])
-            ->isFalse()
+            ->array($basePusherConfig)->hasKeys(array('dev', 'simulate'))
+            ->boolean($basePusherConfig['dev'])->isFalse()
+            ->boolean($basePusherConfig['simulate'])->isFalse()
         ;
     }
 
@@ -110,8 +95,8 @@ class BasePusher extends atoum\test
 
             $this->assert
                 ->object($basePusher->getMessages())
-                ->isInstanceOf('ArrayIterator')
-                ->hasSize($i)
+                    ->isInstanceOf('ArrayIterator')
+                    ->hasSize($i)
             ;
         }
     }
