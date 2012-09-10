@@ -115,6 +115,16 @@ $pushedMessages = $pusher->push();
 
 ```
 
+## Test with Atoum
+
+This library is using [https://github.com/mageekguy/atoum](Atoum) for unit testing,
+whose Composer package can be installed with `dev` mode:
+
+```
+php composer install --dev
+./atoum -d tests/units
+```
+
 ## Complements
 
 ### Create Apple SSL certificate
