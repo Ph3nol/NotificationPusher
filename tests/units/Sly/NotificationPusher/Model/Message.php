@@ -37,9 +37,6 @@ class Message extends atoum\test
     {
         $message = new BaseMessage('Test');
 
-        /**
-         * Test all message data after instanciation.
-         */
         $this->assert
             ->string($message->getMessage())->isEqualTo('Test')
             ->string((string) $message)->isEqualTo('Test')

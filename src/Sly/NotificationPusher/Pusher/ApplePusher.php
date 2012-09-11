@@ -33,6 +33,10 @@ class ApplePusher extends BasePusher
         if (empty($this->config['certificate']) || null === $this->config['certificate']) {
             throw new ConfigurationException('You must set a SSL certificate to establish the connection');
         }
+
+        if (false === file_exists($this->config['certificate'])) {
+            throw new ConfigurationException('Given Apple certificate cannot be found');
+        }
     }
 
     /**
@@ -57,7 +61,6 @@ class ApplePusher extends BasePusher
         $ctx = stream_context_create();
 
         stream_context_set_option($ctx, 'ssl', 'local_cert', $this->config['certificate']);
-        // stream_context_set_option($ctx, 'ssl', 'passphrase', $pass);
         
         $connection = stream_socket_client($this->getApnsServerHost(), $error, $errorString, 100, (STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT), $ctx);
 

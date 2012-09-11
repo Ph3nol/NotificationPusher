@@ -27,9 +27,6 @@ class BasePusher extends atoum\test
 
     public function testConstructWithoutDevices()
     {
-        /**
-         * Check no device IDs exception.
-         */
         $this->assert
             ->exception(function() {
                 $basePusher = new BaseBasePusher(array());
@@ -44,18 +41,6 @@ class BasePusher extends atoum\test
             'devices' => array('ABC', 'DEF'),
         ));
 
-        /**
-         * Check device IDs.
-         */
-        $this->assert
-            ->array($basePusher->getDevicesUUIDs())
-                ->hasSize(2)
-                ->containsValues(array('ABC', 'DEF'))
-        ;
-
-        /**
-         * Check messages collection.
-         */
         $this->assert
             ->object($basePusher->getMessages())
                 ->isInstanceOf('ArrayIterator')
@@ -70,13 +55,23 @@ class BasePusher extends atoum\test
 
         $basePusherConfig = $basePusher->getConfig();
 
-        /**
-         * Check some config keys and parameters.
-         */
         $this->assert
             ->array($basePusherConfig)->hasKeys(array('dev', 'simulate'))
             ->boolean($basePusherConfig['dev'])->isFalse()
             ->boolean($basePusherConfig['simulate'])->isFalse()
+        ;
+    }
+
+    public function testGetDeviceUUIDs()
+    {
+        $basePusher = new BaseBasePusher(array(
+            'devices' => array('ABC', 'DEF', null, '', false),
+        ));
+
+        $this->assert
+            ->array($basePusher->getDevicesUUIDs())
+                ->hasSize(2)
+                ->containsValues(array('ABC', 'DEF'))
         ;
     }
 
@@ -86,9 +81,6 @@ class BasePusher extends atoum\test
             'devices' => array('ABC', 'DEF'),
         ));
 
-        /**
-         * Test with 1, 2 and 3 messages.
-         */
         for ($i = 1; $i < 3; $i++) {
             $message = new Message(sprintf('Test %d', $i));
             $basePusher->addMessage($message);
