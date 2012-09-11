@@ -94,7 +94,7 @@ class BasePusher implements BasePusherInterface
      */
     public function getDevicesUUIDs()
     {
-        return $this->devicesUUIDs;
+        return array_filter($this->devicesUUIDs);
     }
 
     /**
