@@ -77,7 +77,14 @@ class AndroidPusher extends BasePusher
         foreach ($registrationIDsChunks as $registrationIDs) {
             $apiServerData['registration_ids'] = $registrationIDs;
 
-            $apiServerResponses[] = $this->getConnection()->post(self::API_SERVER_HOST, $headers, json_encode($apiServerData));
+            $apiServerResponse        = $this->getConnection()->post(self::API_SERVER_HOST, $headers, json_encode($apiServerData));
+            $apiServerResponseHeaders = $apiServerResponse->getHeaders();
+
+            if ('HTTP/1.1 401 Unauthorized' == $apiServerResponseHeaders[0]) {
+                throw new ConfigurationException('Authorization problem, check your app parameters from your Google API Console');
+            }
+
+            $apiServerResponses[] = $apiServerResponse;
         }
 
         foreach ($apiServerResponses as $apiServerResponse) {
