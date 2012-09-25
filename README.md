@@ -53,6 +53,7 @@ $pusher = new ApplePusher(array(
     'dev'         => true,                             // Developer/Sandbox mode enabled (default: false)
     'simulate'    => false,                            // Simulate sendings (default: false)
     'certificate' => '/path/to/your/certificate.pem',
+    'certificate_passphrase' => 'mysecret',            // Only needed if the PEM file is protected with passphrase
     'devices'     => array('UUID1', 'UUID2', 'UUID3'), // Devices UUIDs (Apple Device Tokens)
 ));
 

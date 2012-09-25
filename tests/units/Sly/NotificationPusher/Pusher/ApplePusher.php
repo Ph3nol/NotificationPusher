@@ -37,4 +37,34 @@ class ApplePusher extends atoum\test
                 ->isInstanceOf('Sly\NotificationPusher\Exception\ConfigurationException')
         ;
     }
+
+    public function testInvalidCertificatePassphrase()
+    {
+        $this->assert
+            ->exception(function() {
+                $applePusher = new BaseApplePusher(array(
+                    'certificate' => __DIR__ . '/../../../fixtures/cert_with_passphrase.pem',
+                    'certificate_passphrase' => 'invalidpassphrase',
+                    'devices'     => array('ABC', 'DEF'),
+                ));
+
+                $con = $applePusher->initAndGetConnection();
+            })
+                ->isInstanceOf('Sly\NotificationPusher\Exception\RuntimeException')
+        ;
+    }
+
+    public function testValidCertificatePassphrase() {
+        $applePusher = new BaseApplePusher(array(
+            'certificate' => __DIR__ . '/../../../fixtures/cert_with_passphrase.pem',
+            'certificate_passphrase' => 'validpassphrase',
+            'devices'     => array('ABC', 'DEF'),
+        ));
+
+        $con = $applePusher->initAndGetConnection();
+        $this->assert
+            ->boolean(is_resource($con))
+                ->isTrue()
+        ;
+    }
 }
