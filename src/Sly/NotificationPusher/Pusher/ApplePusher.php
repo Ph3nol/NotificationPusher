@@ -61,11 +61,15 @@ class ApplePusher extends BasePusher
         $ctx = stream_context_create();
 
         stream_context_set_option($ctx, 'ssl', 'local_cert', $this->config['certificate']);
+
+        if (!empty($this->config['certificate_passphrase'])) {
+            stream_context_set_option($ctx, 'ssl', 'passphrase', $this->config['certificate_passphrase']);
+        }
         
-        $connection = stream_socket_client($this->getApnsServerHost(), $error, $errorString, 100, (STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT), $ctx);
+        $connection = @stream_socket_client($this->getApnsServerHost(), $error, $errorString, 100, (STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT), $ctx);
 
         if (false === $connection) {
-            throw new RuntimeException(sprintf('Failed to establish APNS connection: %s', $errorString));
+            throw new RuntimeException(sprintf('Failed to establish APNS connection: %s (Incorrect passphrase?)', $errorString));
         }
 
         return $connection;
