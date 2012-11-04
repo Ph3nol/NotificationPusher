@@ -47,11 +47,13 @@ class ApplePusher extends BasePusher
     protected function getApnsServerHost()
     {
         if ($this->config['feedback']) {
-            return true === $this->config['dev'] ? self::APNS_FEEDBACK_SANDBOX_SERVER_HOST : self::APNS_FEEDBACK_SERVER_HOST;
+            return true === $this->config['dev'] ?
+                self::APNS_FEEDBACK_SANDBOX_SERVER_HOST : self::APNS_FEEDBACK_SERVER_HOST;
         } else {
-            return true === $this->config['dev'] ? self::APNS_SANDBOX_SERVER_HOST : self::APNS_SERVER_HOST;
+            return true === $this->config['dev'] ?
+                self::APNS_SANDBOX_SERVER_HOST : self::APNS_SERVER_HOST;
         }
-    } 
+    }
 
     /**
      * {@inheritdoc}
@@ -61,8 +63,15 @@ class ApplePusher extends BasePusher
         $ctx = stream_context_create();
 
         stream_context_set_option($ctx, 'ssl', 'local_cert', $this->config['certificate']);
-        
-        $connection = stream_socket_client($this->getApnsServerHost(), $error, $errorString, 100, (STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT), $ctx);
+
+        $connection = stream_socket_client(
+            $this->getApnsServerHost(),
+            $error,
+            $errorString,
+            100,
+            (STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT),
+            $ctx
+        );
 
         if (false === $connection) {
             throw new RuntimeException(sprintf('Failed to establish APNS connection: %s', $errorString));
@@ -103,10 +112,10 @@ class ApplePusher extends BasePusher
         $apiServerResponses = array();
 
         foreach ($this->getDevicesUUIDs() as $deviceToken) {
-            $payload = $this->__getPayloadFromMessage($message);
+            $payload = $this->getPayloadFromMessage($message);
 
             if (null !== $payload) {
-                $packedMessage = $this->__getPackedMessage($message, $deviceToken, $payload);
+                $packedMessage = $this->getPackedMessage($message, $deviceToken, $payload);
 
                 $apiServerResponses[] = fwrite($this->getConnection(), $packedMessage);
             }
@@ -129,7 +138,7 @@ class ApplePusher extends BasePusher
      * 
      * @return array|null
      */
-    private function __getPayloadFromMessage(MessageInterface $message)
+    private function getPayloadFromMessage(MessageInterface $message)
     {
         if (true === $message->hasAlert()) {
             $payload['aps']['alert'] = is_array($message->getAlert()) ? $message->getAlert() : (string) $message;
@@ -150,10 +159,11 @@ class ApplePusher extends BasePusher
      * 
      * @return array|null
      */
-    private function __getPackedMessage(MessageInterface $message, $deviceToken, $payload = null)
+    private function getPackedMessage(MessageInterface $message, $deviceToken, $payload = null)
     {
         if ($payload) {
-            return chr(0) . chr(0) . chr(32) . pack('H*', str_replace(' ', '', $deviceToken)) . chr(0) . chr(strlen($payload)) . $payload;
+            return chr(0) . chr(0) . chr(32) . pack('H*', str_replace(' ', '', $deviceToken))
+                . chr(0) . chr(strlen($payload)) . $payload;
         } else {
             return null;
         }

@@ -16,7 +16,7 @@ interface MessageInterface
       * @return string
       */
     public function getStatus();
-    
+
     /**
       * Set Status value.
       *
@@ -37,7 +37,7 @@ interface MessageInterface
       * @return string
       */
     public function getMessage();
-    
+
     /**
       * Set Message value.
       *
@@ -59,12 +59,10 @@ interface MessageInterface
       * @return boolean|array
       */
     public function getAlert();
-    
+
     /**
       * Set if message has to be displayed with push.
       * Set specific alert (array) if needed.
-      *
-      * @see http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW1
       *
       * @param boolean|array $alert Alert value to set
       */
@@ -76,7 +74,7 @@ interface MessageInterface
       * @return boolean
       */
     public function getBadge();
-    
+
     /**
       * Set badge value.
       *
@@ -90,7 +88,7 @@ interface MessageInterface
       * @return string
       */
     public function getSound();
-    
+
     /**
       * Set sound value.
       *
@@ -104,7 +102,7 @@ interface MessageInterface
       * @return \DateTime
       */
     public function getCreatedAt();
-    
+
     /**
       * Set CreatedAt value.
       *
@@ -118,7 +116,7 @@ interface MessageInterface
       * @return \DateTime
       */
     public function getSentAt();
-    
+
     /**
       * Set SentAt value.
       *

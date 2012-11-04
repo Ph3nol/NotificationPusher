@@ -27,7 +27,7 @@ class BasePusher implements BasePusherInterface
      */
     public function __construct(array $config = array())
     {
-        $this->config   = array_merge($this->_getDefaultConfig(), $config);
+        $this->config   = array_merge($this->getDefaultConfig(), $config);
         $this->messages = new MessagesCollection();
 
         if (empty($this->config['devices']) || null === $this->config['devices']) {
@@ -42,7 +42,7 @@ class BasePusher implements BasePusherInterface
      * 
      * @return array
      */
-    protected function _getDefaultConfig()
+    protected function getDefaultConfig()
     {
         return array(
             'dev'      => false,
@@ -106,8 +106,7 @@ class BasePusher implements BasePusherInterface
 
         $this->connection = $this->initAndGetConnection();
 
-        foreach ($this->getMessages() as $message)
-        {
+        foreach ($this->getMessages() as $message) {
             if (true === $this->config['simulate']) {
                 $message->setStatus(MessageInterface::STATUS_SIMULATED_SENT);
             }
@@ -127,7 +126,7 @@ class BasePusher implements BasePusherInterface
      * {@inheritdoc}
      */
     public function prePush()
-    { 
+    {
         return $this;
     }
 

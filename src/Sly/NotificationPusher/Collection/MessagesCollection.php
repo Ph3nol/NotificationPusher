@@ -62,19 +62,15 @@ class MessagesCollection implements \IteratorAggregate
             switch ($matches[1]) {
                 case 'Sent':
                     $messagesStatus = MessageInterface::STATUS_SENT;
-
                     break;
-
                 case 'Failed':
                     $messagesStatus = MessageInterface::STATUS_FAILED;
-
                     break;
             }
 
             $statusedMessages = new $this;
 
-            foreach ($this->getMessages() as $message)
-            {
+            foreach ($this->getMessages() as $message) {
                 if ($messagesStatus == $message->getStatus()) {
                     $statusedMessages->set($message);
                 }

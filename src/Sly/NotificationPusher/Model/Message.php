@@ -44,7 +44,7 @@ class Message implements MessageInterface
     {
         return $this->status;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -75,7 +75,7 @@ class Message implements MessageInterface
     {
         return $this->message;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -99,7 +99,7 @@ class Message implements MessageInterface
     {
         return (bool) $this->alert;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -115,7 +115,7 @@ class Message implements MessageInterface
     {
         return $this->badge;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -131,7 +131,7 @@ class Message implements MessageInterface
     {
         return $this->sound;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -147,7 +147,7 @@ class Message implements MessageInterface
     {
         return $this->createdAt;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -163,7 +163,7 @@ class Message implements MessageInterface
     {
         return $this->sentAt;
     }
-    
+
     /**
      * {@inheritdoc}
      */

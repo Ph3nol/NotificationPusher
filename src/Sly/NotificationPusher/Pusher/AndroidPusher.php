@@ -60,7 +60,7 @@ class AndroidPusher extends BasePusher
      */
     public function pushMessage(MessageInterface $message)
     {
-        $headers = array( 
+        $headers = array(
             'Authorization: key=' . $this->config['apiKey'],
             'Content-Type: application/json',
         );
@@ -77,11 +77,18 @@ class AndroidPusher extends BasePusher
         foreach ($registrationIDsChunks as $registrationIDs) {
             $apiServerData['registration_ids'] = $registrationIDs;
 
-            $apiServerResponse        = $this->getConnection()->post(self::API_SERVER_HOST, $headers, json_encode($apiServerData));
+            $apiServerResponse = $this->getConnection()->post(
+                self::API_SERVER_HOST,
+                $headers,
+                json_encode($apiServerData)
+            );
+
             $apiServerResponseHeaders = $apiServerResponse->getHeaders();
 
             if ('HTTP/1.1 401 Unauthorized' == $apiServerResponseHeaders[0]) {
-                throw new ConfigurationException('Authorization problem, check your app parameters from your Google API Console');
+                throw new ConfigurationException(
+                    'Authorization problem, check your app parameters from your Google API Console'
+                );
             }
 
             $apiServerResponses[] = $apiServerResponse;
@@ -97,7 +104,9 @@ class AndroidPusher extends BasePusher
                     $apiServerErrors[] = $result->error;
                 }
 
-                throw new RuntimeException(sprintf('API server has returned error(s): "%s"', implode(' / ', $apiServerErrors)));
+                throw new RuntimeException(
+                    sprintf('API server has returned error(s): "%s"', implode(' / ', $apiServerErrors))
+                );
             }
         }
 
