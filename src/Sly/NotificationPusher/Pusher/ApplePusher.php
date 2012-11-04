@@ -64,7 +64,14 @@ class ApplePusher extends BasePusher
 
         stream_context_set_option($ctx, 'ssl', 'local_cert', $this->config['certificate']);
 
-        $connection = stream_socket_client(
+        /**
+         * @author Even André Fiskvik
+         */
+        if (false === empty($this->config['certificate_passphrase'])) {
+            stream_context_set_option($ctx, 'ssl', 'passphrase', $this->config['certificate_passphrase']);
+        }
+
+        $connection = @stream_socket_client(
             $this->getApnsServerHost(),
             $error,
             $errorString,
@@ -74,7 +81,9 @@ class ApplePusher extends BasePusher
         );
 
         if (false === $connection) {
-            throw new RuntimeException(sprintf('Failed to establish APNS connection: %s', $errorString));
+            throw new RuntimeException(
+                sprintf('Failed to establish APNS connection: %s (incorrect passphrase?)', $errorString)
+            );
         }
 
         return $connection;

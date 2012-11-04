@@ -50,10 +50,11 @@ use Sly\NotificationPusher\Pusher\ApplePusher;
  * Initialize Apple pusher service.
  */
 $pusher = new ApplePusher(array(
-    'dev'         => true,                             // Developer/Sandbox mode enabled (default: false)
-    'simulate'    => false,                            // Simulate sendings (default: false)
-    'certificate' => '/path/to/your/certificate.pem',
-    'devices'     => array('UUID1', 'UUID2', 'UUID3'), // Devices UUIDs (Apple Device Tokens)
+    'dev'                    => true,                             // Developer/Sandbox mode enabled (default: false)
+    'simulate'               => false,                            // Simulate sendings (default: false)
+    'certificate'            => '/path/to/your/certificate.pem',
+    'certificate_passphrase' => 'myPassPhrase',                   // Generated certificate passphrase (if needed)
+    'devices'                => array('UUID1', 'UUID2', 'UUID3'), // Devices UUIDs (Apple Device Tokens)
 ));
 
 /**
