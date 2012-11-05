@@ -123,7 +123,7 @@ class BasePusher implements BasePusherInterface
             if (true === $this->config['simulate']) {
                 $message->setStatus(MessageInterface::STATUS_SIMULATED_SENT);
             }
-            if (true === $this->pushMessage($message)) {
+            elseif (true === $this->pushMessage($message)) {
                 $message->setStatus(MessageInterface::STATUS_SENT);
             } else {
                 $message->setStatus(MessageInterface::STATUS_FAILED);
