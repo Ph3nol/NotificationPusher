@@ -65,13 +65,33 @@ class BasePusher extends atoum\test
     public function testGetDeviceUUIDs()
     {
         $basePusher = new BaseBasePusher(array(
-            'devices' => array('ABC', 'DEF', null, '', false),
+            'devices' => array('ABC', 'DEF', 'DEF', null, '', false),
         ));
 
         $this->assert
             ->array($basePusher->getDevicesUUIDs())
                 ->hasSize(2)
                 ->containsValues(array('ABC', 'DEF'))
+        ;
+    }
+
+    public function testGetDeviceUUIDsWithArrays()
+    {
+        $basePusher = new BaseBasePusher(array(
+            'devices' => array(
+                array('ABC', 1),
+                array('DEF', 2),
+                array('DEF', 3),
+                array('DEF'),
+                null,
+                '',
+                false
+            ),
+        ));
+
+        $this->assert
+            ->array($basePusher->getDevicesUUIDs())
+                ->hasSize(2)
         ;
     }
 
