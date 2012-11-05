@@ -94,7 +94,20 @@ class BasePusher implements BasePusherInterface
      */
     public function getDevicesUUIDs()
     {
-        return array_filter($this->devicesUUIDs);
+        $devicesUUIDs     = array_filter($this->devicesUUIDs);
+        $devicesContainer = array();
+
+        foreach ($devicesUUIDs as $k => $dID) {
+            if (true === is_array($dID) && false === in_array($dID[0], $devicesContainer)) {
+                $devicesContainer[] = $dID[0];
+            } elseif (true === is_string($dID) && false === in_array($dID, $devicesContainer)) {
+                $devicesContainer[] = $dID;
+            } else {
+                unset($devicesUUIDs[$k]);
+            }
+        }
+
+        return $devicesUUIDs;
     }
 
     /**
