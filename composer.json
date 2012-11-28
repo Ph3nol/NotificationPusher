@@ -15,7 +15,7 @@
         "kriswallsmith/buzz": ">= 0.6"
     },
     "require-dev": {
-        "mageekguy/atoum": "master"
+        "atoum/atoum": "master"
 
     },
     "minimum-stability": "dev",
