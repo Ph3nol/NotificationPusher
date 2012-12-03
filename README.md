@@ -139,7 +139,7 @@ whose Composer package can be installed with `dev` mode:
 
 ```
 php composer install --dev
-./atoum -d tests/units
+bin/atoum -d tests/units
 ```
 
 ## Complements
