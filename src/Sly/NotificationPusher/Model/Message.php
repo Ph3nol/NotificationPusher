@@ -13,6 +13,7 @@ class Message implements MessageInterface
     protected $badge;
     protected $createdAt;
     protected $sentAt;
+    protected $customPayload;
 
     /**
      * __construct method.
@@ -25,6 +26,7 @@ class Message implements MessageInterface
         $this->badge     = 0;
         $this->sound     = 'default';
         $this->createdAt = new \DateTime();
+        $this->customPayload = array();
     }
 
     /**
@@ -35,6 +37,36 @@ class Message implements MessageInterface
     public function __toString()
     {
         return $this->message;
+    }
+
+    /**
+     * Sets a custom payload of user specified data.
+     * This payload is separate from the message transmitted to the device.
+     *
+     * @param array $customPayload
+     */
+    public function setCustomPayload(array $customPayload)
+    {
+        $this->customPayload = $customPayload;
+    }
+
+    /**
+     * Get the message custom payload value
+     *
+     * @return array $customPayload user specified data
+     */
+    public function getCustomPayload()
+    {
+        return $this->customPayload;
+    }
+
+    /**
+     * Checks if a custom payload is set.
+     *
+     * @return bool
+     */
+    public function hasCustomPayload() {
+        return !empty($this->customPayload);
     }
 
     /**
