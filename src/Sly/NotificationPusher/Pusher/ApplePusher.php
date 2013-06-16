@@ -197,6 +197,10 @@ class ApplePusher extends BasePusher
         $payload['aps']['badge'] = (int) $message->getBadge();
         $payload['aps']['sound'] = $message->getSound();
 
+        if ($message->hasCustomPayload()) {
+            $payload = array_merge($payload, $message->getCustomPayload());
+        }
+
         return isset($payload) ? json_encode($payload) : null;
     }
 

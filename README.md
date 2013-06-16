@@ -66,6 +66,11 @@ for ($i = 1; $i <= 3; $i++) {
     // $message->setBadge(5);               // Increment users badges with '5'
     // $message->setSound('bingbong.aiff'); // Set specific sound
 
+    /**
+     * Define a custom payload separate from the push message
+     */
+    $message->setCustomPayload(array('custom_payload' => array('id' => $i)));
+
     $pusher->addMessage($message);
 }
 
