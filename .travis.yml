@@ -13,4 +13,4 @@ script:
 
 notifications:
   email:
-    - ph3@slynett.com
+    - cedric@dugat.me

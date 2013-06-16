@@ -5,7 +5,7 @@ namespace Sly\NotificationPusher\Exception;
 /**
  * Exception interface.
  *
- * @author Cédric Dugat <ph3@slynett.com>
+ * @author Cédric Dugat <cedric@dugat.me>
  */
 interface Exception
 {

@@ -1,4 +1,3 @@
 bin
-composer.phar
 composer.lock
 vendor/
