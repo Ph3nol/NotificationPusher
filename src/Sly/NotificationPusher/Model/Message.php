@@ -2,173 +2,51 @@
 
 namespace Sly\NotificationPusher\Model;
 
-use Sly\NotificationPusher\Model\MessageInterface;
-
-class Message implements MessageInterface
+/**
+ * Message.
+ *
+ * @author Cédric Dugat <cedric@dugat.me>
+ */
+class Message extends BaseOptionedModel
 {
-    protected $status;
-    protected $message;
-    protected $alert;
-    protected $sound;
-    protected $badge;
-    protected $createdAt;
-    protected $sentAt;
+    /**
+     * @var string
+     */
+    private $text;
 
     /**
-     * __construct method.
+     * Constructor.
+     * 
+     * @param string $text    Text
+     * @param array  $options Options
      */
-    public function __construct($message = null)
+    public function __construct($text, array $options = array())
     {
-        $this->status    = MessageInterface::STATUS_INIT;
-        $this->message   = $message;
-        $this->alert     = true;
-        $this->badge     = 0;
-        $this->sound     = 'default';
-        $this->createdAt = new \DateTime();
+        $this->text    = $text;
+        $this->options = $options;
     }
 
     /**
-     * __toString method.
-     * 
+     * Get Text.
+     *
      * @return string
      */
-    public function __toString()
+    public function getText()
     {
-        return $this->message;
+        return $this->text;
     }
-
+    
     /**
-     * {@inheritdoc}
+     * Set Text.
+     *
+     * @param string $text Text
+     *
+     * @return \Sly\NotificationPusher\Model\Message
      */
-    public function getStatus()
+    public function setText($text)
     {
-        return $this->status;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setStatus($status)
-    {
-        if (true === in_array($status, $this->getSentStatuses())) {
-            $this->setSentAt(new \DateTime());
-        }
-
-        $this->status = $status;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSentStatuses()
-    {
-        return array(
-            MessageInterface::STATUS_SENT,
-            MessageInterface::STATUS_SIMULATED_SENT,
-        );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getMessage()
-    {
-        return $this->message;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setMessage($message)
-    {
-        $this->message = $message;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAlert()
-    {
-        return $this->alert;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function hasAlert()
-    {
-        return (bool) $this->alert;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setAlert($alert)
-    {
-        $this->alert = $alert;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getBadge()
-    {
-        return $this->badge;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setBadge($badge)
-    {
-        $this->badge = $badge;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSound()
-    {
-        return $this->sound;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setSound($sound)
-    {
-        $this->sound = $sound;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSentAt()
-    {
-        return $this->sentAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setSentAt(\DateTime $sentAt)
-    {
-        $this->sentAt = $sentAt;
+        $this->text = $text;
+    
+        return $this;
     }
 }
