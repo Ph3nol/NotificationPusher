@@ -123,19 +123,19 @@ class Apns extends BaseAdapter implements AdapterInterface
      */
     private function getServiceMessageFromOrigin(Device $device, Message $message)
     {
-            $badge = ($message->hasOption('badge'))
-                ? (int) ($message->getOption('badge') + $device->getParameter('badge', 0))
-                : 0
-            ;
+        $badge = ($message->hasOption('badge'))
+            ? (int) ($message->getOption('badge') + $device->getParameter('badge', 0))
+            : 0
+        ;
 
-            $serviceMessage = new ServiceMessage();
-            $serviceMessage->setId(sha1($device->getToken().$message->getText()));
-            $serviceMessage->setAlert($message->getText());
-            $serviceMessage->setToken($device->getToken());
-            $serviceMessage->setBadge($badge);
-            $serviceMessage->setSound($message->getOption('sound', 'bingbong.aiff'));
+        $serviceMessage = new ServiceMessage();
+        $serviceMessage->setId(sha1($device->getToken().$message->getText()));
+        $serviceMessage->setAlert($message->getText());
+        $serviceMessage->setToken($device->getToken());
+        $serviceMessage->setBadge($badge);
+        $serviceMessage->setSound($message->getOption('sound', 'bingbong.aiff'));
 
-            return $serviceMessage;
+        return $serviceMessage;
     }
 
     /**

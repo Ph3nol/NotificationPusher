@@ -48,6 +48,22 @@ class DeviceCollection implements \IteratorAggregate
     }
 
     /**
+     * Get tokens.
+     * 
+     * @return array
+     */
+    public function getTokens()
+    {
+        $tokens = array();
+
+        foreach ($this as $token => $device) {
+            $tokens[] = $token;
+        }
+
+        return array_unique(array_filter($tokens));
+    }
+
+    /**
      * Get.
      * 
      * @param string $key Key
