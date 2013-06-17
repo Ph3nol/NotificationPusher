@@ -17,7 +17,7 @@ use Sly\NotificationPusher\Collection\DeviceCollection,
 class Push extends BaseOptionedModel
 {
     const STATUS_PENDING = 'pending';
-    const STATUS_SENT    = 'sent';
+    const STATUS_PUSHED  = 'sent';
 
     /**
      * @var string
@@ -118,23 +118,23 @@ class Push extends BaseOptionedModel
     }
 
     /**
-     * isSend.
+     * isPushed.
      * 
      * @return boolean
      */
-    public function isSent()
+    public function isPushed()
     {
-        return (bool) (self::STATUS_SENT === $this->status);
+        return (bool) (self::STATUS_PUSHED === $this->status);
     }
 
     /**
-     * Declare as sent.
+     * Declare as pushed.
      *
      * @return \Sly\NotificationPusher\Model\Push
      */
-    public function sent()
+    public function pushed()
     {
-        $this->status   = self::STATUS_SENT;
+        $this->status   = self::STATUS_PUSHED;
         $this->pushedAt = new \DateTime();
 
         return $this;
@@ -212,16 +212,6 @@ class Push extends BaseOptionedModel
         $this->checkDevicesTokens();
     
         return $this;
-    }
-
-    /**
-     * Add a device.
-     * 
-     * @param \Sly\NotificationPusher\Model\Device $device Device
-     */
-    public function addDevice(Device $device)
-    {
-        $this->devices->add($device);
     }
 
     /**

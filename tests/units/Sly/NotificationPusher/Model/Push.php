@@ -73,20 +73,28 @@ class Push extends atoum\test
 
             ->string($object->getStatus())
                 ->isEqualTo(TestedModel::STATUS_PENDING)
-            ->boolean($object->isSent())
+            ->boolean($object->isPushed())
                 ->isFalse()
 
-            ->when($object->sent())
+            ->when($object->pushed())
+            ->and($dt = new \DateTime())
             ->string($object->getStatus())
-                ->isEqualTo(TestedModel::STATUS_SENT)
-            ->boolean($object->isSent())
+                ->isEqualTo(TestedModel::STATUS_PUSHED)
+            ->boolean($object->isPushed())
                 ->isTrue()
+            ->dateTime($object->getPushedAt())
+                ->isCloneOf($dt)
 
             ->when($object->setStatus(TestedModel::STATUS_PENDING))
             ->string($object->getStatus())
                 ->isEqualTo(TestedModel::STATUS_PENDING)
-            ->boolean($object->isSent())
+            ->boolean($object->isPushed())
                 ->isFalse()
+
+            ->when($fDt = new \DateTime('2013-01-01'))
+            ->and($object->setPushedAt($fDt))
+            ->dateTime($object->getPushedAt())
+                ->isCloneOf(new \DateTime('2013-01-01'))
         ;
     }
 
@@ -133,6 +141,27 @@ class Push extends atoum\test
             ->and($object->setDevices(new BaseDeviceCollection(array(new BaseDevice(self::GCM_TOKEN_EXAMPLE)))))
             ->object($object->getAdapter())
                 ->isInstanceOf('\Sly\NotificationPusher\Adapter\Gcm')
+        ;
+    }
+
+    public function testMessage()
+    {
+        $this->if($this->mockClass('\Sly\NotificationPusher\Adapter\AdapterInterface', '\Mock'))
+            ->and($adapter = new \Mock\AdapterInterface())
+            ->and($devices = new BaseDeviceCollection(array(new BaseDevice('Token1'), new BaseDevice('Token2'), new BaseDevice('Token3'))))
+            ->and($message = new BaseMessage('Test'))
+
+            ->and($object = new TestedModel($adapter, $devices, $message))
+            ->object($object->getMessage())
+                ->isInstanceOf('\Sly\NotificationPusher\Model\Message')
+            ->string($object->getMessage()->getText())
+                ->isEqualTo('Test')
+
+            ->when($object->setMessage(new BaseMessage('Test 2')))
+            ->object($object->getMessage())
+                ->isInstanceOf('\Sly\NotificationPusher\Model\Message')
+            ->string($object->getMessage()->getText())
+                ->isEqualTo('Test 2')
         ;
     }
 }
