@@ -63,6 +63,23 @@ class Push extends BaseOptionedModel
             $devices = new DeviceCollection(array($devices));
         }
 
+        $this->adapter = $adapter;
+        $this->devices = $devices;
+        $this->message = $message;
+        $this->options = $options;
+        $this->status  = self::STATUS_PENDING;
+
+        $this->checkDevicesTokens();
+    }
+
+    /**
+     * Check devices tokens.
+     */
+    private function checkDevicesTokens()
+    {
+        $devices = $this->getDevices();
+        $adapter = $this->getAdapter();
+
         foreach ($devices as $device) {
             if (false === $adapter->supports($device->getToken())) {
                 throw new AdapterException(
@@ -74,12 +91,6 @@ class Push extends BaseOptionedModel
                 );
             }
         }
-
-        $this->adapter = $adapter;
-        $this->devices = $devices;
-        $this->message = $message;
-        $this->options = $options;
-        $this->status  = self::STATUS_PENDING;
     }
 
     /**
@@ -197,6 +208,8 @@ class Push extends BaseOptionedModel
     public function setDevices(DeviceCollection $devices)
     {
         $this->devices = $devices;
+
+        $this->checkDevicesTokens();
     
         return $this;
     }
@@ -220,7 +233,7 @@ class Push extends BaseOptionedModel
     {
         return $this->pushedAt;
     }
-    
+
     /**
      * Set PushedAt.
      *
