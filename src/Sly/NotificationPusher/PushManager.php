@@ -47,7 +47,7 @@ class PushManager extends PushCollection
             $adapter->setEnvironment($this->environment);
 
             if ($adapter->push($push)) {
-                $push->setPushedAt(new \DateTime());
+                $push->sent();
             }
         }
 

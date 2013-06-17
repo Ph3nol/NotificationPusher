@@ -22,7 +22,7 @@ class Push extends BaseOptionedModel
     /**
      * @var string
      */
-    private $status = self::STATUS_PENDING;
+    private $status;
 
     /**
      * @var \Sly\NotificationPusher\Adapter\AdapterInterface
@@ -79,6 +79,7 @@ class Push extends BaseOptionedModel
         $this->devices = $devices;
         $this->message = $message;
         $this->options = $options;
+        $this->status  = self::STATUS_PENDING;
     }
 
     /**
@@ -102,6 +103,29 @@ class Push extends BaseOptionedModel
     {
         $this->status = $status;
     
+        return $this;
+    }
+
+    /**
+     * isSend.
+     * 
+     * @return boolean
+     */
+    public function isSent()
+    {
+        return (bool) (self::STATUS_SENT === $this->status);
+    }
+
+    /**
+     * Declare as sent.
+     *
+     * @return \Sly\NotificationPusher\Model\Push
+     */
+    public function sent()
+    {
+        $this->status   = self::STATUS_SENT;
+        $this->pushedAt = new \DateTime();
+
         return $this;
     }
 
