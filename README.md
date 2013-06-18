@@ -36,9 +36,3 @@ Standalone PHP library for easy devices message notifications push.
 ## 1.x users
 
 Old version is still available from [1.x branch](https://github.com/Ph3nol/NotificationPusher/tree/1.x), with dedicated declared tag.
-
-Just base your Composer package version on `1.x` like this:
-
-```
-"sly/notification-pusher": "1.x"
-```
