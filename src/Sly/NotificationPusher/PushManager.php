@@ -36,6 +36,16 @@ class PushManager extends PushCollection
     }
 
     /**
+     * Get environment.
+     * 
+     * @return string
+     */
+    public function getEnvironment()
+    {
+        return $this->environment;
+    }
+
+    /**
      * Push.
      * 
      * @return \Sly\NotificationPusher\Collection\PushCollection
@@ -44,7 +54,7 @@ class PushManager extends PushCollection
     {
         foreach ($this as $push) {
             $adapter = $push->getAdapter();
-            $adapter->setEnvironment($this->environment);
+            $adapter->setEnvironment($this->getEnvironment());
 
             if ($adapter->push($push)) {
                 $push->pushed();

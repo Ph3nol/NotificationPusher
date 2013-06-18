@@ -22,7 +22,7 @@ use ZendService\Apple\Apns\Client\Message as BaseServiceClient;
  */
 class Apns extends atoum\test
 {
-    const APNS_TOKEN_EXAMPLE = '1111111111111111111111111111111111111111111111111111111111111111';
+    const APNS_TOKEN_EXAMPLE = '111db24975bb6c6b63214a8d268052aa0a965cc1e32110ab06a72b19074c2222';
 
     public function testConstruct()
     {

@@ -27,7 +27,7 @@ class Gcm extends BaseAdapter implements AdapterInterface
      */    
     public function supports($token)
     {
-        return (162 == strlen($token));
+        return (bool) preg_match('/[0-9a-zA-Z\-\_]/i', $token);
     }
 
     /**
