@@ -102,7 +102,7 @@ class Apns extends BaseAdapter implements AdapterInterface
      * 
      * @return \ZendService\Apple\Apns\Client\AbstractClient
      */
-    private function getOpenedClient(ServiceAbstractClient $client)
+    public function getOpenedClient(ServiceAbstractClient $client)
     {
         $client->open(
             $this->isProductionEnvironment() ? ServiceClient::PRODUCTION_URI : ServiceClient::SANDBOX_URI,
@@ -121,7 +121,7 @@ class Apns extends BaseAdapter implements AdapterInterface
      * 
      * @return \ZendService\Apple\Apns\Message
      */
-    private function getServiceMessageFromOrigin(Device $device, Message $message)
+    public function getServiceMessageFromOrigin(Device $device, Message $message)
     {
         $badge = ($message->hasOption('badge'))
             ? (int) ($message->getOption('badge') + $device->getParameter('badge', 0))

@@ -67,7 +67,7 @@ class Gcm extends BaseAdapter implements AdapterInterface
      * 
      * @return \ZendService\Google\Gcm\Client
      */
-    private function getOpenedClient(ServiceClient $client)
+    public function getOpenedClient(ServiceClient $client)
     {
         $client->setApiKey($this->getParameter('apiKey'));
 
@@ -82,7 +82,7 @@ class Gcm extends BaseAdapter implements AdapterInterface
      * 
      * @return \ZendService\Google\Gcm\Message
      */
-    private function getServiceMessageFromOrigin(array $tokens = array(), Message $message)
+    public function getServiceMessageFromOrigin(array $tokens = array(), Message $message)
     {
         $serviceMessage = new ServiceMessage();
         $serviceMessage->setRegistrationIds($tokens);
