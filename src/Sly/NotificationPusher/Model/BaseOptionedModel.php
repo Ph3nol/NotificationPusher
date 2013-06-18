@@ -33,7 +33,7 @@ abstract class BaseOptionedModel
      */
     public function hasOption($key)
     {
-        return isset($this->options[$key]);
+        return array_key_exists($key, $this->options);
     }
 
     /**
