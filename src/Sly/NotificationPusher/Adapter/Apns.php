@@ -128,12 +128,17 @@ class Apns extends BaseAdapter implements AdapterInterface
             : 0
         ;
 
+        $sound = $message->getOption('sound', 'bingbong.aiff');
+
         $serviceMessage = new ServiceMessage();
         $serviceMessage->setId(sha1($device->getToken().$message->getText()));
         $serviceMessage->setAlert($message->getText());
         $serviceMessage->setToken($device->getToken());
         $serviceMessage->setBadge($badge);
-        $serviceMessage->setSound($message->getOption('sound', 'bingbong.aiff'));
+
+        if (null !== $sound) {
+            $serviceMessage->setSound($sound);
+        }
 
         return $serviceMessage;
     }
