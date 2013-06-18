@@ -84,9 +84,12 @@ class Gcm extends BaseAdapter implements AdapterInterface
      */
     public function getServiceMessageFromOrigin(array $tokens = array(), Message $message)
     {
+        $data            = $message->getOptions();
+        $data['message'] = $message->getText();
+
         $serviceMessage = new ServiceMessage();
         $serviceMessage->setRegistrationIds($tokens);
-        $serviceMessage->setData($message->getOptions());
+        $serviceMessage->setData($data);
         $serviceMessage->setCollapseKey($this->getParameter('collapseKey'));
         $serviceMessage->setRestrictedPackageName($this->getParameter('restrictedPackageName'));
         $serviceMessage->setDelayWhileIdle($this->getParameter('delayWhileIdle', false));
