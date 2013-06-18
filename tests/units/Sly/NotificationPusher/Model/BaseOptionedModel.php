@@ -41,6 +41,12 @@ class BaseOptionedModel extends atoum\test
                 ->isTrue()
             ->string($object->getOption('poney'))
                 ->isEqualTo('powerful')
+
+            ->when($object->setOption('null', null))
+            ->boolean($object->hasOption('null'))
+                ->isTrue()
+            ->variable($object->getOption('null'))
+                ->isNull()
         ;
     }
 }

@@ -41,6 +41,12 @@ class BaseParameteredModel extends atoum\test
                 ->isTrue()
             ->string($object->getParameter('poney'))
                 ->isEqualTo('powerful')
+
+            ->when($object->setParameter('null', null))
+            ->boolean($object->hasParameter('null'))
+                ->isTrue()
+            ->variable($object->getParameter('null'))
+                ->isNull()
         ;
     }
 }
