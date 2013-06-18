@@ -33,7 +33,7 @@ abstract class BaseParameteredModel
      */
     public function hasParameter($key)
     {
-        return isset($this->parameters[$key]);
+        return array_key_exists($key, $this->parameters);
     }
 
     /**
