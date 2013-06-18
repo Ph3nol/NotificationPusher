@@ -32,7 +32,6 @@ Standalone PHP library for easy devices message notifications push.
 * Add new features (custom APNS payloads, GCM custom options, etc.)
 * Add new adapters (like Blackberry and Windows phones)
 * Write more documentation and examples
-* Write tests (hum... ASAP!)
 
 ## 1.x users
 
