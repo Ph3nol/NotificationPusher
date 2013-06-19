@@ -24,7 +24,7 @@ class Gcm extends BaseAdapter implements AdapterInterface
 {
     /**
      * {@inheritdoc}
-     */    
+     */
     public function supports($token)
     {
         return (bool) preg_match('/[0-9a-zA-Z\-\_]/i', $token);
@@ -82,7 +82,7 @@ class Gcm extends BaseAdapter implements AdapterInterface
      * 
      * @return \ZendService\Google\Gcm\Message
      */
-    public function getServiceMessageFromOrigin(array $tokens = array(), Message $message)
+    public function getServiceMessageFromOrigin(array $tokens, Message $message)
     {
         $data            = $message->getOptions();
         $data['message'] = $message->getText();

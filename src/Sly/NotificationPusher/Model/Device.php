@@ -37,7 +37,7 @@ class Device extends BaseParameteredModel
     {
         return $this->token;
     }
-    
+
     /**
      * Set token.
      *
@@ -48,7 +48,7 @@ class Device extends BaseParameteredModel
     public function setToken($token)
     {
         $this->token = $token;
-    
+
         return $this;
     }
 }

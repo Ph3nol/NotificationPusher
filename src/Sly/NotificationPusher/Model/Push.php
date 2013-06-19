@@ -102,7 +102,7 @@ class Push extends BaseOptionedModel
     {
         return $this->status;
     }
-    
+
     /**
      * Set Status.
      *
@@ -113,7 +113,7 @@ class Push extends BaseOptionedModel
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
@@ -149,7 +149,7 @@ class Push extends BaseOptionedModel
     {
         return $this->adapter;
     }
-    
+
     /**
      * Set Adapter.
      *
@@ -160,7 +160,7 @@ class Push extends BaseOptionedModel
     public function setAdapter(AdapterInterface $adapter)
     {
         $this->adapter = $adapter;
-    
+
         return $this;
     }
 
@@ -173,7 +173,7 @@ class Push extends BaseOptionedModel
     {
         return $this->message;
     }
-    
+
     /**
      * Set Message.
      *
@@ -184,7 +184,7 @@ class Push extends BaseOptionedModel
     public function setMessage(Message $message)
     {
         $this->message = $message;
-    
+
         return $this;
     }
 
@@ -210,7 +210,7 @@ class Push extends BaseOptionedModel
         $this->devices = $devices;
 
         $this->checkDevicesTokens();
-    
+
         return $this;
     }
 
@@ -234,7 +234,7 @@ class Push extends BaseOptionedModel
     public function setPushedAt(\DateTime $pushedAt)
     {
         $this->pushedAt = $pushedAt;
-    
+
         return $this;
     }
 }

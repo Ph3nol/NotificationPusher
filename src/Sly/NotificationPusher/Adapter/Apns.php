@@ -116,7 +116,7 @@ class Apns extends BaseAdapter implements AdapterInterface
     /**
      * Get service message from origin.
      * 
-     * @param \Sly\NotificationPusher\Model\Device  $device Device
+     * @param \Sly\NotificationPusher\Model\Device  $device  Device
      * @param \Sly\NotificationPusher\Model\Message $message Message
      * 
      * @return \ZendService\Apple\Apns\Message
@@ -145,7 +145,7 @@ class Apns extends BaseAdapter implements AdapterInterface
 
     /**
      * {@inheritdoc}
-     */    
+     */
     public function supports($token)
     {
         return (ctype_xdigit($token) && 64 == strlen($token));

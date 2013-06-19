@@ -2,8 +2,8 @@
 
 namespace Sly\NotificationPusher;
 
-use Sly\NotificationPusher\Collection\PushCollection, 
-    Sly\NotificationPusher\Adapter\AdapterInterface, 
+use Sly\NotificationPusher\Collection\PushCollection,
+    Sly\NotificationPusher\Adapter\AdapterInterface,
     Sly\NotificationPusher\Exception\AdapterException
 ;
 

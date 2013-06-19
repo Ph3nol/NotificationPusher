@@ -48,7 +48,7 @@ abstract class BaseOptionedModel
     {
         return $this->hasOption($key) ? $this->options[$key] : $default;
     }
-    
+
     /**
      * Set options.
      *
@@ -59,7 +59,7 @@ abstract class BaseOptionedModel
     public function setOptions($options)
     {
         $this->options = $options;
-    
+
         return $this;
     }
 

@@ -14,6 +14,8 @@ interface AdapterInterface
     /**
      * Push.
      *
+     * @param \Sly\NotificationPusher\Model\Push $push Push
+     *
      * @return \Sly\NotificationPusher\Collection\DeviceCollection
      */
     public function push(Push $push);

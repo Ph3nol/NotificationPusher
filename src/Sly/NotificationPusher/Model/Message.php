@@ -35,7 +35,7 @@ class Message extends BaseOptionedModel
     {
         return $this->text;
     }
-    
+
     /**
      * Set Text.
      *
@@ -46,7 +46,7 @@ class Message extends BaseOptionedModel
     public function setText($text)
     {
         $this->text = $text;
-    
+
         return $this;
     }
 }

@@ -2,16 +2,16 @@
 
 namespace Sly\NotificationPusher\Exception;
 
-use Sly\NotificationPusher\Exception\Exception;
+use Sly\NotificationPusher\Exception\ExceptionInterface;
 
 /**
  * PushException.
  *
  * @uses   \RuntimeException
- * @uses   \Sly\NotificationPusher\Exception\Exception
+ * @uses   \Sly\NotificationPusher\Exception\ExceptionInterface
  * 
  * @author Cédric Dugat <cedric@dugat.me>
  */
-class PushException extends \RuntimeException implements Exception
+class PushException extends \RuntimeException implements ExceptionInterface
 {
 }

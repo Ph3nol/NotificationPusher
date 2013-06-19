@@ -48,7 +48,7 @@ abstract class BaseParameteredModel
     {
         return $this->hasParameter($key) ? $this->parameters[$key] : $default;
     }
-    
+
     /**
      * Set parameters.
      *
@@ -59,7 +59,7 @@ abstract class BaseParameteredModel
     public function setParameters($parameters)
     {
         $this->parameters = $parameters;
-    
+
         return $this;
     }
 

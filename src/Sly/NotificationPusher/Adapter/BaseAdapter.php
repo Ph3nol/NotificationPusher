@@ -80,7 +80,7 @@ abstract class BaseAdapter extends BaseParameteredModel
     public function setEnvironment($environment)
     {
         $this->environment = $environment;
-    
+
         return $this;
     }
 

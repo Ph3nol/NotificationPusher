@@ -3,10 +3,10 @@
 namespace Sly\NotificationPusher\Exception;
 
 /**
- * Exception interface.
+ * ExceptionInterface.
  *
  * @author Cédric Dugat <cedric@dugat.me>
  */
-interface Exception
+interface ExceptionInterface
 {
 }

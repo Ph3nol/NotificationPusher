@@ -52,32 +52,31 @@ class PushCommand extends Command
                 'Message'
             )
             ->addOption(
-               'certificate',
-               null,
-               InputOption::VALUE_OPTIONAL,
-               'Certificate path (for APNS adapter)'
+                'certificate',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Certificate path (for APNS adapter)'
             )
             ->addOption(
-               'api-key',
-               null,
-               InputOption::VALUE_OPTIONAL,
-               'API key (for GCM adapter)'
+                'api-key',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'API key (for GCM adapter)'
             )
             ->addOption(
-               'env',
-               PushManager::ENVIRONMENT_DEV,
-               InputOption::VALUE_OPTIONAL,
-               sprintf(
+                'env',
+                PushManager::ENVIRONMENT_DEV,
+                InputOption::VALUE_OPTIONAL,
+                sprintf(
                     'Environment (%s, %s)',
                     PushManager::ENVIRONMENT_DEV,
                     PushManager::ENVIRONMENT_PROD
                 )
-            )
-        ;
+            );
     }
 
     /**
-     * @see Command
+     * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -96,6 +95,8 @@ class PushCommand extends Command
      * Get adapter class from argument.
      *
      * @param string $argument Given argument
+     *
+     * @return string
      */
     private function getAdapterClassFromArgument($argument)
     {
@@ -115,7 +116,7 @@ class PushCommand extends Command
     }
 
     /**
-     * @see Command
+     * {@inheritdoc}
      *
      * @return \Sly\NotificationPusher\Adapter\AdapterInterface
      */
