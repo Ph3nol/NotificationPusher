@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "symfony/options-resolver": "2.3",
+        "symfony/options-resolver": "*",
         "symfony/console": "2.3.*",
         "symfony/process": "2.3.*",
         "zendframework/zendservice-apple-apns": "1.*",
