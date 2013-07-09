@@ -86,7 +86,7 @@ class PushCommand extends Command
         $push        = new Push($adapter, new Device($input->getArgument('token')), $message);
         $pushManager->add($push);
 
-        $pushes = $pushManager->push();
+        $pushManager->push();
     }
 
     /**
