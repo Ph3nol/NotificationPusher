@@ -2,8 +2,6 @@
 
 namespace Sly\NotificationPusher\Model;
 
-use Sly\NotificationPusher\Collection\ParameterCollection;
-
 /**
  * Device.
  *

@@ -13,11 +13,9 @@ use Sly\NotificationPusher\Model\Push,
 use ZendService\Apple\Apns\Client\AbstractClient as ServiceAbstractClient,
     ZendService\Apple\Apns\Client\Message as ServiceClient,
     ZendService\Apple\Apns\Message as ServiceMessage,
-    ZendService\Apple\Apns\Message\Alert as ServiceAlert,
     ZendService\Apple\Apns\Response\Message as ServiceResponse,
     ZendService\Apple\Apns\Exception\RuntimeException as ServiceRuntimeException,
-    ZendService\Apple\Apns\Client\Feedback as ServiceFeedbackClient,
-    ZendService\Apple\Apns\Response\Feedback as ServiceFeedbackResponse
+    ZendService\Apple\Apns\Client\Feedback as ServiceFeedbackClient
 ;
 
 /**
@@ -25,7 +23,7 @@ use ZendService\Apple\Apns\Client\AbstractClient as ServiceAbstractClient,
  *
  * @uses \Sly\NotificationPusher\Adapter\BaseAdapter
  * @uses \Sly\NotificationPusher\Adapter\AdapterInterface
- * 
+ *
  * @author Cédric Dugat <cedric@dugat.me>
  */
 class Apns extends BaseAdapter implements AdapterInterface
@@ -78,7 +76,7 @@ class Apns extends BaseAdapter implements AdapterInterface
 
     /**
      * Feedback.
-     * 
+     *
      * @return array
      */
     public function getFeedback()
@@ -99,7 +97,7 @@ class Apns extends BaseAdapter implements AdapterInterface
      * Get opened client.
      *
      * @param \ZendService\Apple\Apns\Client\AbstractClient $client Client
-     * 
+     *
      * @return \ZendService\Apple\Apns\Client\AbstractClient
      */
     public function getOpenedClient(ServiceAbstractClient $client)
@@ -115,10 +113,10 @@ class Apns extends BaseAdapter implements AdapterInterface
 
     /**
      * Get service message from origin.
-     * 
+     *
      * @param \Sly\NotificationPusher\Model\Device  $device  Device
      * @param \Sly\NotificationPusher\Model\Message $message Message
-     * 
+     *
      * @return \ZendService\Apple\Apns\Message
      */
     public function getServiceMessageFromOrigin(Device $device, Message $message)

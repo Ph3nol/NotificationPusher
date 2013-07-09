@@ -42,7 +42,7 @@ abstract class BaseAdapter extends BaseParameteredModel
 
     /**
      * __toString.
-     * 
+     *
      * @return string
      */
     public function __toString()
@@ -86,7 +86,7 @@ abstract class BaseAdapter extends BaseParameteredModel
 
     /**
      * isDevelopmentEnvironment.
-     * 
+     *
      * @return boolean
      */
     public function isDevelopmentEnvironment()
@@ -96,7 +96,7 @@ abstract class BaseAdapter extends BaseParameteredModel
 
     /**
      * isProductionEnvironment.
-     * 
+     *
      * @return boolean
      */
     public function isProductionEnvironment()

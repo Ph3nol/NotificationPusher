@@ -87,8 +87,6 @@ class PushCommand extends Command
         $pushManager->add($push);
 
         $pushes = $pushManager->push();
-
-        var_dump($pushes);
     }
 
     /**
