@@ -13,6 +13,7 @@ use Sly\NotificationPusher\Model\Push,
 use ZendService\Apple\Apns\Client\AbstractClient as ServiceAbstractClient,
     ZendService\Apple\Apns\Client\Message as ServiceClient,
     ZendService\Apple\Apns\Message as ServiceMessage,
+    ZendService\Apple\Apns\Message\Alert as ServiceAlert,
     ZendService\Apple\Apns\Response\Message as ServiceResponse,
     ZendService\Apple\Apns\Exception\RuntimeException as ServiceRuntimeException,
     ZendService\Apple\Apns\Client\Feedback as ServiceFeedbackClient
@@ -127,6 +128,26 @@ class Apns extends BaseAdapter implements AdapterInterface
         ;
 
         $sound = $message->getOption('sound', 'bingbong.aiff');
+
+        $alert = new ServiceAlert(
+            $message->getText(),
+            $message->getOption('actionLocKey'),
+            $message->getOption('locKey'),
+            $message->getOption('locArgs'),
+            $message->getOption('launchImage')
+        );
+        if ($actionLocKey = $message->getOption('actionLocKey')) {
+            $alert->setActionLocKey($actionLocKey);
+        }
+        if ($locKey = $message->getOption('locKey')) {
+            $alert->setLocKey($locKey);
+        }
+        if ($locArgs = $message->getOption('locArgs')) {
+            $alert->setLocArgs($locArgs);
+        }
+        if ($launchImage = $message->getOption('launchImage')) {
+            $alert->setLaunchImage($launchImage);
+        }
 
         $serviceMessage = new ServiceMessage();
         $serviceMessage->setId(sha1($device->getToken().$message->getText()));
