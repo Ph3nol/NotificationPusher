@@ -20,10 +20,10 @@ use Sly\NotificationPusher\PushManager,
 ;
 
 // First, instanciate the manager.
-// 
+//
 // Example for production environement:
 // $pushManager = new PushManager(PushManager::ENVIRONMENT_PRODUCTION);
-// 
+//
 // Development one by default (without argument).
 $pushManager = new PushManager(PushManager::ENVIRONMENT_DEV);
 
@@ -63,10 +63,10 @@ use Sly\NotificationPusher\PushManager,
 ;
 
 // First, instanciate the manager.
-// 
+//
 // Example for production environement:
 // $pushManager = new PushManager(PushManager::ENVIRONMENT_PRODUCTION);
-// 
+//
 // Development one by default (without argument).
 $pushManager = new PushManager(PushManager::ENVIRONMENT_DEV);
 
@@ -87,6 +87,19 @@ $devices = new DeviceCollection(array(
 $message = new Message('This is an example.', array(
     'badge' => 1,
     'sound' => 'example.aiff',
+
+    'actionLocKey' => 'Action button title!',
+    'locKey' => 'localized key',
+    'locArgs' => array(
+        'localized args',
+        'localized args',
+        'localized args'
+    ),
+    'launchImage' => 'image.jpg',
+
+    'custom' => array('custom data' => array(
+        'we' => 'want', 'send to app'
+    ))
 ));
 
 // Finally, create and add the push to the manager, and push it!
@@ -109,10 +122,10 @@ use Sly\NotificationPusher\PushManager,
 ;
 
 // First, instanciate the manager.
-// 
+//
 // Example for production environement:
 // $pushManager = new PushManager(PushManager::ENVIRONMENT_PRODUCTION);
-// 
+//
 // Development one by default (without argument).
 $pushManager = new PushManager(PushManager::ENVIRONMENT_DEV);
 
