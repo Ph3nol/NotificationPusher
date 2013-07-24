@@ -151,7 +151,7 @@ class Apns extends BaseAdapter implements AdapterInterface
 
         $serviceMessage = new ServiceMessage();
         $serviceMessage->setId(sha1($device->getToken().$message->getText()));
-        $serviceMessage->setAlert($message->getText());
+        $serviceMessage->setAlert($alert);
         $serviceMessage->setToken($device->getToken());
         $serviceMessage->setBadge($badge);
         $serviceMessage->setCustom($message->getOption('custom', array()));
