@@ -1,10 +1,19 @@
 <?php
 
+/*
+ * This file is part of NotificationPusher.
+ *
+ * (c) 2013 Cédric Dugat <cedric@dugat.me>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Sly\NotificationPusher\Model;
 
 /**
  * BaseOptionedModel.
- * 
+ *
  * @author Cédric Dugat <cedric@dugat.me>
  */
 abstract class BaseOptionedModel
@@ -26,9 +35,9 @@ abstract class BaseOptionedModel
 
     /**
      * Has option.
-     * 
+     *
      * @param string $key Key
-     * 
+     *
      * @return boolean
      */
     public function hasOption($key)
@@ -38,10 +47,10 @@ abstract class BaseOptionedModel
 
     /**
      * Get option.
-     * 
+     *
      * @param string $key     Key
      * @param mixed  $default Default
-     * 
+     *
      * @return mixed
      */
     public function getOption($key, $default = null)

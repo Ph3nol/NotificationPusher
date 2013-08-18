@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of NotificationPusher.
+ *
+ * (c) 2013 Cédric Dugat <cedric@dugat.me>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Sly\NotificationPusher\Model;
 
 /**
@@ -16,7 +25,7 @@ class Device extends BaseParameteredModel
 
     /**
      * Constructor.
-     * 
+     *
      * @param string $token      Token
      * @param array  $parameters Parameters
      */

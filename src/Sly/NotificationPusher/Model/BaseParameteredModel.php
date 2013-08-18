@@ -1,10 +1,19 @@
 <?php
 
+/*
+ * This file is part of NotificationPusher.
+ *
+ * (c) 2013 Cédric Dugat <cedric@dugat.me>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Sly\NotificationPusher\Model;
 
 /**
  * BaseParameteredModel.
- * 
+ *
  * @author Cédric Dugat <cedric@dugat.me>
  */
 abstract class BaseParameteredModel
@@ -26,9 +35,9 @@ abstract class BaseParameteredModel
 
     /**
      * Has parameter.
-     * 
+     *
      * @param string $key Key
-     * 
+     *
      * @return boolean
      */
     public function hasParameter($key)
@@ -38,10 +47,10 @@ abstract class BaseParameteredModel
 
     /**
      * Get parameter.
-     * 
+     *
      * @param string $key     Key
      * @param mixed  $default Default
-     * 
+     *
      * @return mixed
      */
     public function getParameter($key, $default = null)
