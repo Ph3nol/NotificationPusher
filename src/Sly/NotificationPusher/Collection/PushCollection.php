@@ -7,10 +7,11 @@ use Sly\NotificationPusher\Model\Push;
 /**
  * PushCollection.
  *
+ * @uses \Sly\NotificationPusher\Collection\AbstractCollection
  * @uses \IteratorAggregate
  * @author Cédric Dugat <cedric@dugat.me>
  */
-class PushCollection implements \IteratorAggregate
+class PushCollection extends AbstractCollection implements \IteratorAggregate
 {
     /**
      * @var \ArrayIterator
@@ -39,45 +40,5 @@ class PushCollection implements \IteratorAggregate
     public function add(Push $push)
     {
         $this->coll[] = $push;
-    }
-
-    /**
-     * Get.
-     * 
-     * @param string $key Key
-     * 
-     * @return \Sly\NotificationPusher\Model\Push|false
-     */
-    public function get($key)
-    {
-        return isset($this->coll[$key]) ? $this->coll[$key] : false;
-    }
-
-    /**
-     * Count.
-     * 
-     * @return integer
-     */
-    public function count()
-    {
-        return count($this->getIterator());
-    }
-
-    /**
-     * isEmpty.
-     * 
-     * @return boolean
-     */
-    public function isEmpty()
-    {
-        return (bool) $this->count();
-    }
-
-    /**
-     * Clear categories.
-     */
-    public function clear()
-    {
-        $this->coll = new \ArrayIterator();
     }
 }

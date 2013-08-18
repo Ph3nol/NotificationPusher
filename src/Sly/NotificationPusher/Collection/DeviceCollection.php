@@ -7,10 +7,11 @@ use Sly\NotificationPusher\Model\Device;
 /**
  * DeviceCollection.
  *
+ * @uses \Sly\NotificationPusher\Collection\AbstractCollection
  * @uses \IteratorAggregate
  * @author Cédric Dugat <cedric@dugat.me>
  */
-class DeviceCollection implements \IteratorAggregate
+class DeviceCollection extends AbstractCollection implements \IteratorAggregate
 {
     /**
      * @var \ArrayIterator
@@ -49,7 +50,7 @@ class DeviceCollection implements \IteratorAggregate
 
     /**
      * Get tokens.
-     * 
+     *
      * @return array
      */
     public function getTokens()
@@ -61,45 +62,5 @@ class DeviceCollection implements \IteratorAggregate
         }
 
         return array_unique(array_filter($tokens));
-    }
-
-    /**
-     * Get.
-     * 
-     * @param string $key Key
-     * 
-     * @return \Sly\NotificationPusher\Model\Device|false
-     */
-    public function get($key)
-    {
-        return isset($this->coll[$key]) ? $this->coll[$key] : false;
-    }
-
-    /**
-     * Count.
-     * 
-     * @return integer
-     */
-    public function count()
-    {
-        return count($this->getIterator());
-    }
-
-    /**
-     * isEmpty.
-     * 
-     * @return boolean
-     */
-    public function isEmpty()
-    {
-        return (bool) $this->count();
-    }
-
-    /**
-     * Clear categories.
-     */
-    public function clear()
-    {
-        $this->coll = new \ArrayIterator();
     }
 }
