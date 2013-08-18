@@ -3,14 +3,20 @@ language: php
 php:
   - 5.3
   - 5.4
+  - 5.5
 
 before_script:
   - curl -s http://getcomposer.org/installer | php
-  - COMPOSER_ROOT_VERSION=dev-master php composer.phar --dev install
+  - php composer.phar --dev --prefer-source install
 
 script:
   - bin/atoum -d tests/units
 
 notifications:
   email:
-    - cedric@dugat.me
+    recipients:
+      - cedric@dugat.me
+    on_success: change
+    on_failure: change
+  irc:
+    - "irc.freenode.org#slynett"
