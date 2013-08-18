@@ -2,12 +2,11 @@
 
 namespace Sly\NotificationPusher\Model;
 
-use Sly\NotificationPusher\Collection\DeviceCollection,
-    Sly\NotificationPusher\Adapter\AdapterInterface,
-    Sly\NotificationPusher\Model\Device,
-    Sly\NotificationPusher\Model\Message,
-    Sly\NotificationPusher\Exception\AdapterException
-;
+use Sly\NotificationPusher\Collection\DeviceCollection;
+use Sly\NotificationPusher\Adapter\AdapterInterface;
+use Sly\NotificationPusher\Model\Device;
+use Sly\NotificationPusher\Model\Message;
+use Sly\NotificationPusher\Exception\AdapterException;
 
 /**
  * Push.
@@ -46,11 +45,11 @@ class Push extends BaseOptionedModel
 
     /**
      * Constructor.
-     * 
-     * @param \Sly\NotificationPusher\Adapter\AdapterInterface                                         $adapter Adapter
-     * @param \Sly\NotificationPusher\Model\Device|\Sly\NotificationPusher\Collection\DeviceCollection $devices Device(s)
-     * @param \Sly\NotificationPusher\Model\Message                                                    $message Message
-     * @param array                                                                                    $options Options
+     *
+     * @param \Sly\NotificationPusher\Adapter\AdapterInterface  $adapter Adapter
+     * @param Device|DeviceCollection                           $devices Device(s)
+     * @param \Sly\NotificationPusher\Model\Message             $message Message
+     * @param array                                             $options Options
      *
      * Options are adapters specific ones, like Apns "badge" or "sound" option for example.
      * Of course, they can be more general.
@@ -119,7 +118,7 @@ class Push extends BaseOptionedModel
 
     /**
      * isPushed.
-     * 
+     *
      * @return boolean
      */
     public function isPushed()

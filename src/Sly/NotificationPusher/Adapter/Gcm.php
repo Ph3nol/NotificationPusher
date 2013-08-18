@@ -2,15 +2,13 @@
 
 namespace Sly\NotificationPusher\Adapter;
 
-use Sly\NotificationPusher\Model\Push,
-    Sly\NotificationPusher\Model\Message,
-    Sly\NotificationPusher\Collection\DeviceCollection
-;
+use Sly\NotificationPusher\Model\Push;
+use Sly\NotificationPusher\Model\Message;
+use Sly\NotificationPusher\Collection\DeviceCollection;
 
-use ZendService\Google\Gcm\Client as ServiceClient,
-    ZendService\Google\Gcm\Message as ServiceMessage,
-    ZendService\Google\Exception\RuntimeException as ServiceRuntimeException
-;
+use ZendService\Google\Gcm\Client as ServiceClient;
+use ZendService\Google\Gcm\Message as ServiceMessage;
+use ZendService\Google\Exception\RuntimeException as ServiceRuntimeException;
 
 /**
  * GCM adapter.
@@ -64,7 +62,7 @@ class Gcm extends BaseAdapter implements AdapterInterface
      * Get opened client.
      *
      * @param \ZendService\Google\Gcm\Client $client Client
-     * 
+     *
      * @return \ZendService\Google\Gcm\Client
      */
     public function getOpenedClient(ServiceClient $client)
@@ -76,10 +74,10 @@ class Gcm extends BaseAdapter implements AdapterInterface
 
     /**
      * Get service message from origin.
-     * 
+     *
      * @param array                                 $tokens  Tokens
      * @param \Sly\NotificationPusher\Model\Message $message Message
-     * 
+     *
      * @return \ZendService\Google\Gcm\Message
      */
     public function getServiceMessageFromOrigin(array $tokens, Message $message)

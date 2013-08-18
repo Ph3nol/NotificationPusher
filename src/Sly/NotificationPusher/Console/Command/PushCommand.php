@@ -2,19 +2,17 @@
 
 namespace Sly\NotificationPusher\Console\Command;
 
-use Symfony\Component\Console\Command\Command,
-    Symfony\Component\Console\Input\InputArgument,
-    Symfony\Component\Console\Input\InputInterface,
-    Symfony\Component\Console\Input\InputOption,
-    Symfony\Component\Console\Output\OutputInterface
-;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
 
-use Sly\NotificationPusher\PushManager,
-    Sly\NotificationPusher\Model\Device,
-    Sly\NotificationPusher\Model\Message,
-    Sly\NotificationPusher\Model\Push,
-    Sly\NotificationPusher\Exception\AdapterException
-;
+use Sly\NotificationPusher\PushManager;
+use Sly\NotificationPusher\Model\Device;
+use Sly\NotificationPusher\Model\Message;
+use Sly\NotificationPusher\Model\Push;
+use Sly\NotificationPusher\Exception\AdapterException;
 
 use Doctrine\Common\Util\Inflector;
 
@@ -98,10 +96,8 @@ class PushCommand extends Command
      */
     private function getAdapterClassFromArgument($argument)
     {
-        if (
-            !class_exists($adapterClass = $argument) &&
-            !class_exists($adapterClass = '\\Sly\\NotificationPusher\\Adapter\\'.ucfirst($argument))
-        ) {
+        if (!class_exists($adapterClass = $argument) &&
+            !class_exists($adapterClass = '\\Sly\\NotificationPusher\\Adapter\\'.ucfirst($argument))) {
             throw new AdapterException(
                 sprintf(
                     'Adapter class %s does not exist',

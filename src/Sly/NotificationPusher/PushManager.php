@@ -2,10 +2,9 @@
 
 namespace Sly\NotificationPusher;
 
-use Sly\NotificationPusher\Collection\PushCollection,
-    Sly\NotificationPusher\Adapter\AdapterInterface,
-    Sly\NotificationPusher\Exception\AdapterException
-;
+use Sly\NotificationPusher\Collection\PushCollection;
+use Sly\NotificationPusher\Adapter\AdapterInterface;
+use Sly\NotificationPusher\Exception\AdapterException;
 
 /**
  * PushManager.
@@ -25,7 +24,7 @@ class PushManager extends PushCollection
 
     /**
      * Constructor.
-     * 
+     *
      * @param string $environment Environment
      */
     public function __construct($environment = self::ENVIRONMENT_DEV)
@@ -37,7 +36,7 @@ class PushManager extends PushCollection
 
     /**
      * Get environment.
-     * 
+     *
      * @return string
      */
     public function getEnvironment()
@@ -47,7 +46,7 @@ class PushManager extends PushCollection
 
     /**
      * Push.
-     * 
+     *
      * @return \Sly\NotificationPusher\Collection\PushCollection
      */
     public function push()
@@ -68,7 +67,7 @@ class PushManager extends PushCollection
      * Get feedback.
      *
      * @param \Sly\NotificationPusher\Adapter\AdapterInterface $adapter Adapter
-     * 
+     *
      * @return array
      */
     public function getFeedback(AdapterInterface $adapter)

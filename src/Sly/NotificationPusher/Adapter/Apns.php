@@ -2,22 +2,20 @@
 
 namespace Sly\NotificationPusher\Adapter;
 
-use Sly\NotificationPusher\Model\Push,
-    Sly\NotificationPusher\Model\Message,
-    Sly\NotificationPusher\Model\Device,
-    Sly\NotificationPusher\Exception\AdapterException,
-    Sly\NotificationPusher\Exception\PushException,
-    Sly\NotificationPusher\Collection\DeviceCollection
-;
+use Sly\NotificationPusher\Model\Push;
+use Sly\NotificationPusher\Model\Message;
+use Sly\NotificationPusher\Model\Device;
+use Sly\NotificationPusher\Exception\AdapterException;
+use Sly\NotificationPusher\Exception\PushException;
+use Sly\NotificationPusher\Collection\DeviceCollection;
 
-use ZendService\Apple\Apns\Client\AbstractClient as ServiceAbstractClient,
-    ZendService\Apple\Apns\Client\Message as ServiceClient,
-    ZendService\Apple\Apns\Message as ServiceMessage,
-    ZendService\Apple\Apns\Message\Alert as ServiceAlert,
-    ZendService\Apple\Apns\Response\Message as ServiceResponse,
-    ZendService\Apple\Apns\Exception\RuntimeException as ServiceRuntimeException,
-    ZendService\Apple\Apns\Client\Feedback as ServiceFeedbackClient
-;
+use ZendService\Apple\Apns\Client\AbstractClient as ServiceAbstractClient;
+use ZendService\Apple\Apns\Client\Message as ServiceClient;
+use ZendService\Apple\Apns\Message as ServiceMessage;
+use ZendService\Apple\Apns\Message\Alert as ServiceAlert;
+use ZendService\Apple\Apns\Response\Message as ServiceResponse;
+use ZendService\Apple\Apns\Exception\RuntimeException as ServiceRuntimeException;
+use ZendService\Apple\Apns\Client\Feedback as ServiceFeedbackClient;
 
 /**
  * APNS adapter.
