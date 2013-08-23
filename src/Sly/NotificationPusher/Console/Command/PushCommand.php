@@ -102,6 +102,8 @@ class PushCommand extends Command
      * @param string $argument Given argument
      *
      * @return string
+     *
+     * @throws AdapterException When given adapter class doesn't exist
      */
     private function getAdapterClassFromArgument($argument)
     {

@@ -19,9 +19,9 @@ use Sly\NotificationPusher\PushManager,
     Sly\NotificationPusher\Model\Push
 ;
 
-// First, instanciate the manager.
+// First, instantiate the manager.
 // 
-// Example for production environement:
+// Example for production environment:
 // $pushManager = new PushManager(PushManager::ENVIRONMENT_PRODUCTION);
 // 
 // Development one by default (without argument).

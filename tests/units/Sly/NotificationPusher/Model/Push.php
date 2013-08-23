@@ -23,7 +23,7 @@ class Push extends atoum\test
     const APNS_TOKEN_EXAMPLE = '111db24975bb6c6b63214a8d268052aa0a965cc1e32110ab06a72b19074c2222';
     const GCM_TOKEN_EXAMPLE  = 'AAA91bG9ISdL94D55C69NplFlxicy0iFUFTyWh3AAdMfP9npH5r_JQFTo27xpX1jfqGf-aSe6xZAsfWRefjazJpqFt03Isanv-Fi97020EKLye0ApTkHsw_0tJJzgA2Js0NsG1jLWsiJf63YSF8ropAcRp4BSxVBBB';
 
-    public function testContructWithOneDevice()
+    public function testConstructWithOneDevice()
     {
         $this->if($this->mockClass('\Sly\NotificationPusher\Adapter\AdapterInterface', '\Mock'))
             ->and($adapter = new \Mock\AdapterInterface())
@@ -41,7 +41,7 @@ class Push extends atoum\test
         ;
     }
 
-    public function testContructWithManyDevicesAndOptions()
+    public function testConstructWithManyDevicesAndOptions()
     {
         $this->if($this->mockClass('\Sly\NotificationPusher\Adapter\AdapterInterface', '\Mock'))
             ->and($adapter = new \Mock\AdapterInterface())
