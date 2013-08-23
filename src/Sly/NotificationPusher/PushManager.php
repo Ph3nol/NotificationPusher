@@ -78,6 +78,8 @@ class PushManager extends PushCollection
      * @param \Sly\NotificationPusher\Adapter\AdapterInterface $adapter Adapter
      *
      * @return array
+     *
+     * @throws AdapterException When the adapter has no dedicated `getFeedback` method
      */
     public function getFeedback(AdapterInterface $adapter)
     {
