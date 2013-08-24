@@ -19,7 +19,7 @@ Here is how to translate this with code (just a little not-working example):
 ``` php
 <?php
 
-// First, instanciate the manager and declare an adapter.
+// First, instantiate the manager and declare an adapter.
 $pushManager    = new PushManager();
 $exampleAdapter = new ApnsAdapter();
 
