@@ -23,11 +23,6 @@ use Sly\NotificationPusher\Model\Message;
 class MessageCollection extends AbstractCollection implements \IteratorAggregate
 {
     /**
-     * @var \ArrayIterator
-     */
-    private $coll;
-
-    /**
      * Constructor.
      */
     public function __construct()
