@@ -23,11 +23,6 @@ use Sly\NotificationPusher\Model\Device;
 class DeviceCollection extends AbstractCollection implements \IteratorAggregate
 {
     /**
-     * @var \ArrayIterator
-     */
-    private $coll;
-
-    /**
      * Constructor.
      *
      * @param array $devices Devices

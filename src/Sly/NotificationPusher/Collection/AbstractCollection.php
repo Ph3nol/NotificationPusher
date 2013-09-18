@@ -20,6 +20,11 @@ namespace Sly\NotificationPusher\Collection;
 abstract class AbstractCollection
 {
     /**
+     * @var \ArrayIterator
+     */
+    protected $coll;
+    
+    /**
      * Get.
      *
      * @param string $key Key
