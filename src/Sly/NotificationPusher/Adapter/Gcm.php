@@ -52,12 +52,12 @@ class Gcm extends BaseAdapter implements AdapterInterface
             $message = $this->getServiceMessageFromOrigin($tokensRange, $push->getMessage());
 
             try {
-                $response = $client->send($message);
+                $this->response = $client->send($message);
             } catch (ServiceRuntimeException $e) {
                 throw new PushException($e->getMessage());
             }
 
-            if ((bool) $response->getSuccessCount()) {
+            if ((bool) $this->response->getSuccessCount()) {
                 foreach ($tokensRange as $token) {
                     $pushedDevices->add($push->getDevices()->get($token));
                 }
