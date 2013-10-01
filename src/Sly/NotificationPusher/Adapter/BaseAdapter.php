@@ -34,6 +34,11 @@ abstract class BaseAdapter extends BaseParameteredModel
     protected $environment;
 
     /**
+     * @var mixed
+     */
+    protected $response;
+
+    /**
      * Constructor.
      *
      * @param array $parameters Adapter specific parameters
@@ -57,6 +62,16 @@ abstract class BaseAdapter extends BaseParameteredModel
     public function __toString()
     {
         return ucfirst($this->getAdapterKey());
+    }
+
+    /**
+     * Return the original response.
+     * 
+     * @return mixed
+     */
+    public function getResponse()
+    {
+        return $this->response;
     }
 
     /**
