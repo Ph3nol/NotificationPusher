@@ -15,9 +15,14 @@ use Sly\NotificationPusher\Model\Push;
 use Sly\NotificationPusher\Model\Message;
 use Sly\NotificationPusher\Collection\DeviceCollection;
 
+use Zend\Http\Client as HttpClient;
+use Zend\Http\Client\Adapter\Socket as HttpSocketAdapter;
+
 use ZendService\Google\Gcm\Client as ServiceClient;
 use ZendService\Google\Gcm\Message as ServiceMessage;
 use ZendService\Google\Exception\RuntimeException as ServiceRuntimeException;
+
+use InvalidArgumentException;
 
 /**
  * GCM adapter.
@@ -29,6 +34,11 @@ use ZendService\Google\Exception\RuntimeException as ServiceRuntimeException;
  */
 class Gcm extends BaseAdapter implements AdapterInterface
 {
+    /**
+     * @var \Zend\Http\Client
+     */
+    private $httpClient;
+    
     /**
      * {@inheritdoc}
      */
@@ -77,6 +87,10 @@ class Gcm extends BaseAdapter implements AdapterInterface
     public function getOpenedClient(ServiceClient $client)
     {
         $client->setApiKey($this->getParameter('apiKey'));
+        
+        if ($this->httpClient !== null) {
+            $client->setHttpClient($this->httpClient);
+        }
 
         return $client;
     }
@@ -120,5 +134,47 @@ class Gcm extends BaseAdapter implements AdapterInterface
     public function getRequiredParameters()
     {
         return array('apiKey');
+    }
+
+
+    /**
+     * Get the current Zend Http Client instance.
+     *
+     * @return HttpClient
+     */
+    public function getHttpClient()
+    {
+        return $this->httpClient;
+    }
+
+    /**
+     * Overrides the default Http Client.
+     * 
+     * @param HttpClient $client
+     */
+    public function setHttpClient(HttpClient $client)
+    {
+        $this->httpClient = $client;
+    }
+
+    /**
+     * Send custom parameters to the Http Adapter without overriding the Http Client.
+     * 
+     * @param array $config
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function setAdapterParameters(array $config = array())
+    {
+        if (!is_array($config) || empty($config)) {
+            throw new InvalidArgumentException('$config must be an associative array with at least 1 item.');
+        }
+
+        if ($this->httpClient === null) {
+            $this->httpClient = new HttpClient();
+            $this->httpClient->setAdapter(new HttpSocketAdapter());
+        }
+
+        $this->httpClient->getAdapter()->setOptions($config);
     }
 }
