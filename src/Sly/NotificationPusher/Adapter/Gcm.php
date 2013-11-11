@@ -11,7 +11,7 @@
 
 namespace Sly\NotificationPusher\Adapter;
 
-use Sly\NotificationPusher\Model\Push;
+use Sly\NotificationPusher\Model\PushInterface;
 use Sly\NotificationPusher\Model\MessageInterface;
 use Sly\NotificationPusher\Collection\DeviceCollection;
 
@@ -52,7 +52,7 @@ class Gcm extends BaseAdapter implements AdapterInterface
      *
      * @throws \Sly\NotificationPusher\Exception\PushException
      */
-    public function push(Push $push)
+    public function push(PushInterface $push)
     {
         $client        = $this->getOpenedClient(new ServiceClient());
         $pushedDevices = new DeviceCollection();

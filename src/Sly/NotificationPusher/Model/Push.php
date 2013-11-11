@@ -22,10 +22,8 @@ use Sly\NotificationPusher\Exception\AdapterException;
  *
  * @author Cédric Dugat <cedric@dugat.me>
  */
-class Push extends BaseOptionedModel
+class Push extends BaseOptionedModel implements PushInterface
 {
-    const STATUS_PENDING = 'pending';
-    const STATUS_PUSHED  = 'sent';
 
     /**
      * @var string
@@ -116,7 +114,7 @@ class Push extends BaseOptionedModel
      *
      * @param string $status Status
      *
-     * @return \Sly\NotificationPusher\Model\Push
+     * @return \Sly\NotificationPusher\Model\PushInterface
      */
     public function setStatus($status)
     {
@@ -138,7 +136,7 @@ class Push extends BaseOptionedModel
     /**
      * Declare as pushed.
      *
-     * @return \Sly\NotificationPusher\Model\Push
+     * @return \Sly\NotificationPusher\Model\PushInterface
      */
     public function pushed()
     {
@@ -163,7 +161,7 @@ class Push extends BaseOptionedModel
      *
      * @param \Sly\NotificationPusher\Adapter\AdapterInterface $adapter Adapter
      *
-     * @return \Sly\NotificationPusher\Model\Push
+     * @return \Sly\NotificationPusher\Model\PushInterface
      */
     public function setAdapter(AdapterInterface $adapter)
     {
@@ -187,7 +185,7 @@ class Push extends BaseOptionedModel
      *
      * @param \Sly\NotificationPusher\Model\MessageInterface $message Message
      *
-     * @return \Sly\NotificationPusher\Model\Push
+     * @return \Sly\NotificationPusher\Model\PushInterface
      */
     public function setMessage(MessageInterface $message)
     {
@@ -211,7 +209,7 @@ class Push extends BaseOptionedModel
      *
      * @param \Sly\NotificationPusher\Collection\DeviceCollection $devices Devices
      *
-     * @return \Sly\NotificationPusher\Model\Push
+     * @return \Sly\NotificationPusher\Model\PushInterface
      */
     public function setDevices(DeviceCollection $devices)
     {
@@ -237,7 +235,7 @@ class Push extends BaseOptionedModel
      *
      * @param \DateTime $pushedAt PushedAt
      *
-     * @return \Sly\NotificationPusher\Model\Push
+     * @return \Sly\NotificationPusher\Model\PushInterface
      */
     public function setPushedAt(\DateTime $pushedAt)
     {
