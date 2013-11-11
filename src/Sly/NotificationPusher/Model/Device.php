@@ -16,7 +16,7 @@ namespace Sly\NotificationPusher\Model;
  *
  * @author Cédric Dugat <cedric@dugat.me>
  */
-class Device extends BaseParameteredModel
+class Device extends BaseParameteredModel implements DeviceInterface
 {
     /**
      * @var string
@@ -50,7 +50,7 @@ class Device extends BaseParameteredModel
      *
      * @param string $token Token
      *
-     * @return \Sly\NotificationPusher\Model\Device
+     * @return \Sly\NotificationPusher\Model\DeviceInterface
      */
     public function setToken($token)
     {

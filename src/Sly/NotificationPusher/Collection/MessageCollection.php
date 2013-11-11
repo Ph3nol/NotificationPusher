@@ -11,7 +11,7 @@
 
 namespace Sly\NotificationPusher\Collection;
 
-use Sly\NotificationPusher\Model\Message;
+use Sly\NotificationPusher\Model\MessageInterface;
 
 /**
  * MessageCollection.
@@ -39,9 +39,9 @@ class MessageCollection extends AbstractCollection implements \IteratorAggregate
     }
 
     /**
-     * @param \Sly\NotificationPusher\Model\Message $message Message
+     * @param \Sly\NotificationPusher\Model\MessageInterface $message Message
      */
-    public function add(Message $message)
+    public function add(MessageInterface $message)
     {
         $this->coll[] = $message;
     }

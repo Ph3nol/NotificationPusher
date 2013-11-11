@@ -11,7 +11,7 @@
 
 namespace Sly\NotificationPusher\Adapter;
 
-use Sly\NotificationPusher\Model\Push;
+use Sly\NotificationPusher\Model\PushInterface;
 
 /**
  * AdapterInterface.
@@ -23,11 +23,11 @@ interface AdapterInterface
     /**
      * Push.
      *
-     * @param \Sly\NotificationPusher\Model\Push $push Push
+     * @param \Sly\NotificationPusher\Model\PushInterface $push Push
      *
      * @return \Sly\NotificationPusher\Collection\DeviceCollection
      */
-    public function push(Push $push);
+    public function push(PushInterface $push);
 
     /**
      * Supports.

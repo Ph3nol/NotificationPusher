@@ -11,8 +11,8 @@
 
 namespace Sly\NotificationPusher\Adapter;
 
-use Sly\NotificationPusher\Model\Push;
-use Sly\NotificationPusher\Model\Message;
+use Sly\NotificationPusher\Model\PushInterface;
+use Sly\NotificationPusher\Model\MessageInterface;
 use Sly\NotificationPusher\Collection\DeviceCollection;
 
 use Zend\Http\Client as HttpClient;
@@ -52,7 +52,7 @@ class Gcm extends BaseAdapter implements AdapterInterface
      *
      * @throws \Sly\NotificationPusher\Exception\PushException
      */
-    public function push(Push $push)
+    public function push(PushInterface $push)
     {
         $client        = $this->getOpenedClient(new ServiceClient());
         $pushedDevices = new DeviceCollection();
@@ -99,11 +99,11 @@ class Gcm extends BaseAdapter implements AdapterInterface
      * Get service message from origin.
      *
      * @param array                                 $tokens  Tokens
-     * @param \Sly\NotificationPusher\Model\Message $message Message
+     * @param \Sly\NotificationPusher\Model\MessageInterface $message Message
      *
      * @return \ZendService\Google\Gcm\Message
      */
-    public function getServiceMessageFromOrigin(array $tokens, Message $message)
+    public function getServiceMessageFromOrigin(array $tokens, MessageInterface $message)
     {
         $data            = $message->getOptions();
         $data['message'] = $message->getText();
