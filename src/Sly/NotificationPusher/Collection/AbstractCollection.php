@@ -29,7 +29,7 @@ abstract class AbstractCollection
      *
      * @param string $key Key
      *
-     * @return \Sly\NotificationPusher\Model\Message|false
+     * @return \Sly\NotificationPusher\Model\MessageInterface|false
      */
     public function get($key)
     {

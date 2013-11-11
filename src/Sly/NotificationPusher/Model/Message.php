@@ -16,7 +16,7 @@ namespace Sly\NotificationPusher\Model;
  *
  * @author Cédric Dugat <cedric@dugat.me>
  */
-class Message extends BaseOptionedModel
+class Message extends BaseOptionedModel implements MessageInterface
 {
     /**
      * @var string
@@ -50,7 +50,7 @@ class Message extends BaseOptionedModel
      *
      * @param string $text Text
      *
-     * @return \Sly\NotificationPusher\Model\Message
+     * @return \Sly\NotificationPusher\Model\MessageInterface
      */
     public function setText($text)
     {

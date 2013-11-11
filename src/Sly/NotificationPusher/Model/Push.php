@@ -14,7 +14,7 @@ namespace Sly\NotificationPusher\Model;
 use Sly\NotificationPusher\Collection\DeviceCollection;
 use Sly\NotificationPusher\Adapter\AdapterInterface;
 use Sly\NotificationPusher\Model\DeviceInterface;
-use Sly\NotificationPusher\Model\Message;
+use Sly\NotificationPusher\Model\MessageInterface;
 use Sly\NotificationPusher\Exception\AdapterException;
 
 /**
@@ -38,7 +38,7 @@ class Push extends BaseOptionedModel
     private $adapter;
 
     /**
-     * @var \Sly\NotificationPusher\Model\Message
+     * @var \Sly\NotificationPusher\Model\MessageInterface
      */
     private $message;
 
@@ -57,7 +57,7 @@ class Push extends BaseOptionedModel
      *
      * @param \Sly\NotificationPusher\Adapter\AdapterInterface  $adapter Adapter
      * @param DeviceInterface|DeviceCollection                           $devices Device(s)
-     * @param \Sly\NotificationPusher\Model\Message             $message Message
+     * @param \Sly\NotificationPusher\Model\MessageInterface             $message Message
      * @param array                                             $options Options
      *
      * Options are adapters specific ones, like Apns "badge" or "sound" option for example.
@@ -65,7 +65,7 @@ class Push extends BaseOptionedModel
      *
      * @throws \Sly\NotificationPusher\Exception\AdapterException
      */
-    public function __construct(AdapterInterface $adapter, $devices, Message $message, array $options = array())
+    public function __construct(AdapterInterface $adapter, $devices, MessageInterface $message, array $options = array())
     {
         if ($devices instanceof DeviceInterface) {
             $devices = new DeviceCollection(array($devices));
@@ -175,7 +175,7 @@ class Push extends BaseOptionedModel
     /**
      * Get Message.
      *
-     * @return \Sly\NotificationPusher\Model\Message
+     * @return \Sly\NotificationPusher\Model\MessageInterface
      */
     public function getMessage()
     {
@@ -185,11 +185,11 @@ class Push extends BaseOptionedModel
     /**
      * Set Message.
      *
-     * @param \Sly\NotificationPusher\Model\Message $message Message
+     * @param \Sly\NotificationPusher\Model\MessageInterface $message Message
      *
      * @return \Sly\NotificationPusher\Model\Push
      */
-    public function setMessage(Message $message)
+    public function setMessage(MessageInterface $message)
     {
         $this->message = $message;
 
