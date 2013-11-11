@@ -20,13 +20,11 @@
         "symfony/console": ">=2.3",
         "symfony/process": ">=2.3",
         "zendframework/zendservice-apple-apns": "1.*",
-        "zendframework/zendservice-google-gcm": "1.*",
-        "doctrine/common": ">=2.3"
+        "zendframework/zendservice-google-gcm": "1.*"
     },
     "require-dev": {
-        "atoum/atoum": "master"
+        "atoum/atoum": "dev-master"
     },
-    "minimum-stability": "dev",
     "config": {
         "bin-dir": "bin"
     },
