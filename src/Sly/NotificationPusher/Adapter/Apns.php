@@ -13,7 +13,7 @@ namespace Sly\NotificationPusher\Adapter;
 
 use Sly\NotificationPusher\Model\Push;
 use Sly\NotificationPusher\Model\Message;
-use Sly\NotificationPusher\Model\Device;
+use Sly\NotificationPusher\Model\DeviceInterface;
 use Sly\NotificationPusher\Exception\AdapterException;
 use Sly\NotificationPusher\Exception\PushException;
 use Sly\NotificationPusher\Collection\DeviceCollection;
@@ -122,12 +122,12 @@ class Apns extends BaseAdapter implements AdapterInterface
     /**
      * Get service message from origin.
      *
-     * @param \Sly\NotificationPusher\Model\Device  $device  Device
+     * @param \Sly\NotificationPusher\Model\DeviceInterface  $device  Device
      * @param \Sly\NotificationPusher\Model\Message $message Message
      *
      * @return \ZendService\Apple\Apns\Message
      */
-    public function getServiceMessageFromOrigin(Device $device, Message $message)
+    public function getServiceMessageFromOrigin(DeviceInterface $device, Message $message)
     {
         $badge = ($message->hasOption('badge'))
             ? (int) ($message->getOption('badge') + $device->getParameter('badge', 0))

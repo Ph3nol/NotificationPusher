@@ -11,7 +11,7 @@
 
 namespace Sly\NotificationPusher\Collection;
 
-use Sly\NotificationPusher\Model\Device;
+use Sly\NotificationPusher\Model\DeviceInterface;
 
 /**
  * DeviceCollection.
@@ -45,9 +45,9 @@ class DeviceCollection extends AbstractCollection implements \IteratorAggregate
     }
 
     /**
-     * @param \Sly\NotificationPusher\Model\Device $device Device
+     * @param \Sly\NotificationPusher\Model\DeviceInterface $device Device
      */
-    public function add(Device $device)
+    public function add(DeviceInterface $device)
     {
         $this->coll[$device->getToken()] = $device;
     }

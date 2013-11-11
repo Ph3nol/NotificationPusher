@@ -13,7 +13,7 @@ namespace Sly\NotificationPusher\Model;
 
 use Sly\NotificationPusher\Collection\DeviceCollection;
 use Sly\NotificationPusher\Adapter\AdapterInterface;
-use Sly\NotificationPusher\Model\Device;
+use Sly\NotificationPusher\Model\DeviceInterface;
 use Sly\NotificationPusher\Model\Message;
 use Sly\NotificationPusher\Exception\AdapterException;
 
@@ -56,7 +56,7 @@ class Push extends BaseOptionedModel
      * Constructor.
      *
      * @param \Sly\NotificationPusher\Adapter\AdapterInterface  $adapter Adapter
-     * @param Device|DeviceCollection                           $devices Device(s)
+     * @param DeviceInterface|DeviceCollection                           $devices Device(s)
      * @param \Sly\NotificationPusher\Model\Message             $message Message
      * @param array                                             $options Options
      *
@@ -67,7 +67,7 @@ class Push extends BaseOptionedModel
      */
     public function __construct(AdapterInterface $adapter, $devices, Message $message, array $options = array())
     {
-        if ($devices instanceof Device) {
+        if ($devices instanceof DeviceInterface) {
             $devices = new DeviceCollection(array($devices));
         }
 
