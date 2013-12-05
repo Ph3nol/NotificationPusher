@@ -14,6 +14,7 @@ namespace Sly\NotificationPusher\Adapter;
 use Sly\NotificationPusher\Model\PushInterface;
 use Sly\NotificationPusher\Model\MessageInterface;
 use Sly\NotificationPusher\Collection\DeviceCollection;
+use Sly\NotificationPusher\Exception\PushException;
 
 use Zend\Http\Client as HttpClient;
 use Zend\Http\Client\Adapter\Socket as HttpSocketAdapter;
