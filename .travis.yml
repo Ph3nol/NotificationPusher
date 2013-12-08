@@ -1,16 +1,17 @@
 language: php
 
 php:
-  - 5.3
-  - 5.4
-  - 5.5
+    - 5.3
+    - 5.4
+    - 5.5
 
 before_script:
-  - curl -s http://getcomposer.org/installer | php
-  - php composer.phar --dev --prefer-source install
+    - wget http://getcomposer.org/composer.phar
+    - php composer.phar install --dev --prefer-source
+    - mkdir -p web/code-coverage
 
 script:
-  - bin/atoum -d tests/units
+    - bin/atoum
 
 notifications:
   email:

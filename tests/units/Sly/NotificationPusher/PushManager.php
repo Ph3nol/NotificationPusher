@@ -2,9 +2,7 @@
 
 namespace tests\units\Sly\NotificationPusher;
 
-require_once __DIR__ . '/../../../../vendor/autoload.php';
-
-use mageekguy\atoum;
+use mageekguy\atoum as Units;
 use Sly\NotificationPusher\PushManager as TestedModel;
 
 use Sly\NotificationPusher\Model\Message as BaseMessage;
@@ -17,7 +15,7 @@ use Sly\NotificationPusher\Collection\DeviceCollection as BaseDeviceCollection;
  * @uses atoum\test
  * @author Cédric Dugat <cedric@dugat.me>
  */
-class PushManager extends atoum\test
+class PushManager extends Units\Test
 {
     const APNS_TOKEN_EXAMPLE = '111db24975bb6c6b63214a8d268052aa0a965cc1e32110ab06a72b19074c2222';
 

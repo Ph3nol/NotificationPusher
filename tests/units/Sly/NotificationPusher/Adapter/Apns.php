@@ -2,9 +2,7 @@
 
 namespace tests\units\Sly\NotificationPusher\Adapter;
 
-require_once __DIR__ . '/../../../../../vendor/autoload.php';
-
-use mageekguy\atoum;
+use mageekguy\atoum as Units;
 use Sly\NotificationPusher\Adapter\Apns as TestedModel;
 
 use Sly\NotificationPusher\Model\Message as BaseMessage;
@@ -20,7 +18,7 @@ use ZendService\Apple\Apns\Client\Message as BaseServiceClient;
  * @uses atoum\test
  * @author Cédric Dugat <cedric@dugat.me>
  */
-class Apns extends atoum\test
+class Apns extends Units\Test
 {
     const APNS_TOKEN_EXAMPLE = '111db24975bb6c6b63214a8d268052aa0a965cc1e32110ab06a72b19074c2222';
 
@@ -105,7 +103,7 @@ class Apns extends atoum\test
                 ->message
                     ->contains('Certificate must be a valid path to a APNS certificate')
 
-            ->when($object = new TestedModel(array('certificate' => __DIR__.'/../../../../assets/apns-certificate.pem')))
+            ->when($object = new TestedModel(array('certificate' => __DIR__.'/../Resources/apns-certificate.pem')))
             ->and($object->getOpenedClient($serviceClient))
         ;
     }

@@ -2,9 +2,7 @@
 
 namespace tests\units\Sly\NotificationPusher\Model;
 
-require_once __DIR__ . '/../../../../../vendor/autoload.php';
-
-use mageekguy\atoum;
+use mageekguy\atoum as Units;
 use Sly\NotificationPusher\Model\Push as TestedModel;
 
 use Sly\NotificationPusher\Model\Message as BaseMessage;
@@ -18,7 +16,7 @@ use Sly\NotificationPusher\Adapter\Apns as BaseApnsAdapter;
  * @uses atoum\test
  * @author Cédric Dugat <cedric@dugat.me>
  */
-class Push extends atoum\test
+class Push extends Units\Test
 {
     const APNS_TOKEN_EXAMPLE = '111db24975bb6c6b63214a8d268052aa0a965cc1e32110ab06a72b19074c2222';
     const GCM_TOKEN_EXAMPLE  = 'AAA91bG9ISdL94D55C69NplFlxicy0iFUFTyWh3AAdMfP9npH5r_JQFTo27xpX1jfqGf-aSe6xZAsfWRefjazJpqFt03Isanv-Fi97020EKLye0ApTkHsw_0tJJzgA2Js0NsG1jLWsiJf63YSF8ropAcRp4BSxVBBB';

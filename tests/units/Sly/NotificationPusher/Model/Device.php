@@ -2,9 +2,7 @@
 
 namespace tests\units\Sly\NotificationPusher\Model;
 
-require_once __DIR__ . '/../../../../../vendor/autoload.php';
-
-use mageekguy\atoum;
+use mageekguy\atoum as Units;
 use Sly\NotificationPusher\Model\Device as TestedModel;
 
 /**
@@ -13,7 +11,7 @@ use Sly\NotificationPusher\Model\Device as TestedModel;
  * @uses atoum\test
  * @author Cédric Dugat <cedric@dugat.me>
  */
-class Device extends atoum\test
+class Device extends Units\Test
 {
     public function testConstruct()
     {

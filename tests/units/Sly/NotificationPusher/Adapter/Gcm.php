@@ -2,9 +2,7 @@
 
 namespace tests\units\Sly\NotificationPusher\Adapter;
 
-require_once __DIR__ . '/../../../../../vendor/autoload.php';
-
-use mageekguy\atoum;
+use mageekguy\atoum as Units;
 use Sly\NotificationPusher\Adapter\Gcm as TestedModel;
 
 use Sly\NotificationPusher\Model\Message as BaseMessage;
@@ -20,7 +18,7 @@ use ZendService\Google\Gcm\Message as BaseServiceMessage;
  * @uses atoum\test
  * @author Cédric Dugat <cedric@dugat.me>
  */
-class Gcm extends atoum\test
+class Gcm extends Units\Test
 {
     const GCM_TOKEN_EXAMPLE = 'AAA91bG9ISdL94D55C69NplFlxicy0iFUFTyWh3AAdMfP9npH5r_JQFTo27xpX1jfqGf-aSe6xZAsfWRefjazJpqFt03Isanv-Fi97020EKLye0ApTkHsw_0tJJzgA2Js0NsG1jLWsiJf63YSF8ropAcRp4BSxVBBB';
 

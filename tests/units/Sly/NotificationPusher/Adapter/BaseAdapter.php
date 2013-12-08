@@ -2,9 +2,7 @@
 
 namespace tests\units\Sly\NotificationPusher\Adapter;
 
-require_once __DIR__ . '/../../../../../vendor/autoload.php';
-
-use mageekguy\atoum;
+use mageekguy\atoum as Units;
 use Sly\NotificationPusher\PushManager as BasePushManager;
 
 /**
@@ -13,7 +11,7 @@ use Sly\NotificationPusher\PushManager as BasePushManager;
  * @uses atoum\test
  * @author Cédric Dugat <cedric@dugat.me>
  */
-class BaseAdapter extends atoum\test
+class BaseAdapter extends Units\Test
 {
     public function testAdapterKey()
     {
