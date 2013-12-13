@@ -21,11 +21,11 @@ use Sly\NotificationPusher\PushManager,
 
 // First, instantiate the manager.
 //
-// Example for production environment:
-// $pushManager = new PushManager(PushManager::ENVIRONMENT_PRODUCTION);
+// Example for development environment:
+// $pushManager = new PushManager(PushManager::ENVIRONMENT_DEV);
 //
-// Development one by default (without argument).
-$pushManager = new PushManager(PushManager::ENVIRONMENT_DEV);
+// Production environment is default (without argument).
+$pushManager = new PushManager(PushManager::ENVIRONMENT_PROD);
 
 // Then declare an adapter.
 $apnsAdapter = new ApnsAdapter(array(
