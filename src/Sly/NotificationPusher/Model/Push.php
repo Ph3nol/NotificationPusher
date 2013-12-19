@@ -53,10 +53,10 @@ class Push extends BaseOptionedModel implements PushInterface
     /**
      * Constructor.
      *
-     * @param \Sly\NotificationPusher\Adapter\AdapterInterface  $adapter Adapter
-     * @param DeviceInterface|DeviceCollection                           $devices Device(s)
-     * @param \Sly\NotificationPusher\Model\MessageInterface             $message Message
-     * @param array                                             $options Options
+     * @param \Sly\NotificationPusher\Adapter\AdapterInterface $adapter Adapter
+     * @param DeviceInterface|DeviceCollection                 $devices Device(s)
+     * @param \Sly\NotificationPusher\Model\MessageInterface   $message Message
+     * @param array                                            $options Options
      *
      * Options are adapters specific ones, like Apns "badge" or "sound" option for example.
      * Of course, they can be more general.

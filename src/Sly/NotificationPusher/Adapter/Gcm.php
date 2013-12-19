@@ -39,7 +39,7 @@ class Gcm extends BaseAdapter implements AdapterInterface
      * @var \Zend\Http\Client
      */
     private $httpClient;
-    
+
     /**
      * {@inheritdoc}
      */
@@ -88,7 +88,7 @@ class Gcm extends BaseAdapter implements AdapterInterface
     public function getOpenedClient(ServiceClient $client)
     {
         $client->setApiKey($this->getParameter('apiKey'));
-        
+
         if ($this->httpClient !== null) {
             $client->setHttpClient($this->httpClient);
         }
@@ -99,7 +99,7 @@ class Gcm extends BaseAdapter implements AdapterInterface
     /**
      * Get service message from origin.
      *
-     * @param array                                 $tokens  Tokens
+     * @param array                                          $tokens  Tokens
      * @param \Sly\NotificationPusher\Model\MessageInterface $message Message
      *
      * @return \ZendService\Google\Gcm\Message
@@ -137,7 +137,6 @@ class Gcm extends BaseAdapter implements AdapterInterface
         return array('apiKey');
     }
 
-
     /**
      * Get the current Zend Http Client instance.
      *
@@ -150,7 +149,7 @@ class Gcm extends BaseAdapter implements AdapterInterface
 
     /**
      * Overrides the default Http Client.
-     * 
+     *
      * @param HttpClient $client
      */
     public function setHttpClient(HttpClient $client)
@@ -160,7 +159,7 @@ class Gcm extends BaseAdapter implements AdapterInterface
 
     /**
      * Send custom parameters to the Http Adapter without overriding the Http Client.
-     * 
+     *
      * @param array $config
      *
      * @throws \InvalidArgumentException

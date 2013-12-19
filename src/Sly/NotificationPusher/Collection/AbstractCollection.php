@@ -23,7 +23,7 @@ abstract class AbstractCollection
      * @var \ArrayIterator
      */
     protected $coll;
-    
+
     /**
      * Get.
      *

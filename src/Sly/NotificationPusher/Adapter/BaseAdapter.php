@@ -66,7 +66,7 @@ abstract class BaseAdapter extends BaseParameteredModel
 
     /**
      * Return the original response.
-     * 
+     *
      * @return mixed
      */
     public function getResponse()
