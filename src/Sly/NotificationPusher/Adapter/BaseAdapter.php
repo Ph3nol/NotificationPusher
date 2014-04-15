@@ -21,7 +21,7 @@ use Sly\NotificationPusher\PushManager;
  *
  * @author Cédric Dugat <cedric@dugat.me>
  */
-abstract class BaseAdapter extends BaseParameteredModel
+abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterface
 {
     /**
      * @var string

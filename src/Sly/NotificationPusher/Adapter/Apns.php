@@ -30,11 +30,10 @@ use ZendService\Apple\Apns\Client\Feedback as ServiceFeedbackClient;
  * APNS adapter.
  *
  * @uses \Sly\NotificationPusher\Adapter\BaseAdapter
- * @uses \Sly\NotificationPusher\Adapter\AdapterInterface
  *
  * @author Cédric Dugat <cedric@dugat.me>
  */
-class Apns extends BaseAdapter implements AdapterInterface
+class Apns extends BaseAdapter
 {
     /**
      * {@inheritdoc}
