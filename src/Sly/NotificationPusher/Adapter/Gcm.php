@@ -88,10 +88,12 @@ class Gcm extends BaseAdapter
     {
         $client->setApiKey($this->getParameter('apiKey'));
 
-        if ($this->httpClient !== null) {
-            $client->setHttpClient($this->httpClient);
-        }
-
+        $new_client = new \Zend\Http\Client(null, array(
+            'adapter' => 'Zend\Http\Client\Adapter\Socket',
+            'sslverifypeer' => false
+        ));
+        $client->setHttpClient($new_client);
+        
         return $client;
     }
 
