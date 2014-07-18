@@ -51,6 +51,8 @@ class Gcm extends Units\Test
             ->and($object = new \Mock\Gcm())
             ->boolean($object->supports('*()*'))
                 ->isFalse()
+            ->boolean($object->supports('ABC*()*'))
+                ->isFalse()
             ->boolean($object->supports(self::GCM_TOKEN_EXAMPLE))
                 ->isTrue()
         ;
