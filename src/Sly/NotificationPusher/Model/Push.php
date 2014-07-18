@@ -13,8 +13,6 @@ namespace Sly\NotificationPusher\Model;
 
 use Sly\NotificationPusher\Collection\DeviceCollection;
 use Sly\NotificationPusher\Adapter\AdapterInterface;
-use Sly\NotificationPusher\Model\DeviceInterface;
-use Sly\NotificationPusher\Model\MessageInterface;
 use Sly\NotificationPusher\Exception\AdapterException;
 
 /**

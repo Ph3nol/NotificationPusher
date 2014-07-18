@@ -92,7 +92,7 @@ class Gcm extends BaseAdapter
             'adapter'       => 'Zend\Http\Client\Adapter\Socket',
             'sslverifypeer' => false
         ));
-        
+
         $client->setHttpClient($newClient);
 
         return $client;
