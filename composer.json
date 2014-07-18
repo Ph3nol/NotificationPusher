@@ -33,8 +33,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Sly": "src/",
-            "ZendService\\Apple\\Exception\\": "vendor/zendframework/zendservice-apple-apns/library/"
+            "Sly": "src/"
         }
     }
 }
