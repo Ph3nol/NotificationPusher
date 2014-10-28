@@ -88,7 +88,7 @@ class Push extends BaseOptionedModel implements PushInterface
             if (false === $adapter->supports($device->getToken())) {
                 throw new AdapterException(
                     sprintf(
-                        'Adapter %s does not supports %s token\'s device',
+                        'Adapter %s does not support %s token\'s device',
                         (string) $adapter,
                         $device->getToken()
                     )
