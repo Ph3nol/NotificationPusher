@@ -11,8 +11,8 @@
 
 namespace Sly\NotificationPusher\Adapter;
 
+use Sly\NotificationPusher\Model\BaseOptionedModel;
 use Sly\NotificationPusher\Model\PushInterface;
-use Sly\NotificationPusher\Model\MessageInterface;
 use Sly\NotificationPusher\Collection\DeviceCollection;
 use Sly\NotificationPusher\Exception\PushException;
 
@@ -101,12 +101,12 @@ class Gcm extends BaseAdapter
     /**
      * Get service message from origin.
      *
-     * @param array                                          $tokens  Tokens
-     * @param \Sly\NotificationPusher\Model\MessageInterface $message Message
+     * @param array $tokens Tokens
+     * @param BaseOptionedModel|\Sly\NotificationPusher\Model\MessageInterface $message Message
      *
      * @return \ZendService\Google\Gcm\Message
      */
-    public function getServiceMessageFromOrigin(array $tokens, MessageInterface $message)
+    public function getServiceMessageFromOrigin(array $tokens, BaseOptionedModel $message)
     {
         $data            = $message->getOptions();
         $data['message'] = $message->getText();
