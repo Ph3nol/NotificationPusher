@@ -36,6 +36,11 @@ use ZendService\Apple\Apns\Client\Feedback as ServiceFeedbackClient;
 class Apns extends BaseAdapter
 {
     /**
+     * @var ServiceClient
+     */
+    private $openedClient;
+
+    /**
      * {@inheritdoc}
      *
      * @throws \Sly\NotificationPusher\Exception\AdapterException
@@ -58,7 +63,7 @@ class Apns extends BaseAdapter
      */
     public function push(PushInterface $push)
     {
-        $client = $this->getOpenedClient(new ServiceClient());
+        $client = $this->getOpenedClient();
 
         $pushedDevices = new DeviceCollection();
 
@@ -103,19 +108,21 @@ class Apns extends BaseAdapter
     /**
      * Get opened client.
      *
-     * @param \ZendService\Apple\Apns\Client\AbstractClient $client Client
-     *
      * @return \ZendService\Apple\Apns\Client\AbstractClient
      */
-    public function getOpenedClient(ServiceAbstractClient $client)
+    public function getOpenedClient()
     {
-        $client->open(
-            $this->isProductionEnvironment() ? ServiceClient::PRODUCTION_URI : ServiceClient::SANDBOX_URI,
-            $this->getParameter('certificate'),
-            $this->getParameter('passPhrase')
-        );
+        if (!isset($this->openedClient)) {
+            $this->openedClient = new ServiceClient();
 
-        return $client;
+            $this->openedClient->open(
+                $this->isProductionEnvironment() ? ServiceClient::PRODUCTION_URI : ServiceClient::SANDBOX_URI,
+                $this->getParameter('certificate'),
+                $this->getParameter('passPhrase')
+            );
+        }
+
+        return $this->openedClient;
     }
 
     /**
