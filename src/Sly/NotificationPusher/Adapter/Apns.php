@@ -134,7 +134,7 @@ class Apns extends BaseAdapter
         ;
 
         $sound = $message->getOption('sound', 'bingbong.aiff');
-        $contentAvailable = $message->getOption('content-avaibile');
+        $contentAvailable = $message->getOption('content-available');
 
         $alert = new ServiceAlert(
             $message->getText(),
