@@ -62,6 +62,16 @@ class Apns extends Units\Test
         ;
     }
 
+    public function testDefinedParameters()
+    {
+        $this->if($this->mockGenerator()->orphanize('__construct'))
+            ->and($this->mockClass('\Sly\NotificationPusher\Adapter\Apns', '\Mock'))
+            ->and($object = new \Mock\Apns())
+            ->array($defaultParameters = $object->getDefinedParameters())
+                ->isEmpty()
+        ;
+    }
+
     public function testDefaultParameters()
     {
         $this->if($this->mockGenerator()->orphanize('__construct'))
