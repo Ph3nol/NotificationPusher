@@ -29,7 +29,7 @@
         "atoum/atoum": "dev-master"
     },
     "config": {
-	"bin-dir": "bin"
+        "bin-dir": "bin"
     },
     "bin": ["np"],
     "autoload": {
