@@ -28,6 +28,9 @@
     "require-dev": {
         "atoum/atoum": "dev-master"
     },
+    "config": {
+	"bin-dir": "bin"
+    },
     "bin": ["np"],
     "autoload": {
         "psr-0": {
