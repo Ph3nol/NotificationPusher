@@ -165,6 +165,7 @@ class Apns extends BaseAdapter
         if (null !== $sound) {
             $serviceMessage->setSound($sound);
         }
+        $serviceMessage->setCategory($message->getOption('category'));
 
         return $serviceMessage;
     }
