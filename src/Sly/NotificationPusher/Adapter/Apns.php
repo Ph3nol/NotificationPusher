@@ -185,6 +185,14 @@ class Apns extends BaseAdapter
     /**
      * {@inheritdoc}
      */
+    public function getDefinedParameters()
+    {
+        return array();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getDefaultParameters()
     {
         return array('passPhrase' => null);

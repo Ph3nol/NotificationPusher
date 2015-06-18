@@ -58,6 +58,23 @@ class Gcm extends Units\Test
         ;
     }
 
+    public function testDefinedParameters()
+    {
+        $this->if($this->mockGenerator()->orphanize('__construct'))
+            ->and($this->mockClass('\Sly\NotificationPusher\Adapter\Gcm', '\Mock'))
+            ->and($object = new \Mock\Gcm())
+            ->array($definedParameters = $object->getDefinedParameters())
+            ->isNotEmpty()
+            ->containsValues(array(
+                'collapse_key',
+                'delay_while_idle',
+                'time_to_live',
+                'restricted_package_name',
+                'dry_run'
+            ))
+        ;
+    }
+
     public function testDefaultParameters()
     {
         $this->if($this->mockGenerator()->orphanize('__construct'))
