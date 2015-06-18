@@ -89,7 +89,7 @@ class PushCommand extends Command
     {
         $adapter     = $this->getReadyAdapter($input, $output);
         $pushManager = new PushManager($input->getOption('env'));
-        $message     = new Message('This is an example.');
+        $message     = new Message($input->getArgument('message'));
         $push        = new Push($adapter, new Device($input->getArgument('token')), $message);
         $pushManager->add($push);
 
