@@ -49,7 +49,7 @@ class Gcm extends BaseAdapter
      */
     public function supports($token)
     {
-        return (bool) preg_match('/^[0-9a-zA-Z\-\_]+$/i', $token);
+        return isset($token) && $token != '';
     }
 
     /**
