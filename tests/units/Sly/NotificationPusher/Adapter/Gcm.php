@@ -21,6 +21,9 @@ use ZendService\Google\Gcm\Message as BaseServiceMessage;
 class Gcm extends Units\Test
 {
     const GCM_TOKEN_EXAMPLE = 'AAA91bG9ISdL94D55C69NplFlxicy0iFUFTyWh3AAdMfP9npH5r_JQFTo27xpX1jfqGf-aSe6xZAsfWRefjazJpqFt03Isanv-Fi97020EKLye0ApTkHsw_0tJJzgA2Js0NsG1jLWsiJf63YSF8ropAcRp4BSxVBBB';
+    // The format of GCM tokens apparently have changed,
+    //   this string looks similar to new format
+    const ALT_GCM_TOKEN_EXAMPLE = 'AAA91bG9ISd:L94D55C69NplFlxicy0iFUFTyWh3AAdMfP9npH5r_JQFTo27xpX1jfqGf-aSe6xZAsfWRefjazJpqFt03Isanv-Fi97020EKLye0ApTkHsw_0tJJzgA2Js0NsG1jLWsiJf63YSF8ropA';
 
     public function testConstruct()
     {
@@ -49,11 +52,17 @@ class Gcm extends Units\Test
         $this->if($this->mockGenerator()->orphanize('__construct'))
             ->and($this->mockClass('\Sly\NotificationPusher\Adapter\Gcm', '\Mock'))
             ->and($object = new \Mock\Gcm())
-            ->boolean($object->supports('*()*'))
+            ->boolean($object->supports('')) // Test empty string
                 ->isFalse()
-            ->boolean($object->supports('ABC*()*'))
+            ->boolean($object->supports(2)) // Test a number
+                ->isFalse()
+            ->boolean($object->supports(array())) // Test an array
+                ->isFalse()
+            ->boolean($object->supports(json_decode('{}'))) // Tests an object
                 ->isFalse()
             ->boolean($object->supports(self::GCM_TOKEN_EXAMPLE))
+                ->isTrue()
+            ->boolean($object->supports(self::ALT_GCM_TOKEN_EXAMPLE))
                 ->isTrue()
         ;
     }

@@ -49,7 +49,7 @@ class Gcm extends BaseAdapter
      */
     public function supports($token)
     {
-	    return isset($token) && $token!= '';
+	    return is_string($token) && $token!= '';
     }
 
     /**
