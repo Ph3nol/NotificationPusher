@@ -167,6 +167,7 @@ class Apns extends BaseAdapter
 
         $sound = $message->getOption('sound', 'bingbong.aiff');
         $contentAvailable = $message->getOption('content-available');
+        $category = $message->getOption('category');
 
         $alert = new ServiceAlert(
             $message->getText(),
@@ -201,6 +202,10 @@ class Apns extends BaseAdapter
 
         if (null !== $contentAvailable) {
             $serviceMessage->setContentAvailable($contentAvailable);
+        }
+
+        if (null !== $category) {
+            $serviceMessage->setCategory($category);
         }
 
         return $serviceMessage;
