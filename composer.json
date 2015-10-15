@@ -21,6 +21,7 @@
             "url": "https://github.com/alalonde/ZendService_Apple_Apns"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.5",
 
