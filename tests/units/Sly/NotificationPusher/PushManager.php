@@ -50,6 +50,7 @@ class PushManager extends Units\Test
 
     public function testPush()
     {
+        date_default_timezone_set('UTC');
         $this->if($this->mockGenerator()->orphanize('__construct'))
             ->and($this->mockClass('\Sly\NotificationPusher\Adapter\Apns', '\Mock'))
             ->and($apnsAdapter = new \Mock\Apns())
