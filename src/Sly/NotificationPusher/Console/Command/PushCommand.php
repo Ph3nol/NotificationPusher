@@ -132,7 +132,7 @@ class PushCommand extends Command
         try {
             $adapter = new $adapterClass();
         } catch (\Exception $e) {
-            $adapterData = array();
+            $adapterData = [];
             preg_match_all('/"(.*)"/i', $e->getMessage(), $matches);
 
             foreach ($matches[1] as $match) {

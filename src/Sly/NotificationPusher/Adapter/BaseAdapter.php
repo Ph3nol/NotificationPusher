@@ -43,7 +43,7 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
      *
      * @param array $parameters Adapter specific parameters
      */
-    public function __construct(array $parameters = array())
+    public function __construct(array $parameters = [])
     {
         $resolver = new OptionsResolver();
         $resolver->setDefined($this->getDefinedParameters());

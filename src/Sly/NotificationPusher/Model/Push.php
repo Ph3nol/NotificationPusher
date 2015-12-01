@@ -61,10 +61,10 @@ class Push extends BaseOptionedModel implements PushInterface
      *
      * @throws \Sly\NotificationPusher\Exception\AdapterException
      */
-    public function __construct(AdapterInterface $adapter, $devices, MessageInterface $message, array $options = array())
+    public function __construct(AdapterInterface $adapter, $devices, MessageInterface $message, array $options = [])
     {
         if ($devices instanceof DeviceInterface) {
-            $devices = new DeviceCollection(array($devices));
+            $devices = new DeviceCollection([$devices]);
         }
 
         $this->adapter = $adapter;

@@ -94,10 +94,11 @@ class Gcm extends BaseAdapter
             $this->openedClient->setApiKey($this->getParameter('apiKey'));
 
             $newClient = new \Zend\Http\Client(
-                null, array(
+                null,
+                [
                     'adapter' => 'Zend\Http\Client\Adapter\Socket',
                     'sslverifypeer' => false
-                )
+                ]
             );
 
             $this->openedClient->setHttpClient($newClient);
@@ -136,13 +137,13 @@ class Gcm extends BaseAdapter
      */
     public function getDefinedParameters()
     {
-        return array(
+        return [
             'collapse_key',
             'delay_while_idle',
             'time_to_live',
             'restricted_package_name',
             'dry_run'
-        );
+        ];
     }
 
     /**
@@ -150,7 +151,7 @@ class Gcm extends BaseAdapter
      */
     public function getDefaultParameters()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -158,7 +159,7 @@ class Gcm extends BaseAdapter
      */
     public function getRequiredParameters()
     {
-        return array('apiKey');
+        return ['apiKey'];
     }
 
     /**
@@ -188,7 +189,7 @@ class Gcm extends BaseAdapter
      *
      * @throws \InvalidArgumentException
      */
-    public function setAdapterParameters(array $config = array())
+    public function setAdapterParameters(array $config = [])
     {
         if (!is_array($config) || empty($config)) {
             throw new InvalidArgumentException('$config must be an associative array with at least 1 item.');
