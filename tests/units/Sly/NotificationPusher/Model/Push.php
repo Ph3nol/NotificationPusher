@@ -62,6 +62,7 @@ class Push extends Units\Test
 
     public function testStatus()
     {
+        date_default_timezone_set('UTC');
         $this->if($this->mockClass('\Sly\NotificationPusher\Adapter\AdapterInterface', '\Mock'))
             ->and($adapter = new \Mock\AdapterInterface())
             ->and($devices = new BaseDeviceCollection(array(new BaseDevice('Token1'), new BaseDevice('Token2'), new BaseDevice('Token3'))))
