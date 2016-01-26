@@ -18,9 +18,9 @@
     "require": {
         "php": ">=5.5",
 
-        "symfony/options-resolver": "~2.3",
-        "symfony/console": "~2.3",
-        "symfony/process": "~2.3",
+        "symfony/options-resolver": "~3.0",
+        "symfony/console": "~3.0",
+        "symfony/process": "~3.0",
         "zendframework/zendservice-apple-apns": "^1.1.0",
         "zendframework/zendservice-google-gcm": "1.*",
         "doctrine/inflector": "~1.0"
