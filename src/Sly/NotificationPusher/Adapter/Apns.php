@@ -162,7 +162,7 @@ class Apns extends BaseAdapter
     {
         $badge = ($message->hasOption('badge'))
             ? (int) ($message->getOption('badge') + $device->getParameter('badge', 0))
-            : 0
+            : false
         ;
 
         $sound = $message->getOption('sound', 'bingbong.aiff');
@@ -205,7 +205,7 @@ class Apns extends BaseAdapter
         $serviceMessage->setId(sha1($device->getToken().$message->getText()));
         $serviceMessage->setAlert($alert);
         $serviceMessage->setToken($device->getToken());
-        if (0 !== $badge) {
+        if (false !== $badge) {
             $serviceMessage->setBadge($badge);
         }
         $serviceMessage->setCustom($message->getOption('custom', array()));
