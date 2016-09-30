@@ -67,15 +67,25 @@ class Gcm extends BaseAdapter
             $message = $this->getServiceMessageFromOrigin($tokensRange, $push->getMessage());
 
             try {
-                $this->response = $client->send($message);
+
+                $response = $client->send($message);
+                $responseResults = $response->getResults();
+
+                if ((bool) $response->getSuccessCount()) {
+                    foreach ($tokensRange as $token) {
+                        $device = $push->getDevices()->get($token);
+                        
+                        // map the overall response object
+                        // into a per device response
+                        $tokenResponse = @$responseResults[$token] ?: [];
+                        $tokenResponse = array_merge($tokenResponse, $response->getResponse());
+                        $push->addResponse($device, $tokenResponse);
+                        
+                        $pushedDevices->add($device);
+                    }
+                }
             } catch (ServiceRuntimeException $e) {
                 throw new PushException($e->getMessage());
-            }
-
-            if ((bool) $this->response->getSuccessCount()) {
-                foreach ($tokensRange as $token) {
-                    $pushedDevices->add($push->getDevices()->get($token));
-                }
             }
         }
 

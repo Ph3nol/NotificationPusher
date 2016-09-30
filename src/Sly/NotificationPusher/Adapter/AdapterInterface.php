@@ -74,4 +74,5 @@ interface AdapterInterface
      * @return \Sly\NotificationPusher\Adapter\AdapterInterface
      */
     public function setEnvironment($environment);
+
 }
