@@ -138,11 +138,11 @@ class Gcm extends BaseAdapter
     public function getDefinedParameters()
     {
         return [
-            'collapse_key',
-            'delay_while_idle',
-            'time_to_live',
-            'restricted_package_name',
-            'dry_run'
+            'collapseKey',
+            'delayWhileIdle',
+            'ttl',
+            'restrictedPackageName',
+            'dryRun'
         ];
     }
 
