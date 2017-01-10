@@ -20,6 +20,7 @@ Standalone PHP library for easy devices message notifications push.
 
 * APNS (Apple)
 * GCM (Android)
+* FCM (Android)
 
 ## Documentation and examples
 
