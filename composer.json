@@ -22,7 +22,7 @@
         "symfony/console": "~2.3|~3.0",
         "symfony/process": "~2.3|~3.0",
         "zendframework/zendservice-apple-apns": "^1.1.0",
-        "zendframework/zendservice-google-gcm": "1.*",
+        "zendframework/zendservice-google-gcm": "2.*",
         "doctrine/inflector": "~1.0"
     },
     "require-dev": {
