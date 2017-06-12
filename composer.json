@@ -1,7 +1,7 @@
 {
-    "name": "sly/notification-pusher",
+    "name": "cutedogspark/notification-pusher",
     "description": "Standalone PHP library for easy devices notifications push.",
-    "keywords": ["apple", "iphone", "apns", "android", "gcm", "notification", "message", "push", "pusher"],
+    "keywords": ["apple", "iphone", "apns", "android", "gcm", "firebase", "fcm", "notification", "message", "push", "pusher"],
     "homepage": "https://github.com/Ph3nol/NotificationPusher",
     "type": "standalone",
     "license": "MIT",
@@ -13,16 +13,19 @@
         {
             "name": "Contributors",
             "homepage": "https://github.com/Ph3nol/NotificationPusher/contributors"
+        },
+        {
+            "name": "Chen Ming-Jui",
+            "email": "cutedogspark@gmail.com"
         }
     ],
     "require": {
         "php": ">=5.5",
-
         "symfony/options-resolver": "~2.3|~3.0",
         "symfony/console": "~2.3|~3.0",
         "symfony/process": "~2.3|~3.0",
-        "zendframework/zendservice-apple-apns": "^1.1.0",
-        "zendframework/zendservice-google-gcm": "1.*",
+        "zendframework/zendservice-apple-apns": "~1.2.0",
+        "zendframework/zendservice-google-gcm": "~2.0.0",
         "doctrine/inflector": "~1.0"
     },
     "require-dev": {
