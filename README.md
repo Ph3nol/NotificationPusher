@@ -19,7 +19,7 @@ Standalone PHP library for easy devices message notifications push.
 ## Today available adapters
 
 * APNS (Apple)
-* GCM (Android)
+* GCM,FCM (Android)
 
 ## Documentation and examples
 
