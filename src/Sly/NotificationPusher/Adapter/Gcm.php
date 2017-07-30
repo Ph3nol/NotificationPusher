@@ -127,7 +127,7 @@ class Gcm extends BaseAdapter
         $serviceMessage->setRestrictedPackageName($this->getParameter('restrictedPackageName'));
         $serviceMessage->setDelayWhileIdle($this->getParameter('delayWhileIdle', false));
         $serviceMessage->setTimeToLive($this->getParameter('ttl', 600));
-        $serviceMessage->setDryRun($this->getParameter('dryRun', false));
+        $serviceMessage->setDryRun($this->getParameter('dry_run', false));
 
         return $serviceMessage;
     }
