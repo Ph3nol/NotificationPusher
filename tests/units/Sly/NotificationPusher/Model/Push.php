@@ -81,7 +81,7 @@ class Push extends Units\Test
             ->boolean($object->isPushed())
                 ->isTrue()
             ->dateTime($object->getPushedAt())
-                ->isCloneOf($dt)
+                ->hasDate($dt->format("Y"), $dt->format("m"), $dt->format('d'))
 
             ->when($object->setStatus(TestedModel::STATUS_PENDING))
             ->string($object->getStatus())
@@ -92,7 +92,7 @@ class Push extends Units\Test
             ->when($fDt = new \DateTime('2013-01-01'))
             ->and($object->setPushedAt($fDt))
             ->dateTime($object->getPushedAt())
-                ->isCloneOf(new \DateTime('2013-01-01'))
+                ->isIdenticalTo($fDt)
         ;
     }
 
