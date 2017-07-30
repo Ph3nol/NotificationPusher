@@ -34,7 +34,7 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
     protected $environment;
 
     /**
-     * @var mixed
+     * @var array
      */
     protected $response;
 
@@ -66,9 +66,9 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
     }
 
     /**
-     * Return the original response.
+     * Return the array (map) of devices to original response.
      *
-     * @return mixed
+     * @return array
      */
     public function getResponse()
     {

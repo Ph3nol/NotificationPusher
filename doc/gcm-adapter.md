@@ -45,7 +45,23 @@ $message = new Message('This is an example.');
 // Finally, create and add the push to the manager, and push it!
 $push = new Push($gcmAdapter, $devices, $message);
 $pushManager->add($push);
-$pushManager->push(); // Returns a collection of notified devices
+$collection = $pushManager->push(); // Returns a collection of notified devices
+
+foreach ($collection as $push) {
+    $adapter = $push->getAdapter();
+    $response = $adapter->getResponse();
+    
+    foreach ($response as $pushChunk) {
+        // combine array of tokens and responses to preserve consistent of indexes
+        $tokens = $pushChunk->getMessage()->getRegistrationIds();
+        $responses = $pushChunk->getResults();
+        var_dump(array_combine($tokens, $responses));
+        
+        //there are also way to check only count of sent notifications
+        //var_dump($pushChunk->getSuccessCount());
+        //var_dump($pushChunk->getFailureCount());
+    }
+}
 ```
 
 ## Documentation index

@@ -44,7 +44,17 @@ $message = new Message('This is a basic example of push.');
 // Finally, create and add the push to the manager, and push it!
 $push = new Push($apnsAdapter, $devices, $message);
 $pushManager->add($push);
-$pushManager->push();
+$collection = $pushManager->push();
+
+// Getting result for all APNS tokens
+foreach ($collection as $push) {
+    $adapter = $push->getAdapter();
+    $responseCollection = $adapter->getResponse();
+    foreach ($responseCollection as $token => $tokenStatus) {
+        // code should be 0 for successful send
+        var_dump($token . " - " . $tokenStatus->getCode()); 
+    }
+}
 ```
 
 ### Custom notification push example
