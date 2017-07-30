@@ -123,11 +123,11 @@ class Gcm extends BaseAdapter
         $serviceMessage = new ServiceMessage();
         $serviceMessage->setRegistrationIds($tokens);
         $serviceMessage->setData($data);
-        $serviceMessage->setCollapseKey($this->getParameter('collapseKey'));
-        $serviceMessage->setRestrictedPackageName($this->getParameter('restrictedPackageName'));
-        $serviceMessage->setDelayWhileIdle($this->getParameter('delayWhileIdle', false));
-        $serviceMessage->setTimeToLive($this->getParameter('ttl', 600));
-        $serviceMessage->setDryRun($this->getParameter('dryRun', false));
+        $serviceMessage->setCollapseKey($this->getParameter('collapse_key'));
+        $serviceMessage->setRestrictedPackageName($this->getParameter('restricted_package_name'));
+        $serviceMessage->setDelayWhileIdle($this->getParameter('delay_while_idle', false));
+        $serviceMessage->setTimeToLive($this->getParameter('time_to_live', 600));
+        $serviceMessage->setDryRun($this->getParameter('dry_run', false));
 
         return $serviceMessage;
     }
