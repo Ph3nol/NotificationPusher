@@ -38,6 +38,10 @@ $message = new Sly\NotificationPusher\Model\Message('This is an example.');
 $push = new Sly\NotificationPusher\Model\Push($exampleAdapter, $devices, $message);
 $pushManager->add($push);
 $pushManager->push();
+
+foreach($push->getResponses() as $token => $response) {
+    // ...
+}
 ```
 
 ## More about the Message entity

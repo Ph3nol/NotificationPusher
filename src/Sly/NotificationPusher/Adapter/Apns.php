@@ -73,13 +73,15 @@ class Apns extends BaseAdapter
             $message = $this->getServiceMessageFromOrigin($device, $push->getMessage());
 
             try {
-                $this->response = $client->send($message);
+                
+                $response = $client->send($message);
+                $push->addResponse($device, $response);
+
+                if (ServiceResponse::RESULT_OK === $response->getCode()) {
+                    $pushedDevices->add($device);
+                }
             } catch (ServiceRuntimeException $e) {
                 throw new PushException($e->getMessage());
-            }
-
-            if (ServiceResponse::RESULT_OK === $this->response->getCode()) {
-                $pushedDevices->add($device);
             }
         }
 

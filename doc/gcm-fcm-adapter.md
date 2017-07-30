@@ -47,6 +47,20 @@ $message = new Message('This is an example.');
 $push = new Push($gcmAdapter, $devices, $message);
 $pushManager->add($push);
 $pushManager->push(); // Returns a collection of notified devices
+
+// each response will contain also 
+// the data of the overall delivery
+foreach($push->getResponses() as $token => $response) {
+    // > $response
+    // Array
+    // (
+    //     [message_id] => fake_message_id
+    //     [multicast_id] => -1
+    //     [success] => 1
+    //     [failure] => 0
+    //     [canonical_ids] => 0
+    // )
+}
 ```
 
 ## Documentation index

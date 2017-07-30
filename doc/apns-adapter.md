@@ -45,6 +45,10 @@ $message = new Message('This is a basic example of push.');
 $push = new Push($apnsAdapter, $devices, $message);
 $pushManager->add($push);
 $pushManager->push();
+
+foreach($push->getResponses() as $token => $response) {
+    // ...
+}
 ```
 
 ### Custom notification push example

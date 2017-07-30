@@ -34,11 +34,6 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
     protected $environment;
 
     /**
-     * @var mixed
-     */
-    protected $response;
-
-    /**
      * Constructor.
      *
      * @param array $parameters Adapter specific parameters
@@ -63,16 +58,6 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
     public function __toString()
     {
         return ucfirst($this->getAdapterKey());
-    }
-
-    /**
-     * Return the original response.
-     *
-     * @return mixed
-     */
-    public function getResponse()
-    {
-        return $this->response;
     }
 
     /**
@@ -128,4 +113,5 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
     {
         return (PushManager::ENVIRONMENT_PROD === $this->getEnvironment());
     }
+
 }
