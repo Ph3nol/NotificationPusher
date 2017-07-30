@@ -12,14 +12,14 @@ Standalone PHP library for easy devices message notifications push.
 
 ## Requirements
 
-* PHP 5.5+
+* PHP 5.6+
 * PHP Curl and OpenSSL modules
-* Specific adapters requirements (like APNS certificate, GCM API key, etc.)
+* Specific adapters requirements (like APNS certificate, GCM (FCM) API key, etc.)
 
 ## Today available adapters
 
 * APNS (Apple)
-* GCM (Android)
+* GCM (Android) and FCM (Android)
 
 ## Documentation and examples
 
