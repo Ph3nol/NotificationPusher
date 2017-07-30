@@ -26,13 +26,13 @@ Standalone PHP library for easy devices message notifications push.
 * [Installation](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/installation.md)
 * [Getting started](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/getting-started.md)
 * [APNS adapter](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/apns-adapter.md)
-* [GCM adapter](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/gcm-adapter.md)
+* [GCM (FCM) adapter](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/gcm-fcm-adapter.md)
 * [Create an adapter](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/create-an-adapter.md)
 * [Push from CLI](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/push-from-cli.md)
 
 ## Todo
 
-* Add new features (custom APNS payloads, GCM custom options, etc.)
+* Add new features (custom APNS payloads, GCM and FCM custom options, etc.)
 * Add new adapters (like Blackberry and Windows phones)
 * Write more documentation and examples
 

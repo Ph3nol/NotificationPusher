@@ -1,8 +1,9 @@
 # NotificationPusher - Documentation
 
-## GCM adapter
+## GCM (FCM) adapter
 
 [GCM](http://developer.android.com/google/gcm/gs.html) adapter is used to push notification to Google/Android devices.
+[FCM](https://firebase.google.com/docs/cloud-messaging/) is supported. Please see [this comment](https://github.com/Ph3nol/NotificationPusher/pull/141#issuecomment-318896948) for explanation.
 
 ### Custom notification push example
 
@@ -53,6 +54,6 @@ $pushManager->push(); // Returns a collection of notified devices
 * [Installation](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/installation.md)
 * [Getting started](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/getting-started.md)
 * [APNS adapter](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/apns-adapter.md)
-* GCM adapter
+* GCM (FCM) adapter
 * [Create an adapter](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/create-an-adapter.md)
 * [Push from CLI](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/push-from-cli.md)
