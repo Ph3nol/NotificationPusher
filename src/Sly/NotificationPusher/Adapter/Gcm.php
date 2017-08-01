@@ -76,11 +76,18 @@ class Gcm extends BaseAdapter
                     
                     // map the overall response object
                     // into a per device response
-                    $tokenResponse = @$responseResults[$token] ?: [];
-                    $tokenResponse = array_merge(
-                        $tokenResponse, 
-                        array_diff_key($response->getResponse(), ['results' => true])
-                    );
+                    $tokenResponse = [];
+                    if (isset($responseResults[$token]) && is_array($responseResults[$token])) {
+                        $tokenResponse = $responseResults[$token];
+                    }
+
+                    if ($responseData = $response->getResponse() && is_array($responseData)) {
+                        $tokenResponse = array_merge(
+                            $tokenResponse, 
+                            array_diff_key($responseData, ['results' => true])
+                        );
+                    }
+                    
                     $push->addResponse($device, $tokenResponse);
                     
                     $pushedDevices->add($device);
