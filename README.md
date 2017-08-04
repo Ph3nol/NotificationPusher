@@ -10,6 +10,16 @@ Standalone PHP library for easy devices message notifications push.
 
 **Feel free to contribute! Thanks.**
 
+## Installation
+
+```
+composer require sly/notification-pusher
+```
+
+This repository uses PSR-0 autoload.
+After installation with [composer](https://getcomposer.org/download/) please adjust you autoloading config if needed 
+or `include vendor/autoload.php` in your index.php.
+
 ## Requirements
 
 * PHP 5.6+
