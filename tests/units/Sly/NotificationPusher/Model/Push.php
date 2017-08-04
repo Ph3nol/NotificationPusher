@@ -162,4 +162,5 @@ class Push extends Units\Test
                 ->isEqualTo('Test 2')
         ;
     }
+
 }

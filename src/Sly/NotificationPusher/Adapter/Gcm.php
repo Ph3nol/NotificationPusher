@@ -67,15 +67,33 @@ class Gcm extends BaseAdapter
             $message = $this->getServiceMessageFromOrigin($tokensRange, $push->getMessage());
 
             try {
-                $this->response = $client->send($message);
+
+                $response = $client->send($message);
+                $responseResults = $response->getResults();
+
+                foreach ($tokensRange as $token) {
+                    $device = $push->getDevices()->get($token);
+                    
+                    // map the overall response object
+                    // into a per device response
+                    $tokenResponse = [];
+                    if (isset($responseResults[$token]) && is_array($responseResults[$token])) {
+                        $tokenResponse = $responseResults[$token];
+                    }
+
+                    if ($responseData = $response->getResponse() && is_array($responseData)) {
+                        $tokenResponse = array_merge(
+                            $tokenResponse, 
+                            array_diff_key($responseData, ['results' => true])
+                        );
+                    }
+                    
+                    $push->addResponse($device, $tokenResponse);
+                    
+                    $pushedDevices->add($device);
+                }
             } catch (ServiceRuntimeException $e) {
                 throw new PushException($e->getMessage());
-            }
-
-            if ((bool) $this->response->getSuccessCount()) {
-                foreach ($tokensRange as $token) {
-                    $pushedDevices->add($push->getDevices()->get($token));
-                }
             }
         }
 
@@ -138,11 +156,11 @@ class Gcm extends BaseAdapter
     public function getDefinedParameters()
     {
         return [
-            'collapse_key',
-            'delay_while_idle',
-            'time_to_live',
-            'restricted_package_name',
-            'dry_run'
+            'collapseKey',
+            'delayWhileIdle',
+            'ttl',
+            'restrictedPackageName',
+            'dryRun'
         ];
     }
 

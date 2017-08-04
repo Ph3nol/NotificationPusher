@@ -12,6 +12,7 @@
 namespace Sly\NotificationPusher\Model;
 
 use Sly\NotificationPusher\Collection\DeviceCollection;
+use Sly\NotificationPusher\Collection\ResponseCollection;
 use Sly\NotificationPusher\Adapter\AdapterInterface;
 use Sly\NotificationPusher\Exception\AdapterException;
 
@@ -47,6 +48,11 @@ class Push extends BaseOptionedModel implements PushInterface
      * @var \DateTime
      */
     private $pushedAt;
+
+    /**
+     * @var \Sly\NotificationPusher\Collection\ResponseCollection
+     */
+    private $responses;
 
     /**
      * Constructor.
@@ -216,6 +222,27 @@ class Push extends BaseOptionedModel implements PushInterface
         $this->checkDevicesTokens();
 
         return $this;
+    }
+
+
+    /**
+     * Get Responses
+     * @return Sly\NotificationPusher\Collection\ResponseCollection
+     */
+    public function getResponses() {
+        if (!$this->responses)
+            $this->responses = new ResponseCollection();
+
+        return $this->responses;
+    }
+
+    /**
+     * adds a response
+     * @param Sly\NotificationPusher\Model\Device $device
+     * @param mixed $response
+     */
+    public function addResponse(Device $device, $response) {
+        $this->getResponses()->add($device->getToken(), $response);
     }
 
     /**

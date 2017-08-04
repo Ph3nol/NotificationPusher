@@ -58,4 +58,21 @@ interface AdapterInterface
      * @return array
      */
     public function getRequiredParameters();
+
+    /**
+     * Get Environment.
+     *
+     * @return string
+     */
+    public function getEnvironment();
+
+    /**
+     * Set Environment.
+     *
+     * @param string $environment Environment value to set
+     *
+     * @return \Sly\NotificationPusher\Adapter\AdapterInterface
+     */
+    public function setEnvironment($environment);
+
 }
