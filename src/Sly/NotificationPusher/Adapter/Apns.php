@@ -23,7 +23,6 @@ use ZendService\Apple\Apns\Client\Message as ServiceClient;
 use ZendService\Apple\Apns\Message as ServiceMessage;
 use ZendService\Apple\Apns\Message\Alert as ServiceAlert;
 use ZendService\Apple\Apns\Response\Message as ServiceResponse;
-use ZendService\Apple\Apns\Exception\RuntimeException as ServiceRuntimeException;
 use ZendService\Apple\Apns\Client\Feedback as ServiceFeedbackClient;
 
 /**
@@ -80,7 +79,7 @@ class Apns extends BaseAdapter
                 if (ServiceResponse::RESULT_OK === $response->getCode()) {
                     $pushedDevices->add($device);
                 }
-            } catch (ServiceRuntimeException $e) {
+            } catch (\RuntimeException $e) {
                 throw new PushException($e->getMessage());
             }
         }
@@ -167,9 +166,10 @@ class Apns extends BaseAdapter
             : false
         ;
 
-        $sound = $message->getOption('sound', 'bingbong.aiff');
+        $sound = $message->getOption('sound');
         $contentAvailable = $message->getOption('content-available');
         $category = $message->getOption('category');
+        $urlArgs = $message->getOption('urlArgs');
 
         $alert = new ServiceAlert(
             $message->getText(),
@@ -222,6 +222,10 @@ class Apns extends BaseAdapter
 
         if (null !== $category) {
             $serviceMessage->setCategory($category);
+        }
+
+        if( null !== $urlArgs) {
+            $serviceMessage->setUrlArgs($urlArgs);
         }
 
         return $serviceMessage;

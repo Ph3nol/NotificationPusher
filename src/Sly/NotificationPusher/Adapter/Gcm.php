@@ -73,7 +73,7 @@ class Gcm extends BaseAdapter
 
                 foreach ($tokensRange as $token) {
                     $device = $push->getDevices()->get($token);
-                    
+
                     // map the overall response object
                     // into a per device response
                     $tokenResponse = [];
@@ -81,15 +81,16 @@ class Gcm extends BaseAdapter
                         $tokenResponse = $responseResults[$token];
                     }
 
-                    if ($responseData = $response->getResponse() && is_array($responseData)) {
+                    $responseData = $response->getResponse();
+                    if ($responseData && is_array($responseData)) {
                         $tokenResponse = array_merge(
-                            $tokenResponse, 
+                            $tokenResponse,
                             array_diff_key($responseData, ['results' => true])
                         );
                     }
-                    
+
                     $push->addResponse($device, $tokenResponse);
-                    
+
                     $pushedDevices->add($device);
                 }
             } catch (ServiceRuntimeException $e) {
