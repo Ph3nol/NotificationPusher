@@ -72,7 +72,6 @@ class Apns extends BaseAdapter
             $message = $this->getServiceMessageFromOrigin($device, $push->getMessage());
 
             try {
-                
                 $response = $client->send($message);
                 $push->addResponse($device, $response);
 
@@ -170,6 +169,7 @@ class Apns extends BaseAdapter
         $contentAvailable = $message->getOption('content-available');
         $category = $message->getOption('category');
         $urlArgs = $message->getOption('urlArgs');
+        $expire = $message->getOption('expire');
 
         $alert = new ServiceAlert(
             $message->getText(),
@@ -226,6 +226,10 @@ class Apns extends BaseAdapter
 
         if( null !== $urlArgs) {
             $serviceMessage->setUrlArgs($urlArgs);
+        }
+
+        if (null !== $expire) {
+            $serviceMessage->setExpire($expire);
         }
 
         return $serviceMessage;
