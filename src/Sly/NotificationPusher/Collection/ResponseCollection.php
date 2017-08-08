@@ -39,8 +39,8 @@ class ResponseCollection extends AbstractCollection implements \IteratorAggregat
     }
 
     /**
-     * @param string $token 
-     * @param mixed $response 
+     * @param string $token
+     * @param mixed $response
      */
     public function add($token, $response)
     {

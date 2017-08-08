@@ -11,19 +11,16 @@
 
 namespace Sly\NotificationPusher\Adapter;
 
-use Sly\NotificationPusher\Model\BaseOptionedModel;
-use Sly\NotificationPusher\Model\PushInterface;
+use InvalidArgumentException;
 use Sly\NotificationPusher\Collection\DeviceCollection;
 use Sly\NotificationPusher\Exception\PushException;
-
+use Sly\NotificationPusher\Model\BaseOptionedModel;
+use Sly\NotificationPusher\Model\PushInterface;
 use Zend\Http\Client as HttpClient;
 use Zend\Http\Client\Adapter\Socket as HttpSocketAdapter;
-
+use ZendService\Google\Exception\RuntimeException as ServiceRuntimeException;
 use ZendService\Google\Gcm\Client as ServiceClient;
 use ZendService\Google\Gcm\Message as ServiceMessage;
-use ZendService\Google\Exception\RuntimeException as ServiceRuntimeException;
-
-use InvalidArgumentException;
 
 /**
  * GCM adapter.
@@ -68,7 +65,7 @@ class Gcm extends BaseAdapter
 
             try {
 
-                $response = $client->send($message);
+                $response        = $client->send($message);
                 $responseResults = $response->getResults();
 
                 foreach ($tokensRange as $token) {
@@ -115,8 +112,8 @@ class Gcm extends BaseAdapter
             $newClient = new \Zend\Http\Client(
                 null,
                 [
-                    'adapter' => 'Zend\Http\Client\Adapter\Socket',
-                    'sslverifypeer' => false
+                    'adapter'       => 'Zend\Http\Client\Adapter\Socket',
+                    'sslverifypeer' => false,
                 ]
             );
 
@@ -161,7 +158,7 @@ class Gcm extends BaseAdapter
             'delayWhileIdle',
             'ttl',
             'restrictedPackageName',
-            'dryRun'
+            'dryRun',
         ];
     }
 

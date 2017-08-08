@@ -11,19 +11,18 @@
 
 namespace Sly\NotificationPusher\Adapter;
 
-use Sly\NotificationPusher\Model\BaseOptionedModel;
-use Sly\NotificationPusher\Model\PushInterface;
-use Sly\NotificationPusher\Model\DeviceInterface;
+use Sly\NotificationPusher\Collection\DeviceCollection;
 use Sly\NotificationPusher\Exception\AdapterException;
 use Sly\NotificationPusher\Exception\PushException;
-use Sly\NotificationPusher\Collection\DeviceCollection;
-
+use Sly\NotificationPusher\Model\BaseOptionedModel;
+use Sly\NotificationPusher\Model\DeviceInterface;
+use Sly\NotificationPusher\Model\PushInterface;
 use ZendService\Apple\Apns\Client\AbstractClient as ServiceAbstractClient;
+use ZendService\Apple\Apns\Client\Feedback as ServiceFeedbackClient;
 use ZendService\Apple\Apns\Client\Message as ServiceClient;
 use ZendService\Apple\Apns\Message as ServiceMessage;
 use ZendService\Apple\Apns\Message\Alert as ServiceAlert;
 use ZendService\Apple\Apns\Response\Message as ServiceResponse;
-use ZendService\Apple\Apns\Client\Feedback as ServiceFeedbackClient;
 
 /**
  * APNS adapter.
@@ -35,10 +34,14 @@ use ZendService\Apple\Apns\Client\Feedback as ServiceFeedbackClient;
 class Apns extends BaseAdapter
 {
 
-    /** @var ServiceClient */
+    /**
+     * @var ServiceClient
+     */
     private $openedClient;
 
-    /** @var ServiceFeedbackClient */
+    /**
+     * @var ServiceFeedbackClient
+     */
     private $feedbackClient;
 
     /**
@@ -161,15 +164,14 @@ class Apns extends BaseAdapter
     public function getServiceMessageFromOrigin(DeviceInterface $device, BaseOptionedModel $message)
     {
         $badge = ($message->hasOption('badge'))
-            ? (int) ($message->getOption('badge') + $device->getParameter('badge', 0))
-            : false
-        ;
+            ? (int)($message->getOption('badge') + $device->getParameter('badge', 0))
+            : false;
 
-        $sound = $message->getOption('sound');
+        $sound            = $message->getOption('sound');
         $contentAvailable = $message->getOption('content-available');
-        $category = $message->getOption('category');
-        $urlArgs = $message->getOption('urlArgs');
-        $expire = $message->getOption('expire');
+        $category         = $message->getOption('category');
+        $urlArgs          = $message->getOption('urlArgs');
+        $expire           = $message->getOption('expire');
 
         $alert = new ServiceAlert(
             $message->getText(),
@@ -204,7 +206,7 @@ class Apns extends BaseAdapter
         }
 
         $serviceMessage = new ServiceMessage();
-        $serviceMessage->setId(sha1($device->getToken().$message->getText()));
+        $serviceMessage->setId(sha1($device->getToken() . $message->getText()));
         $serviceMessage->setAlert($alert);
         $serviceMessage->setToken($device->getToken());
         if (false !== $badge) {
@@ -224,7 +226,7 @@ class Apns extends BaseAdapter
             $serviceMessage->setCategory($category);
         }
 
-        if( null !== $urlArgs) {
+        if (null !== $urlArgs) {
             $serviceMessage->setUrlArgs($urlArgs);
         }
 

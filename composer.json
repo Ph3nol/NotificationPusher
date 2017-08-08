@@ -35,7 +35,8 @@
     "doctrine/inflector": "~1.0"
   },
   "require-dev": {
-    "atoum/atoum": "dev-master"
+    "atoum/atoum": "^3.1",
+    "atoum/stubs": "^2.5"
   },
   "config": {
     "bin-dir": "bin"

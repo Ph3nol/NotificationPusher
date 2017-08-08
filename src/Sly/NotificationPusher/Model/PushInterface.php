@@ -106,13 +106,13 @@ interface PushInterface
 
     /**
      * Get Responses
-     * @return Sly\NotificationPusher\Collection\ResponseCollection
+     * @return \Sly\NotificationPusher\Collection\ResponseCollection
      */
     public function getResponses();
 
     /**
      * adds a response
-     * @param Sly\NotificationPusher\Model\Device $device
+     * @param \Sly\NotificationPusher\Model\Device $device
      * @param mixed $response
      */
     public function addResponse(Device $device, $response);

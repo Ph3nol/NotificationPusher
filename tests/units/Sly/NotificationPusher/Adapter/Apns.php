@@ -4,13 +4,11 @@ namespace tests\units\Sly\NotificationPusher\Adapter;
 
 use mageekguy\atoum as Units;
 use Sly\NotificationPusher\Adapter\Apns as TestedModel;
-
-use Sly\NotificationPusher\Model\Message as BaseMessage;
-use Sly\NotificationPusher\Model\Device as BaseDevice;
 use Sly\NotificationPusher\Collection\DeviceCollection as BaseDeviceCollection;
-
-use ZendService\Apple\Apns\Message as BaseServiceMessage;
+use Sly\NotificationPusher\Model\Device as BaseDevice;
+use Sly\NotificationPusher\Model\Message as BaseMessage;
 use ZendService\Apple\Apns\Client\Message as BaseServiceClient;
+use ZendService\Apple\Apns\Message as BaseServiceMessage;
 
 /**
  * Apns.

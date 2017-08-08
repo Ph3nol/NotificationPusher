@@ -11,10 +11,9 @@
 
 namespace Sly\NotificationPusher\Adapter;
 
-use Symfony\Component\OptionsResolver\OptionsResolver;
-
 use Sly\NotificationPusher\Model\BaseParameteredModel;
 use Sly\NotificationPusher\PushManager;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * BaseAdapter.

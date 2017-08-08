@@ -11,8 +11,8 @@
 
 namespace Sly\NotificationPusher;
 
-use Sly\NotificationPusher\Collection\PushCollection;
 use Sly\NotificationPusher\Adapter\AdapterInterface;
+use Sly\NotificationPusher\Collection\PushCollection;
 use Sly\NotificationPusher\Exception\AdapterException;
 
 /**
@@ -87,7 +87,7 @@ class PushManager extends PushCollection
             throw new AdapterException(
                 sprintf(
                     '%s adapter has no dedicated "getFeedback" method',
-                    (string) $adapter
+                    (string)$adapter
                 )
             );
         }
