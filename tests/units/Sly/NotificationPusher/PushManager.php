@@ -43,7 +43,7 @@ class PushManager extends Units\Test
 
             ->when($object->add($push))
             ->object($object)
-                ->isInstanceOf('\Sly\NotificationPusher\Collection\PushCollection')
+                ->isInstanceOf('\Sly\NotificationPusher\PushManager')
                 ->hasSize(1)
         ;
     }

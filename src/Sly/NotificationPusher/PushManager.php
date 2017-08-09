@@ -12,10 +12,11 @@
 namespace Sly\NotificationPusher;
 
 use Sly\NotificationPusher\Adapter\AdapterInterface;
+use Sly\NotificationPusher\Adapter\FeedbackAdapterInterface;
 use Sly\NotificationPusher\Collection\PushCollection;
 use Sly\NotificationPusher\Exception\AdapterException;
 use Sly\NotificationPusher\Model\Push;
-use Sly\NotificationPusher\Adapter\FeedbackAdapterInterface;
+use Sly\NotificationPusher\Model\PushInterface;
 
 /**
  * PushManager.
@@ -23,7 +24,7 @@ use Sly\NotificationPusher\Adapter\FeedbackAdapterInterface;
  * @uses \Sly\NotificationPusher\Collection\PushCollection
  * @author Cédric Dugat <cedric@dugat.me>
  */
-class PushManager extends PushCollection
+class PushManager
 {
     const ENVIRONMENT_DEV  = 'dev';
     const ENVIRONMENT_PROD = 'prod';
@@ -34,15 +35,27 @@ class PushManager extends PushCollection
     private $environment;
 
     /**
+     * @var PushCollection
+     */
+    private $pushCollection;
+
+    /**
      * Constructor.
      *
      * @param string $environment Environment
      */
     public function __construct($environment = self::ENVIRONMENT_DEV)
     {
-        parent::__construct();
+        $this->environment    = $environment;
+        $this->pushCollection = new PushCollection();
+    }
 
-        $this->environment = $environment;
+    /**
+     * @param \Sly\NotificationPusher\Model\PushInterface $push Push
+     */
+    public function add(PushInterface $push)
+    {
+        $this->pushCollection->add($push);
     }
 
     /**
@@ -58,12 +71,12 @@ class PushManager extends PushCollection
     /**
      * Push.
      *
-     * @return \Sly\NotificationPusher\Collection\PushCollection
+     * @return PushCollection
      */
     public function push()
     {
         /** @var Push $push */
-        foreach ($this as $push) {
+        foreach ($this->pushCollection as $push) {
             $adapter = $push->getAdapter();
             $adapter->setEnvironment($this->getEnvironment());
 
@@ -72,7 +85,7 @@ class PushManager extends PushCollection
             }
         }
 
-        return $this;
+        return $this->pushCollection;
     }
 
     /**
@@ -97,5 +110,13 @@ class PushManager extends PushCollection
         $adapter->setEnvironment($this->getEnvironment());
 
         return $adapter->getFeedback();
+    }
+
+    /**
+     * @return PushCollection
+     */
+    public function getPushCollection()
+    {
+        return $this->pushCollection;
     }
 }
