@@ -66,6 +66,7 @@ class Gcm extends BaseAdapter
 
             try {
 
+                /** @var \ZendService\Google\Gcm\Response $response */
                 $response        = $client->send($message);
                 $responseResults = $response->getResults();
 
@@ -91,6 +92,9 @@ class Gcm extends BaseAdapter
                     $push->addResponse($device, $tokenResponse);
 
                     $pushedDevices->add($device);
+
+                    $this->response->addOriginalResponse($device, $response);
+                    $this->response->addResponse($device, $tokenResponse);
                 }
             } catch (ServiceRuntimeException $e) {
                 throw new PushException($e->getMessage());

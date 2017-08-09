@@ -72,15 +72,27 @@ class Apns extends BaseAdapter implements FeedbackAdapterInterface
         $pushedDevices = new DeviceCollection();
 
         foreach ($push->getDevices() as $device) {
+            /** @var \ZendService\Apple\Apns\Message $message */
             $message = $this->getServiceMessageFromOrigin($device, $push->getMessage());
 
             try {
+                //todo: encapsulate to BaseResponse
+
+                /** @var \ZendService\Apple\Apns\Response\Message $response */
                 $response = $client->send($message);
-                $push->addResponse($device, $response);
+
+                $responseArr = [
+                    'id'    => $response->getId(),
+                    'token' => $response->getCode(),
+                ];
+                $push->addResponse($device, $responseArr);
 
                 if (ServiceResponse::RESULT_OK === $response->getCode()) {
                     $pushedDevices->add($device);
                 }
+
+                $this->response->addOriginalResponse($device, $response);
+                $this->response->addResponse($device, $responseArr);
             } catch (\RuntimeException $e) {
                 throw new PushException($e->getMessage());
             }

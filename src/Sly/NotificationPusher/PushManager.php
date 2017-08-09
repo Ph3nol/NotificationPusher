@@ -35,6 +35,8 @@ class PushManager
     private $environment;
 
     /**
+     * todo: move to Response, e.g. $this->response->add(), $this->response->getPushCollection()
+     *
      * @var PushCollection
      */
     private $pushCollection;

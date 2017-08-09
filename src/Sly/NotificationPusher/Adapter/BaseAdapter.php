@@ -12,6 +12,7 @@
 namespace Sly\NotificationPusher\Adapter;
 
 use Sly\NotificationPusher\Model\BaseParameteredModel;
+use Sly\NotificationPusher\Model\Response;
 use Sly\NotificationPusher\PushManager;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -33,6 +34,11 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
     protected $environment;
 
     /**
+     * @var Response
+     */
+    protected $response;
+
+    /**
      * Constructor.
      *
      * @param array $parameters Adapter specific parameters
@@ -47,6 +53,15 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
         $reflectedClass   = new \ReflectionClass($this);
         $this->adapterKey = lcfirst($reflectedClass->getShortName());
         $this->parameters = $resolver->resolve($parameters);
+        $this->response   = new Response();
+    }
+
+    /**
+     * @return Response
+     */
+    public function getResponse()
+    {
+        return $this->response;
     }
 
     /**
