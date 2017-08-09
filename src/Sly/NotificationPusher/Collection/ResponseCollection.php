@@ -20,7 +20,7 @@ namespace Sly\NotificationPusher\Collection;
  * @uses \IteratorAggregate
  * @author Lukas Klinzing <theluk@gmail.com>
  */
-class ResponseCollection extends AbstractCollection implements \IteratorAggregate
+class ResponseCollection extends AbstractCollection
 {
     /**
      * Constructor.

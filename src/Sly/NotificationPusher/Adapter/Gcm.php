@@ -15,6 +15,7 @@ use InvalidArgumentException;
 use Sly\NotificationPusher\Collection\DeviceCollection;
 use Sly\NotificationPusher\Exception\PushException;
 use Sly\NotificationPusher\Model\BaseOptionedModel;
+use Sly\NotificationPusher\Model\DeviceInterface;
 use Sly\NotificationPusher\Model\PushInterface;
 use Zend\Http\Client as HttpClient;
 use Zend\Http\Client\Adapter\Socket as HttpSocketAdapter;
@@ -46,7 +47,7 @@ class Gcm extends BaseAdapter
      */
     public function supports($token)
     {
-        return is_string($token) && $token != '';
+        return is_string($token) && $token !== '';
     }
 
     /**
@@ -69,6 +70,7 @@ class Gcm extends BaseAdapter
                 $responseResults = $response->getResults();
 
                 foreach ($tokensRange as $token) {
+                    /** @var DeviceInterface $device */
                     $device = $push->getDevices()->get($token);
 
                     // map the overall response object
@@ -130,6 +132,7 @@ class Gcm extends BaseAdapter
      * @param BaseOptionedModel|\Sly\NotificationPusher\Model\MessageInterface $message Message
      *
      * @return \ZendService\Google\Gcm\Message
+     * @throws \ZendService\Google\Exception\InvalidArgumentException
      */
     public function getServiceMessageFromOrigin(array $tokens, BaseOptionedModel $message)
     {

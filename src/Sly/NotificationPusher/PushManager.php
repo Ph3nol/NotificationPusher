@@ -14,6 +14,8 @@ namespace Sly\NotificationPusher;
 use Sly\NotificationPusher\Adapter\AdapterInterface;
 use Sly\NotificationPusher\Collection\PushCollection;
 use Sly\NotificationPusher\Exception\AdapterException;
+use Sly\NotificationPusher\Model\Push;
+use Sly\NotificationPusher\Adapter\FeedbackAdapterInterface;
 
 /**
  * PushManager.
@@ -60,6 +62,7 @@ class PushManager extends PushCollection
      */
     public function push()
     {
+        /** @var Push $push */
         foreach ($this as $push) {
             $adapter = $push->getAdapter();
             $adapter->setEnvironment($this->getEnvironment());
@@ -83,7 +86,7 @@ class PushManager extends PushCollection
      */
     public function getFeedback(AdapterInterface $adapter)
     {
-        if (false === method_exists($adapter, 'getFeedback')) {
+        if (!$adapter instanceof FeedbackAdapterInterface) {
             throw new AdapterException(
                 sprintf(
                     '%s adapter has no dedicated "getFeedback" method',

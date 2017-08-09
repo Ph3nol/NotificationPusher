@@ -36,7 +36,8 @@
   },
   "require-dev": {
     "atoum/atoum": "^3.1",
-    "atoum/stubs": "^2.5"
+    "atoum/stubs": "^2.5",
+    "symfony/var-dumper": "^3.3"
   },
   "config": {
     "bin-dir": "bin"

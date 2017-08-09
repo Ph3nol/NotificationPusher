@@ -31,7 +31,7 @@ use ZendService\Apple\Apns\Response\Message as ServiceResponse;
  *
  * @author Cédric Dugat <cedric@dugat.me>
  */
-class Apns extends BaseAdapter
+class Apns extends BaseAdapter implements FeedbackAdapterInterface
 {
 
     /**
@@ -100,6 +100,7 @@ class Apns extends BaseAdapter
         $responses        = [];
         $serviceResponses = $client->feedback();
 
+        /** @var \ZendService\Apple\Apns\Response\Feedback $response */
         foreach ($serviceResponses as $response) {
             $responses[$response->getToken()] = new \DateTime(date('c', $response->getTime()));
         }
@@ -128,7 +129,7 @@ class Apns extends BaseAdapter
     /**
      * Get opened ServiceClient
      *
-     * @return ServiceAbstractClient
+     * @return ServiceClient
      */
     private function getOpenedServiceClient()
     {
@@ -142,7 +143,7 @@ class Apns extends BaseAdapter
     /**
      * Get opened ServiceFeedbackClient
      *
-     * @return ServiceAbstractClient
+     * @return ServiceFeedbackClient
      */
     private function getOpenedFeedbackClient()
     {

@@ -84,6 +84,7 @@ class Push extends BaseOptionedModel implements PushInterface
 
     /**
      * Check devices tokens.
+     * @throws \Sly\NotificationPusher\Exception\AdapterException
      */
     private function checkDevicesTokens()
     {
@@ -238,10 +239,10 @@ class Push extends BaseOptionedModel implements PushInterface
 
     /**
      * adds a response
-     * @param \Sly\NotificationPusher\Model\Device $device
+     * @param \Sly\NotificationPusher\Model\DeviceInterface $device
      * @param mixed $response
      */
-    public function addResponse(Device $device, $response)
+    public function addResponse(DeviceInterface $device, $response)
     {
         $this->getResponses()->add($device->getToken(), $response);
     }

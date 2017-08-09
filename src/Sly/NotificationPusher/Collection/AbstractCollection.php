@@ -17,12 +17,18 @@ namespace Sly\NotificationPusher\Collection;
  * @uses \IteratorAggregate
  * @author Cédric Dugat <cedric@dugat.me>
  */
-abstract class AbstractCollection
+abstract class AbstractCollection implements \IteratorAggregate
 {
     /**
      * @var \ArrayIterator
      */
     protected $coll;
+
+    /**
+     * @inheritdoc
+     * @return mixed
+     */
+    abstract public function getIterator();
 
     /**
      * Get.
