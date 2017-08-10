@@ -33,12 +33,12 @@
     "zendframework/zendservice-apple-apns": "1.*",
     "zendframework/zendservice-google-gcm": "2.*",
     "doctrine/inflector": "~1.0",
-    "symfony/filesystem": "^3.3"
+    "symfony/filesystem": "~2.3|~3.0"
   },
   "require-dev": {
     "atoum/atoum": "^3.1",
     "atoum/stubs": "^2.5",
-    "symfony/var-dumper": "^3.3"
+    "symfony/var-dumper": "~2.3|~3.0"
   },
   "config": {
     "bin-dir": "bin"
