@@ -20,3 +20,4 @@ Feel free to observe [existent adapters](https://github.com/Ph3nol/NotificationP
 * [GCM (FCM) adapter](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/gcm-fcm-adapter.md)
 * Create an adapter
 * [Push from CLI](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/push-from-cli.md)
+* [Facades](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/facades.md)

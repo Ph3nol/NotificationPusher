@@ -13,6 +13,7 @@ namespace Sly\NotificationPusher\Adapter;
 
 use Sly\NotificationPusher\Model\BaseParameteredModel;
 use Sly\NotificationPusher\Model\Response;
+use Sly\NotificationPusher\Model\ResponseInterface;
 use Sly\NotificationPusher\PushManager;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -34,7 +35,7 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
     protected $environment;
 
     /**
-     * @var Response
+     * @var ResponseInterface
      */
     protected $response;
 
@@ -57,11 +58,19 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
     }
 
     /**
-     * @return Response
+     * @return ResponseInterface
      */
     public function getResponse()
     {
         return $this->response;
+    }
+
+    /**
+     * @param ResponseInterface $response
+     */
+    public function setResponse(ResponseInterface $response)
+    {
+        $this->response = $response;
     }
 
     /**

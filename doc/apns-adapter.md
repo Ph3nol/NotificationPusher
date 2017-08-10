@@ -141,11 +141,10 @@ $apnsAdapter = new ApnsAdapter(array(
 $feedback = $pushManager->getFeedback($apnsAdapter); // Returns an array of Token + DateTime couples
 ```
 
-## Documentation index
-
 * [Installation](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/installation.md)
 * [Getting started](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/getting-started.md)
 * APNS adapter
 * [GCM (FCM) adapter](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/gcm-fcm-adapter.md)
 * [Create an adapter](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/create-an-adapter.md)
 * [Push from CLI](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/push-from-cli.md)
+* [Facades](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/facades.md)

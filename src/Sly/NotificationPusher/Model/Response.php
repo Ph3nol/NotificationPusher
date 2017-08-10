@@ -11,12 +11,12 @@ namespace Sly\NotificationPusher\Model;
 
 use Sly\NotificationPusher\Collection\PushCollection;
 
-class Response
+class Response implements ResponseInterface
 {
     /**
      * @var array
      */
-    private $responses = [];
+    private $parsedResponses = [];
 
     /**
      * @var array
@@ -40,13 +40,13 @@ class Response
      * @param DeviceInterface $device
      * @param array $response
      */
-    public function addResponse(DeviceInterface $device, $response)
+    public function addParsedResponse(DeviceInterface $device, $response)
     {
         if (!is_array($response)) {
             throw new \InvalidArgumentException('Response must be array type');
         }
 
-        $this->responses[$device->getToken()] = $response;
+        $this->parsedResponses[$device->getToken()] = $response;
     }
 
     /**
@@ -69,9 +69,9 @@ class Response
     /**
      * @return array
      */
-    public function getResponses()
+    public function getParsedResponses()
     {
-        return $this->responses;
+        return $this->parsedResponses;
     }
 
     /**

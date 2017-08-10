@@ -32,3 +32,4 @@ Here is a concrete GCM adapter example:
 * [GCM (FCM) adapter](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/gcm-fcm-adapter.md)
 * [Create an adapter](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/create-an-adapter.md)
 * Push from CLI
+* [Facades](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/facades.md)

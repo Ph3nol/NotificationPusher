@@ -76,8 +76,6 @@ class Apns extends BaseAdapter implements FeedbackAdapterInterface
             $message = $this->getServiceMessageFromOrigin($device, $push->getMessage());
 
             try {
-                //todo: encapsulate to BaseResponse
-
                 /** @var \ZendService\Apple\Apns\Response\Message $response */
                 $response = $client->send($message);
 
@@ -92,7 +90,7 @@ class Apns extends BaseAdapter implements FeedbackAdapterInterface
                 }
 
                 $this->response->addOriginalResponse($device, $response);
-                $this->response->addResponse($device, $responseArr);
+                $this->response->addParsedResponse($device, $responseArr);
             } catch (\RuntimeException $e) {
                 throw new PushException($e->getMessage());
             }

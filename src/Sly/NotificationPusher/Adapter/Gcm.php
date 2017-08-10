@@ -94,7 +94,7 @@ class Gcm extends BaseAdapter
                     $pushedDevices->add($device);
 
                     $this->response->addOriginalResponse($device, $response);
-                    $this->response->addResponse($device, $tokenResponse);
+                    $this->response->addParsedResponse($device, $tokenResponse);
                 }
             } catch (ServiceRuntimeException $e) {
                 throw new PushException($e->getMessage());

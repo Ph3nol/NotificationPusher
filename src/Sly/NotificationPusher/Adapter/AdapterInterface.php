@@ -13,6 +13,7 @@ namespace Sly\NotificationPusher\Adapter;
 
 use Sly\NotificationPusher\Model\PushInterface;
 use Sly\NotificationPusher\Model\Response;
+use Sly\NotificationPusher\Model\ResponseInterface;
 
 /**
  * AdapterInterface.
@@ -40,9 +41,14 @@ interface AdapterInterface
     public function supports($token);
 
     /**
-     * @return Response
+     * @return ResponseInterface
      */
     public function getResponse();
+
+    /**
+     * @param ResponseInterface $response
+     */
+    public function setResponse(ResponseInterface $response);
 
     /**
      * Get defined parameters.
@@ -80,5 +86,4 @@ interface AdapterInterface
      * @return \Sly\NotificationPusher\Adapter\AdapterInterface
      */
     public function setEnvironment($environment);
-
 }

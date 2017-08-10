@@ -9,6 +9,7 @@ use Sly\NotificationPusher\Model\Message as BaseMessage;
 use Sly\NotificationPusher\Model\Device as BaseDevice;
 use Sly\NotificationPusher\Collection\DeviceCollection as BaseDeviceCollection;
 
+use Sly\NotificationPusher\Model\Response;
 use ZendService\Google\Gcm\Client as BaseServiceClient;
 use ZendService\Google\Gcm\Message as BaseServiceMessage;
 
@@ -146,6 +147,7 @@ class Gcm extends Units\Test
         $this->if($this->mockGenerator()->orphanize('__construct'))
             ->and($this->mockClass('\Sly\NotificationPusher\Adapter\Gcm', '\Mock'))
             ->and($object = new \Mock\Gcm())
+            ->and($object->setResponse(new Response()))
 
             ->and($this->mockClass('\ZendService\Google\Gcm\Response', '\Mock\ZendService'))
             ->and($serviceResponse = new \Mock\ZendService\Response())

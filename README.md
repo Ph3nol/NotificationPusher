@@ -26,6 +26,8 @@ or `include vendor/autoload.php` in your index.php.
 * PHP Curl and OpenSSL modules
 * Specific adapters requirements (like APNS certificate, GCM (FCM) API key, etc.)
 
+**WARNING** Version `v3.0` would support only php 7.0+. Please, update your composer config if needed.
+
 ## Today available adapters
 
 * APNS (Apple)
@@ -39,12 +41,14 @@ or `include vendor/autoload.php` in your index.php.
 * [GCM (FCM) adapter](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/gcm-fcm-adapter.md)
 * [Create an adapter](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/create-an-adapter.md)
 * [Push from CLI](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/push-from-cli.md)
+* [Facades](https://github.com/Ph3nol/NotificationPusher/blob/master/doc/facades.md)
 
 ## Todo
 
 * Add new features (custom APNS payloads, GCM and FCM custom options, etc.)
 * Add new adapters (like Blackberry and Windows phones)
-* Write more documentation and examples
+* Write more documentation and examples!
+* Write more tests. (contributions are welcome!)
 
 ## 1.x users
 
@@ -52,4 +56,3 @@ Old version is still available from [1.x branch](https://github.com/Ph3nol/Notif
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Ph3nol/notificationpusher/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
