@@ -17,6 +17,7 @@ use Sly\NotificationPusher\Collection\PushCollection;
 use Sly\NotificationPusher\Exception\AdapterException;
 use Sly\NotificationPusher\Model\Push;
 use Sly\NotificationPusher\Model\PushInterface;
+use Sly\NotificationPusher\Model\ResponseInterface;
 
 /**
  * PushManager.
@@ -35,11 +36,14 @@ class PushManager
     private $environment;
 
     /**
-     * todo: move to Response, e.g. $this->response->add(), $this->response->getPushCollection()
-     *
      * @var PushCollection
      */
     private $pushCollection;
+
+    /**
+     * @var ResponseInterface
+     */
+    private $response;
 
     /**
      * Constructor.
@@ -87,6 +91,12 @@ class PushManager
             }
         }
 
+        if ($this->pushCollection && !$this->pushCollection->isEmpty()) {
+            /** @var Push $push */
+            $push           = $this->pushCollection->first();
+            $this->response = $push->getAdapter()->getResponse();
+        }
+        
         return $this->pushCollection;
     }
 
@@ -120,5 +130,13 @@ class PushManager
     public function getPushCollection()
     {
         return $this->pushCollection;
+    }
+
+    /**
+     * @return ResponseInterface
+     */
+    public function getResponse()
+    {
+        return $this->response;
     }
 }
