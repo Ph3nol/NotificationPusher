@@ -11,6 +11,12 @@ Standalone PHP library for easy devices message notifications push.
 
 **Feel free to contribute! Thanks.**
 
+## Contributors
+
+* [Cédric Dugat](https://github.com/Ph3nol) (Author / Lead developer)
+* [Oleg Abrazhaev](https://github.com/seyfer) (Lead developer)
+* [Community contributors](https://github.com/Ph3nol/NotificationPusher/graphs/contributors)
+
 ## Installation
 
 ```
