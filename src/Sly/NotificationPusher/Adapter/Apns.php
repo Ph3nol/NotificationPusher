@@ -90,7 +90,8 @@ class Apns extends BaseAdapter implements FeedbackAdapterInterface
                 } else {
                     $this->openedClient->close();
                     unset($this->openedClient);
-                    $this->getOpenedServiceClient();
+                    // Assign returned new client to the in-scope/in-use $client variable
+                    $client = $this->getOpenedServiceClient();
                 }
 
                 $this->response->addOriginalResponse($device, $response);
