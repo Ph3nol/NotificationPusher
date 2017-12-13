@@ -135,11 +135,19 @@ class Gcm extends Units\Test
             ->and($this->mockGenerator()->orphanize('__construct'))
             ->and($this->mockClass('\Sly\NotificationPusher\Model\Message', '\Mock'))
             ->and($message = new \Mock\Message())
+            ->and($message->getMockController()->getOptions = [
+                                            'param' => 'test',
+                                            'notificationData' => ['some' => 'foobar']
+                                       ])
             ->and($message->getMockController()->getText = 'Test')
 
-            ->object($object->getServiceMessageFromOrigin([self::GCM_TOKEN_EXAMPLE], $message))
-                ->isInstanceOf('\ZendService\Google\Gcm\Message')
-        ;
+            ->object($originalMessage = $object->getServiceMessageFromOrigin([self::GCM_TOKEN_EXAMPLE], $message))
+                ->isInstanceOf(\ZendService\Google\Gcm\Message::class)
+                ->array($originalMessage->getData())
+                    ->notHasKey('notificationData')
+                ->array($originalMessage->getNotification())
+                    ->hasKey('some')
+                    ->contains('foobar');
     }
 
     public function testPush()

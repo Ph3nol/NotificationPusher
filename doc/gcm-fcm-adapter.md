@@ -40,8 +40,13 @@ $devices = new DeviceCollection(array(
     new Device('Token3'),
 ));
 
+$params = [];
+
+NOTE: if you need to pass not only data, but also notification array
+use key notificationData in params, like $params[notificationData] = []
+
 // Then, create the push skel.
-$message = new Message('This is an example.');
+$message = new Message('This is an example.', $params);
 
 // Finally, create and add the push to the manager, and push it!
 $push = new Push($gcmAdapter, $devices, $message);

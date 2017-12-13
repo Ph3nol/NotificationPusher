@@ -145,9 +145,14 @@ class Gcm extends BaseAdapter
 
         $serviceMessage = new ServiceMessage();
         $serviceMessage->setRegistrationIds($tokens);
-        //setter returned back because of #157
+
+        if (isset($data['notificationData']) && !empty($data['notificationData'])) {
+            $serviceMessage->setNotification($data['notificationData']);
+            unset($data['notificationData']);
+        }
+
         $serviceMessage->setData($data);
-        $serviceMessage->setNotification($data);
+
         $serviceMessage->setCollapseKey($this->getParameter('collapseKey'));
         $serviceMessage->setRestrictedPackageName($this->getParameter('restrictedPackageName'));
         $serviceMessage->setDelayWhileIdle($this->getParameter('delayWhileIdle', false));

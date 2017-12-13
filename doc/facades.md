@@ -42,6 +42,9 @@ $pushNotificationService = new GcmPushService(
 //and with a push collection
 $response = $pushNotificationService->push($tokensA, $messages, $params);
 
+NOTE: if you need to pass not only data, but also notification array
+use key notificationData in params, like $params[notificationData] = []
+
 //easily access list of successful and invalid tokens
 $invalidTokens    = $pushNotificationService->getInvalidTokens();
 $successfulTokens = $pushNotificationService->getSuccessfulTokens();

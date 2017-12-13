@@ -72,6 +72,12 @@ class GcmPushService extends AbstractPushService
             if (isset($params['message'])) {
                 $messageParams = $params['message'];
             }
+
+            //because we have now notification and data separated
+            //probably it's better to have GcmMessage with unique field...
+            if (isset($params['notificationData'])) {
+                $messageParams['notificationData'] = $params['notificationData'];
+            }
         }
 
         $adapterParams['apiKey'] = $this->apiKey;
