@@ -33,7 +33,8 @@
     "zendframework/zendservice-apple-apns": "1.*",
     "zendframework/zendservice-google-gcm": "2.*",
     "doctrine/inflector": "1.1.*",
-    "symfony/filesystem": "~2.3|~3.0"
+    "symfony/filesystem": "~2.3|~3.0",
+    "symfony/debug": "~2.3|~3.0"
   },
   "require-dev": {
     "atoum/atoum": "^3.1",
