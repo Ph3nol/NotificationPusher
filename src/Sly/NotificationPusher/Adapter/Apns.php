@@ -88,8 +88,8 @@ class Apns extends BaseAdapter implements FeedbackAdapterInterface
                 if (ServiceResponse::RESULT_OK === $response->getCode()) {
                     $pushedDevices->add($device);
                 } else {
-                    $this->openedClient->close();
-                    unset($this->openedClient);
+                    $client->close();
+                    unset($this->openedClient, $client);
                     // Assign returned new client to the in-scope/in-use $client variable
                     $client = $this->getOpenedServiceClient();
                 }
@@ -150,7 +150,7 @@ class Apns extends BaseAdapter implements FeedbackAdapterInterface
      *
      * @return ServiceClient
      */
-    private function getOpenedServiceClient()
+    protected function getOpenedServiceClient()
     {
         if (!isset($this->openedClient)) {
             $this->openedClient = $this->getOpenedClient(new ServiceClient());

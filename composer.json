@@ -39,7 +39,8 @@
   "require-dev": {
     "atoum/atoum": "^3.1",
     "atoum/stubs": "^2.5",
-    "symfony/var-dumper": "~2.3|~3.0"
+    "symfony/var-dumper": "~2.3|~3.0",
+    "atoum/visibility-extension": "^1.3"
   },
   "config": {
     "bin-dir": "bin"
