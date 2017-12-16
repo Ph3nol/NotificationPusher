@@ -16,6 +16,7 @@ use Sly\NotificationPusher\Collection\DeviceCollection;
 use Sly\NotificationPusher\Exception\PushException;
 use Sly\NotificationPusher\Model\BaseOptionedModel;
 use Sly\NotificationPusher\Model\DeviceInterface;
+use Sly\NotificationPusher\Model\GcmMessage;
 use Sly\NotificationPusher\Model\PushInterface;
 use Zend\Http\Client as HttpClient;
 use Zend\Http\Client\Adapter\Socket as HttpSocketAdapter;
@@ -149,6 +150,10 @@ class Gcm extends BaseAdapter
         if (isset($data['notificationData']) && !empty($data['notificationData'])) {
             $serviceMessage->setNotification($data['notificationData']);
             unset($data['notificationData']);
+        }
+
+        if ($message instanceof GcmMessage) {
+            $serviceMessage->setNotification($message->getNotificationData());
         }
 
         $serviceMessage->setData($data);

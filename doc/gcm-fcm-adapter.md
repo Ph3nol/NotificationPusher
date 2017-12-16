@@ -44,6 +44,8 @@ $params = [];
 
 NOTE: if you need to pass not only data, but also notification array
 use key notificationData in params, like $params[notificationData] = []
+OR you could use optional GcmMessage class instead of Message and
+use it's setter setNotificationData()
 
 // Then, create the push skel.
 $message = new Message('This is an example.', $params);
