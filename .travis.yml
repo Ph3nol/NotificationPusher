@@ -22,5 +22,6 @@ notifications:
   email:
     recipients:
       - cedric@dugat.me
+      - seyferseed@gmail.com
     on_success: change
     on_failure: change
