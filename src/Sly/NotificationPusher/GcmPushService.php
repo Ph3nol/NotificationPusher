@@ -74,7 +74,6 @@ class GcmPushService extends AbstractPushService
             }
 
             //because we have now notification and data separated
-            //probably it's better to have GcmMessage with unique field...
             if (isset($params['notificationData'])) {
                 $messageParams['notificationData'] = $params['notificationData'];
             }
@@ -101,9 +100,9 @@ class GcmPushService extends AbstractPushService
             $devices->add(new Device($token, $deviceParams));
         }
 
-        foreach ($notifications as $notification) {
+        foreach ($notifications as $notificationText) {
             // Then, create the push skel.
-            $message = new Message($notification, $messageParams);
+            $message = new Message($notificationText, $messageParams);
 
             // Finally, create and add the push to the manager, and push it!
             $push = new Push($gcmAdapter, $devices, $message);
