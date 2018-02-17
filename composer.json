@@ -32,7 +32,7 @@
     "symfony/process": ">=2.3,<5",
     "zendframework/zendservice-apple-apns": "~1.0",
     "zendframework/zendservice-google-gcm": "~2.0",
-    "doctrine/inflector": "~1.1",
+    "doctrine/inflector": "1.*",
     "symfony/filesystem": ">=2.3,<5",
     "symfony/debug": ">=2.3,<5"
   },
