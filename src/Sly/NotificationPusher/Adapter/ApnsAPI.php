@@ -6,7 +6,7 @@
  * Time: 17:03
  */
 
-namespace Sly\Sly\NotificationPusher\Adapter;
+namespace Sly\NotificationPusher\Adapter;
 
 
 use Sly\NotificationPusher\Adapter\BaseAdapter;
