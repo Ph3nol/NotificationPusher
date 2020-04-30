@@ -175,6 +175,7 @@ class Gcm extends BaseAdapter
     {
         return [
             'collapseKey',
+            'priority',
             'delayWhileIdle',
             'ttl',
             'restrictedPackageName',
