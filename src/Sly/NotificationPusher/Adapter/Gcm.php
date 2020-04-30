@@ -159,6 +159,7 @@ class Gcm extends BaseAdapter
         $serviceMessage->setData($data);
 
         $serviceMessage->setCollapseKey($this->getParameter('collapseKey'));
+        $serviceMessage->setPriority($this->getParameter('priority', 'normal'));
         $serviceMessage->setRestrictedPackageName($this->getParameter('restrictedPackageName'));
         $serviceMessage->setDelayWhileIdle($this->getParameter('delayWhileIdle', false));
         $serviceMessage->setTimeToLive($this->getParameter('ttl', 600));
