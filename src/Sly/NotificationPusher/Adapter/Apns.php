@@ -267,7 +267,7 @@ class Apns extends BaseAdapter implements FeedbackAdapterInterface
      */
     public function supports($token)
     {
-        return (ctype_xdigit($token) && 64 == strlen($token));
+        return ctype_xdigit($token);
     }
 
     /**
