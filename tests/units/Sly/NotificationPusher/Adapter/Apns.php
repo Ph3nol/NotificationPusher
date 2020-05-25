@@ -20,7 +20,8 @@ use ZendService\Apple\Apns\Message as BaseServiceMessage;
  */
 class Apns extends Units\Test
 {
-    const APNS_TOKEN_EXAMPLE = '111db24975bb6c6b63214a8d268052aa0a965cc1e32110ab06a72b19074c2222';
+    const APNS_TOKEN_EXAMPLE_64 = '111db24975bb6c6b63214a8d268052aa0a965cc1e32110ab06a72b19074c2222';
+    const APNS_TOKEN_EXAMPLE_65 = '111db24975bb6c6b63214a8d268052aa0a965cc1e32110ab06a72b19074c22225';
 
     public function testConstruct()
     {
@@ -58,7 +59,9 @@ class Apns extends Units\Test
             ->and($object = new \Mock\Apns())
             ->boolean($object->supports('wrongToken'))
                 ->isFalse()
-            ->boolean($object->supports(self::APNS_TOKEN_EXAMPLE))
+            ->boolean($object->supports(self::APNS_TOKEN_EXAMPLE_64))
+                ->isTrue()
+            ->boolean($object->supports(self::APNS_TOKEN_EXAMPLE_65))
                 ->isTrue()
         ;
     }
@@ -128,7 +131,7 @@ class Apns extends Units\Test
             ->and($this->mockGenerator()->orphanize('__construct'))
             ->and($this->mockClass('\Sly\NotificationPusher\Model\Device', '\Mock'))
             ->and($device = new \Mock\Device())
-            ->and($device->getMockController()->getToken = self::APNS_TOKEN_EXAMPLE)
+            ->and($device->getMockController()->getToken = self::APNS_TOKEN_EXAMPLE_64)
 
             ->and($this->mockGenerator()->orphanize('__construct'))
             ->and($this->mockClass('\Sly\NotificationPusher\Model\Message', '\Mock'))
@@ -165,7 +168,7 @@ class Apns extends Units\Test
             ->and($push = new \Mock\Push())
             ->and($push->getMockController()->getMessage = new BaseMessage('Test'))
             ->and($push->getMockController()->getDevices = new BaseDeviceCollection(
-                [new BaseDevice(self::APNS_TOKEN_EXAMPLE)]
+                [new BaseDevice(self::APNS_TOKEN_EXAMPLE_64)]
             ))
 
             ->and($object->getMockController()->getServiceMessageFromOrigin = new BaseServiceMessage())
