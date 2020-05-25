@@ -14,6 +14,7 @@ namespace Sly\NotificationPusher\Model;
 use DateTime;
 use Sly\NotificationPusher\Adapter\AdapterInterface;
 use Sly\NotificationPusher\Collection\DeviceCollection;
+use Sly\NotificationPusher\Collection\ResponseCollection;
 
 /**
  * PushInterface
@@ -24,7 +25,7 @@ interface PushInterface
      * Constants define available statuses
      */
     const STATUS_PENDING = 'pending';
-    const STATUS_PUSHED  = 'sent';
+    const STATUS_PUSHED = 'sent';
 
     /**
      * Get Status.
@@ -106,13 +107,13 @@ interface PushInterface
 
     /**
      * Get Responses
-     * @return \Sly\NotificationPusher\Collection\ResponseCollection
+     * @return ResponseCollection
      */
     public function getResponses();
 
     /**
      * adds a response
-     * @param \Sly\NotificationPusher\Model\DeviceInterface $device
+     * @param DeviceInterface $device
      * @param mixed $response
      */
     public function addResponse(DeviceInterface $device, $response);

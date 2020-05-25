@@ -40,8 +40,6 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
     protected $response;
 
     /**
-     * Constructor.
-     *
      * @param array $parameters Adapter specific parameters
      */
     public function __construct(array $parameters = [])
@@ -51,10 +49,10 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
         $resolver->setDefaults($this->getDefaultParameters());
         $resolver->setRequired($this->getRequiredParameters());
 
-        $reflectedClass   = new \ReflectionClass($this);
+        $reflectedClass = new \ReflectionClass($this);
         $this->adapterKey = lcfirst($reflectedClass->getShortName());
         $this->parameters = $resolver->resolve($parameters);
-        $this->response   = new Response();
+        $this->response = new Response();
     }
 
     /**
@@ -108,7 +106,7 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
      *
      * @param string $environment Environment value to set
      *
-     * @return \Sly\NotificationPusher\Adapter\AdapterInterface
+     * @return AdapterInterface
      */
     public function setEnvironment($environment)
     {

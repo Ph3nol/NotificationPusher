@@ -30,7 +30,7 @@ interface MessageInterface
      *
      * @param string $text Text
      *
-     * @return \Sly\NotificationPusher\Model\MessageInterface
+     * @return MessageInterface
      */
     public function setText($text);
 }

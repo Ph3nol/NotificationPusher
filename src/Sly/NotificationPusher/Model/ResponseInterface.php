@@ -25,7 +25,7 @@ interface ResponseInterface
     public function addOriginalResponse(DeviceInterface $device, $originalResponse);
 
     /**
-     * @param \Sly\NotificationPusher\Model\PushInterface $push Push
+     * @param PushInterface $push Push
      */
     public function addPush(PushInterface $push);
 

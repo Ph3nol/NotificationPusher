@@ -63,7 +63,7 @@ abstract class BaseOptionedModel
      *
      * @param array $options Options
      *
-     * @return \Sly\NotificationPusher\Model\BaseOptionedModel
+     * @return BaseOptionedModel
      */
     public function setOptions($options)
     {

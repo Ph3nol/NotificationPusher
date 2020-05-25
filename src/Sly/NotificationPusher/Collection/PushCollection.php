@@ -39,7 +39,7 @@ class PushCollection extends AbstractCollection
     }
 
     /**
-     * @param \Sly\NotificationPusher\Model\PushInterface $push Push
+     * @param PushInterface $push Push
      */
     public function add(PushInterface $push)
     {

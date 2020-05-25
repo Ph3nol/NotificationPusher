@@ -17,12 +17,15 @@ use Sly\NotificationPusher\Exception\PushException;
 use Sly\NotificationPusher\Model\BaseOptionedModel;
 use Sly\NotificationPusher\Model\DeviceInterface;
 use Sly\NotificationPusher\Model\GcmMessage;
+use Sly\NotificationPusher\Model\MessageInterface;
 use Sly\NotificationPusher\Model\PushInterface;
 use Zend\Http\Client as HttpClient;
 use Zend\Http\Client\Adapter\Socket as HttpSocketAdapter;
+use ZendService\Google\Exception\InvalidArgumentException as ZendInvalidArgumentException;
 use ZendService\Google\Exception\RuntimeException as ServiceRuntimeException;
 use ZendService\Google\Gcm\Client as ServiceClient;
 use ZendService\Google\Gcm\Message as ServiceMessage;
+use ZendService\Google\Gcm\Response;
 
 /**
  * GCM adapter.
@@ -34,7 +37,7 @@ use ZendService\Google\Gcm\Message as ServiceMessage;
 class Gcm extends BaseAdapter
 {
     /**
-     * @var \Zend\Http\Client
+     * @var HttpClient
      */
     private $httpClient;
 
@@ -54,21 +57,21 @@ class Gcm extends BaseAdapter
     /**
      * {@inheritdoc}
      *
-     * @throws \Sly\NotificationPusher\Exception\PushException
+     * @throws PushException
      */
     public function push(PushInterface $push)
     {
-        $client        = $this->getOpenedClient();
+        $client = $this->getOpenedClient();
         $pushedDevices = new DeviceCollection();
-        $tokens        = array_chunk($push->getDevices()->getTokens(), 100);
+        $tokens = array_chunk($push->getDevices()->getTokens(), 100);
 
         foreach ($tokens as $tokensRange) {
             $message = $this->getServiceMessageFromOrigin($tokensRange, $push->getMessage());
 
             try {
 
-                /** @var \ZendService\Google\Gcm\Response $response */
-                $response        = $client->send($message);
+                /** @var Response $response */
+                $response = $client->send($message);
                 $responseResults = $response->getResults();
 
                 foreach ($tokensRange as $token) {
@@ -108,7 +111,7 @@ class Gcm extends BaseAdapter
     /**
      * Get opened client.
      *
-     * @return \ZendService\Google\Gcm\Client
+     * @return ServiceClient
      */
     public function getOpenedClient()
     {
@@ -116,10 +119,10 @@ class Gcm extends BaseAdapter
             $this->openedClient = new ServiceClient();
             $this->openedClient->setApiKey($this->getParameter('apiKey'));
 
-            $newClient = new \Zend\Http\Client(
+            $newClient = new HttpClient(
                 null,
                 [
-                    'adapter'       => 'Zend\Http\Client\Adapter\Socket',
+                    'adapter' => 'Zend\Http\Client\Adapter\Socket',
                     'sslverifypeer' => false,
                 ]
             );
@@ -134,14 +137,14 @@ class Gcm extends BaseAdapter
      * Get service message from origin.
      *
      * @param array $tokens Tokens
-     * @param BaseOptionedModel|\Sly\NotificationPusher\Model\MessageInterface $message Message
+     * @param BaseOptionedModel|MessageInterface $message Message
      *
-     * @return \ZendService\Google\Gcm\Message
-     * @throws \ZendService\Google\Exception\InvalidArgumentException
+     * @return ServiceMessage
+     * @throws ZendInvalidArgumentException
      */
     public function getServiceMessageFromOrigin(array $tokens, BaseOptionedModel $message)
     {
-        $data            = $message->getOptions();
+        $data = $message->getOptions();
         $data['message'] = $message->getText();
 
         $serviceMessage = new ServiceMessage();
@@ -224,7 +227,7 @@ class Gcm extends BaseAdapter
      *
      * @param array $config
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function setAdapterParameters(array $config = [])
     {

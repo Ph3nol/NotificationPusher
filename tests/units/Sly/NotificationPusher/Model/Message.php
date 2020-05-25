@@ -17,20 +17,18 @@ class Message extends Units\Test
     {
         $this->if($object = new TestedModel('Test'))
             ->string($object->getText())->isEqualTo('Test')
-            ->array($object->getOptions())->isEmpty()
-        ;
+            ->array($object->getOptions())->isEmpty();
 
         $this->if($object = new TestedModel('Test', [
-                'param' => 'test',
-            ]))
+            'param' => 'test',
+        ]))
             ->string($object->getText())->isEqualTo('Test')
             ->when($object->setText('Test 2'))
             ->string($object->getText())->isEqualTo('Test 2')
             ->array($object->getOptions())
-                ->hasKey('param')
-                ->contains('test')
-                ->size
-                    ->isEqualTo(1)
-        ;
+            ->hasKey('param')
+            ->contains('test')
+            ->size
+            ->isEqualTo(1);
     }
 }

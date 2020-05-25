@@ -31,7 +31,7 @@ class Message extends BaseOptionedModel implements MessageInterface
      */
     public function __construct($text, array $options = [])
     {
-        $this->text    = $text;
+        $this->text = $text;
         $this->options = $options;
     }
 
@@ -50,7 +50,7 @@ class Message extends BaseOptionedModel implements MessageInterface
      *
      * @param string $text Text
      *
-     * @return \Sly\NotificationPusher\Model\MessageInterface
+     * @return MessageInterface
      */
     public function setText($text)
     {

@@ -27,7 +27,7 @@ use Sly\NotificationPusher\Model\ResponseInterface;
  */
 class PushManager
 {
-    const ENVIRONMENT_DEV  = 'dev';
+    const ENVIRONMENT_DEV = 'dev';
     const ENVIRONMENT_PROD = 'prod';
 
     /**
@@ -52,12 +52,12 @@ class PushManager
      */
     public function __construct($environment = self::ENVIRONMENT_DEV)
     {
-        $this->environment    = $environment;
+        $this->environment = $environment;
         $this->pushCollection = new PushCollection();
     }
 
     /**
-     * @param \Sly\NotificationPusher\Model\PushInterface $push Push
+     * @param PushInterface $push Push
      */
     public function add(PushInterface $push)
     {
@@ -93,17 +93,17 @@ class PushManager
 
         if ($this->pushCollection && !$this->pushCollection->isEmpty()) {
             /** @var Push $push */
-            $push           = $this->pushCollection->first();
+            $push = $this->pushCollection->first();
             $this->response = $push->getAdapter()->getResponse();
         }
-        
+
         return $this->pushCollection;
     }
 
     /**
      * Get feedback.
      *
-     * @param \Sly\NotificationPusher\Adapter\AdapterInterface $adapter Adapter
+     * @param AdapterInterface $adapter Adapter
      *
      * @return array
      *
@@ -115,7 +115,7 @@ class PushManager
             throw new AdapterException(
                 sprintf(
                     '%s adapter has no dedicated "getFeedback" method',
-                    (string)$adapter
+                    (string) $adapter
                 )
             );
         }

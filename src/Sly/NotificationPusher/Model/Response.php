@@ -59,7 +59,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @param \Sly\NotificationPusher\Model\PushInterface $push Push
+     * @param PushInterface $push Push
      */
     public function addPush(PushInterface $push)
     {

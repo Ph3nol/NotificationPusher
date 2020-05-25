@@ -31,7 +31,7 @@ class Device extends BaseParameteredModel implements DeviceInterface
      */
     public function __construct($token, array $parameters = [])
     {
-        $this->token      = $token;
+        $this->token = $token;
         $this->parameters = $parameters;
     }
 
@@ -50,7 +50,7 @@ class Device extends BaseParameteredModel implements DeviceInterface
      *
      * @param string $token Token
      *
-     * @return \Sly\NotificationPusher\Model\DeviceInterface
+     * @return DeviceInterface
      */
     public function setToken($token)
     {

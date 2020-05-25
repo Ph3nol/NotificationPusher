@@ -20,7 +20,7 @@ use Sly\NotificationPusher\Model\MessageInterface;
  * @uses \IteratorAggregate
  * @author Cédric Dugat <cedric@dugat.me>
  */
-class MessageCollection extends AbstractCollection implements \IteratorAggregate
+class MessageCollection extends AbstractCollection
 {
     /**
      * Constructor.
@@ -39,7 +39,7 @@ class MessageCollection extends AbstractCollection implements \IteratorAggregate
     }
 
     /**
-     * @param \Sly\NotificationPusher\Model\MessageInterface $message Message
+     * @param MessageInterface $message Message
      */
     public function add(MessageInterface $message)
     {

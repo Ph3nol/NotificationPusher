@@ -63,7 +63,7 @@ abstract class BaseParameteredModel
      *
      * @param array $parameters Parameters
      *
-     * @return \Sly\NotificationPusher\Model\BaseParameteredModel
+     * @return BaseParameteredModel
      */
     public function setParameters($parameters)
     {

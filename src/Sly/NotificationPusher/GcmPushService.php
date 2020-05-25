@@ -58,7 +58,7 @@ class GcmPushService extends AbstractPushService
         }
 
         $adapterParams = [];
-        $deviceParams  = [];
+        $deviceParams = [];
         $messageParams = [];
         if (isset($params) && !empty($params)) {
             if (isset($params['adapter'])) {
@@ -86,7 +86,6 @@ class GcmPushService extends AbstractPushService
         }
 
         // Development one by default (without argument).
-        /** @var PushManager $pushManager */
         $pushManager = new PushManager($this->environment);
 
         // Then declare an adapter.

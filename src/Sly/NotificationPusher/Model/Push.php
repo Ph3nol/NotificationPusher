@@ -30,17 +30,17 @@ class Push extends BaseOptionedModel implements PushInterface
     private $status;
 
     /**
-     * @var \Sly\NotificationPusher\Adapter\AdapterInterface
+     * @var AdapterInterface
      */
     private $adapter;
 
     /**
-     * @var \Sly\NotificationPusher\Model\MessageInterface
+     * @var MessageInterface
      */
     private $message;
 
     /**
-     * @var \Sly\NotificationPusher\Collection\DeviceCollection
+     * @var DeviceCollection
      */
     private $devices;
 
@@ -50,22 +50,22 @@ class Push extends BaseOptionedModel implements PushInterface
     private $pushedAt;
 
     /**
-     * @var \Sly\NotificationPusher\Collection\ResponseCollection
+     * @var ResponseCollection
      */
     private $responses;
 
     /**
      * Constructor.
      *
-     * @param \Sly\NotificationPusher\Adapter\AdapterInterface $adapter Adapter
+     * @param AdapterInterface $adapter Adapter
      * @param DeviceInterface|DeviceCollection $devices Device(s)
-     * @param \Sly\NotificationPusher\Model\MessageInterface $message Message
+     * @param MessageInterface $message Message
      * @param array $options Options
      *
      * Options are adapters specific ones, like Apns "badge" or "sound" option for example.
      * Of course, they can be more general.
      *
-     * @throws \Sly\NotificationPusher\Exception\AdapterException
+     * @throws AdapterException
      */
     public function __construct(AdapterInterface $adapter, $devices, MessageInterface $message, array $options = [])
     {
@@ -77,14 +77,14 @@ class Push extends BaseOptionedModel implements PushInterface
         $this->devices = $devices;
         $this->message = $message;
         $this->options = $options;
-        $this->status  = self::STATUS_PENDING;
+        $this->status = self::STATUS_PENDING;
 
         $this->checkDevicesTokens();
     }
 
     /**
      * Check devices tokens.
-     * @throws \Sly\NotificationPusher\Exception\AdapterException
+     * @throws AdapterException
      */
     private function checkDevicesTokens()
     {
@@ -96,7 +96,7 @@ class Push extends BaseOptionedModel implements PushInterface
                 throw new AdapterException(
                     sprintf(
                         'Adapter %s does not support %s token\'s device',
-                        (string)$adapter,
+                        (string) $adapter,
                         $device->getToken()
                     )
                 );
@@ -119,7 +119,7 @@ class Push extends BaseOptionedModel implements PushInterface
      *
      * @param string $status Status
      *
-     * @return \Sly\NotificationPusher\Model\PushInterface
+     * @return PushInterface
      */
     public function setStatus($status)
     {
@@ -135,17 +135,17 @@ class Push extends BaseOptionedModel implements PushInterface
      */
     public function isPushed()
     {
-        return (bool)(self::STATUS_PUSHED === $this->status);
+        return (bool) (self::STATUS_PUSHED === $this->status);
     }
 
     /**
      * Declare as pushed.
      *
-     * @return \Sly\NotificationPusher\Model\PushInterface
+     * @return PushInterface
      */
     public function pushed()
     {
-        $this->status   = self::STATUS_PUSHED;
+        $this->status = self::STATUS_PUSHED;
         $this->pushedAt = new \DateTime();
 
         return $this;
@@ -154,7 +154,7 @@ class Push extends BaseOptionedModel implements PushInterface
     /**
      * Get Adapter.
      *
-     * @return \Sly\NotificationPusher\Adapter\AdapterInterface
+     * @return AdapterInterface
      */
     public function getAdapter()
     {
@@ -164,9 +164,9 @@ class Push extends BaseOptionedModel implements PushInterface
     /**
      * Set Adapter.
      *
-     * @param \Sly\NotificationPusher\Adapter\AdapterInterface $adapter Adapter
+     * @param AdapterInterface $adapter Adapter
      *
-     * @return \Sly\NotificationPusher\Model\PushInterface
+     * @return PushInterface
      */
     public function setAdapter(AdapterInterface $adapter)
     {
@@ -178,7 +178,7 @@ class Push extends BaseOptionedModel implements PushInterface
     /**
      * Get Message.
      *
-     * @return \Sly\NotificationPusher\Model\MessageInterface
+     * @return MessageInterface
      */
     public function getMessage()
     {
@@ -188,9 +188,9 @@ class Push extends BaseOptionedModel implements PushInterface
     /**
      * Set Message.
      *
-     * @param \Sly\NotificationPusher\Model\MessageInterface $message Message
+     * @param MessageInterface $message Message
      *
-     * @return \Sly\NotificationPusher\Model\PushInterface
+     * @return PushInterface
      */
     public function setMessage(MessageInterface $message)
     {
@@ -202,7 +202,7 @@ class Push extends BaseOptionedModel implements PushInterface
     /**
      * Get Devices.
      *
-     * @return \Sly\NotificationPusher\Collection\DeviceCollection
+     * @return DeviceCollection
      */
     public function getDevices()
     {
@@ -212,9 +212,9 @@ class Push extends BaseOptionedModel implements PushInterface
     /**
      * Set Devices.
      *
-     * @param \Sly\NotificationPusher\Collection\DeviceCollection $devices Devices
+     * @param DeviceCollection $devices Devices
      *
-     * @return \Sly\NotificationPusher\Model\PushInterface
+     * @return PushInterface
      */
     public function setDevices(DeviceCollection $devices)
     {
@@ -227,7 +227,7 @@ class Push extends BaseOptionedModel implements PushInterface
 
     /**
      * Get Responses
-     * @return \Sly\NotificationPusher\Collection\ResponseCollection
+     * @return ResponseCollection
      */
     public function getResponses()
     {
@@ -239,7 +239,7 @@ class Push extends BaseOptionedModel implements PushInterface
 
     /**
      * adds a response
-     * @param \Sly\NotificationPusher\Model\DeviceInterface $device
+     * @param DeviceInterface $device
      * @param mixed $response
      */
     public function addResponse(DeviceInterface $device, $response)
@@ -262,7 +262,7 @@ class Push extends BaseOptionedModel implements PushInterface
      *
      * @param \DateTime $pushedAt PushedAt
      *
-     * @return \Sly\NotificationPusher\Model\PushInterface
+     * @return PushInterface
      */
     public function setPushedAt(\DateTime $pushedAt)
     {

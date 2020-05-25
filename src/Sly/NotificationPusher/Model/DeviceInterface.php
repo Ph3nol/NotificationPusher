@@ -30,7 +30,7 @@ interface DeviceInterface
      *
      * @param string $token Token
      *
-     * @return \Sly\NotificationPusher\Model\DeviceInterface
+     * @return DeviceInterface
      */
     public function setToken($token);
 }

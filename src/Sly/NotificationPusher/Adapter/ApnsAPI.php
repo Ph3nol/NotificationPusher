@@ -9,11 +9,10 @@
 namespace Sly\NotificationPusher\Adapter;
 
 
-use Sly\NotificationPusher\Adapter\BaseAdapter;
+use Sly\NotificationPusher\Collection\DeviceCollection;
 use Sly\NotificationPusher\Model\PushInterface;
 
 /**
- * Class ApnsAPI
  * @package Sly\Sly\NotificationPusher\Adapter
  *
  * todo: implement with edamov/pushok
@@ -24,9 +23,9 @@ class ApnsAPI extends BaseAdapter
     /**
      * Push.
      *
-     * @param \Sly\NotificationPusher\Model\PushInterface $push Push
+     * @param PushInterface $push Push
      *
-     * @return \Sly\NotificationPusher\Collection\DeviceCollection
+     * @return DeviceCollection
      */
     public function push(PushInterface $push)
     {

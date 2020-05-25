@@ -3,4 +3,4 @@ services:
     php-cli:
         build: ./docker/php-cli
         volumes:
-        - ./:/var/www
+            - ./:/var/www
