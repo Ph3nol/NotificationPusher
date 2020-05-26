@@ -8,8 +8,8 @@ use Sly\NotificationPusher\Adapter\Apns;
 use Sly\NotificationPusher\Adapter\Gcm;
 use Sly\NotificationPusher\Collection\DeviceCollection;
 use Sly\NotificationPusher\Exception\AdapterException;
-use Sly\NotificationPusher\Model\Device;
-use Sly\NotificationPusher\Model\Message;
+use Sly\NotificationPusher\Model\Device as DeviceModel;
+use Sly\NotificationPusher\Model\Message as MessageModel;
 use Sly\NotificationPusher\Model\Push as TestedModel;
 
 /**
@@ -25,8 +25,8 @@ class Push extends Units\Test
     {
         $this->if($this->mockClass(AdapterInterface::class, '\Mock'))
             ->and($adapter = new \Mock\AdapterInterface())
-            ->and($devices = new Device('Token1'))
-            ->and($message = new Message('Test'))
+            ->and($devices = new DeviceModel('Token1'))
+            ->and($message = new MessageModel('Test'))
             ->and($object = new TestedModel($adapter, $devices, $message))
             ->object($object->getDevices())
             ->isInstanceOf(DeviceCollection::class)
@@ -40,9 +40,9 @@ class Push extends Units\Test
     {
         $this->if($this->mockClass(AdapterInterface::class, '\Mock'))
             ->and($adapter = new \Mock\AdapterInterface())
-            ->and($devices = new DeviceCollection([new Device('Token1'), new Device('Token2'),
-                new Device('Token3')]))
-            ->and($message = new Message('Test'))
+            ->and($devices = new DeviceCollection([new DeviceModel('Token1'), new DeviceModel('Token2'),
+                new DeviceModel('Token3')]))
+            ->and($message = new MessageModel('Test'))
             ->and($object = new TestedModel($adapter, $devices, $message, ['param' => 'test']))
             ->object($object->getDevices())
             ->isInstanceOf(DeviceCollection::class)
@@ -60,9 +60,9 @@ class Push extends Units\Test
         date_default_timezone_set('UTC');
         $this->if($this->mockClass(AdapterInterface::class, '\Mock'))
             ->and($adapter = new \Mock\AdapterInterface())
-            ->and($devices = new DeviceCollection([new Device('Token1'), new Device('Token2'),
-                new Device('Token3')]))
-            ->and($message = new Message('Test'))
+            ->and($devices = new DeviceCollection([new DeviceModel('Token1'), new DeviceModel('Token2'),
+                new DeviceModel('Token3')]))
+            ->and($message = new MessageModel('Test'))
             ->and($object = new TestedModel($adapter, $devices, $message))
             ->string($object->getStatus())
             ->isEqualTo(TestedModel::STATUS_PENDING)
@@ -95,13 +95,13 @@ class Push extends Units\Test
             ->and($this->mockClass(Gcm::class, '\Mock'))
             ->and($apnsAdapter = new \mock\Apns())
             ->and($gcmAdapter = new \mock\Gcm())
-            ->and($badDevice = new Device('BadToken'))
-            ->and($message = new Message('Test'))
+            ->and($badDevice = new DeviceModel('BadToken'))
+            ->and($message = new MessageModel('Test'))
             ->exception(function () use ($apnsAdapter, $badDevice, $message) {
                 $object = new TestedModel($apnsAdapter, $badDevice, $message);
             })
             ->isInstanceOf(AdapterException::class)
-            ->when($goodDevice = new Device(self::APNS_TOKEN_EXAMPLE))
+            ->when($goodDevice = new DeviceModel(self::APNS_TOKEN_EXAMPLE))
             ->object($object = new TestedModel($apnsAdapter, $goodDevice, $message));
     }
 
@@ -113,13 +113,13 @@ class Push extends Units\Test
             ->and($this->mockClass(Gcm::class, '\Mock'))
             ->and($apnsAdapter = new \mock\Apns())
             ->and($gcmAdapter = new \mock\Gcm())
-            ->and($devices = new Device(self::APNS_TOKEN_EXAMPLE))
-            ->and($message = new Message('Test'))
+            ->and($devices = new DeviceModel(self::APNS_TOKEN_EXAMPLE))
+            ->and($message = new MessageModel('Test'))
             ->and($object = new TestedModel($apnsAdapter, $devices, $message))
             ->object($object->getAdapter())
             ->isInstanceOf(Apns::class)
             ->when($object->setAdapter($gcmAdapter))
-            ->and($object->setDevices(new DeviceCollection([new Device(self::GCM_TOKEN_EXAMPLE)])))
+            ->and($object->setDevices(new DeviceCollection([new DeviceModel(self::GCM_TOKEN_EXAMPLE)])))
             ->object($object->getAdapter())
             ->isInstanceOf(Gcm::class);
     }
@@ -128,17 +128,17 @@ class Push extends Units\Test
     {
         $this->if($this->mockClass(AdapterInterface::class, '\Mock'))
             ->and($adapter = new \Mock\AdapterInterface())
-            ->and($devices = new DeviceCollection([new Device('Token1'), new Device('Token2'),
-                new Device('Token3')]))
-            ->and($message = new Message('Test'))
+            ->and($devices = new DeviceCollection([new DeviceModel('Token1'), new DeviceModel('Token2'),
+                new DeviceModel('Token3')]))
+            ->and($message = new MessageModel('Test'))
             ->and($object = new TestedModel($adapter, $devices, $message))
             ->object($object->getMessage())
-            ->isInstanceOf(Message::class)
+            ->isInstanceOf(MessageModel::class)
             ->string($object->getMessage()->getText())
             ->isEqualTo('Test')
-            ->when($object->setMessage(new Message('Test 2')))
+            ->when($object->setMessage(new MessageModel('Test 2')))
             ->object($object->getMessage())
-            ->isInstanceOf(Message::class)
+            ->isInstanceOf(MessageModel::class)
             ->string($object->getMessage()->getText())
             ->isEqualTo('Test 2');
     }
