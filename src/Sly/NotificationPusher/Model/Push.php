@@ -17,8 +17,6 @@ use Sly\NotificationPusher\Collection\ResponseCollection;
 use Sly\NotificationPusher\Exception\AdapterException;
 
 /**
- * Push.
- *
  * @author Cédric Dugat <cedric@dugat.me>
  */
 class Push extends BaseOptionedModel implements PushInterface
@@ -55,8 +53,6 @@ class Push extends BaseOptionedModel implements PushInterface
     private $responses;
 
     /**
-     * Constructor.
-     *
      * @param AdapterInterface $adapter Adapter
      * @param DeviceInterface|DeviceCollection $devices Device(s)
      * @param MessageInterface $message Message
@@ -83,7 +79,6 @@ class Push extends BaseOptionedModel implements PushInterface
     }
 
     /**
-     * Check devices tokens.
      * @throws AdapterException
      */
     private function checkDevicesTokens()
@@ -105,8 +100,6 @@ class Push extends BaseOptionedModel implements PushInterface
     }
 
     /**
-     * Get Status.
-     *
      * @return string
      */
     public function getStatus()
@@ -115,8 +108,6 @@ class Push extends BaseOptionedModel implements PushInterface
     }
 
     /**
-     * Set Status.
-     *
      * @param string $status Status
      *
      * @return PushInterface
@@ -129,8 +120,6 @@ class Push extends BaseOptionedModel implements PushInterface
     }
 
     /**
-     * isPushed.
-     *
      * @return boolean
      */
     public function isPushed()
@@ -139,8 +128,6 @@ class Push extends BaseOptionedModel implements PushInterface
     }
 
     /**
-     * Declare as pushed.
-     *
      * @return PushInterface
      */
     public function pushed()
@@ -152,8 +139,6 @@ class Push extends BaseOptionedModel implements PushInterface
     }
 
     /**
-     * Get Adapter.
-     *
      * @return AdapterInterface
      */
     public function getAdapter()
@@ -162,8 +147,6 @@ class Push extends BaseOptionedModel implements PushInterface
     }
 
     /**
-     * Set Adapter.
-     *
      * @param AdapterInterface $adapter Adapter
      *
      * @return PushInterface
@@ -176,8 +159,6 @@ class Push extends BaseOptionedModel implements PushInterface
     }
 
     /**
-     * Get Message.
-     *
      * @return MessageInterface
      */
     public function getMessage()
@@ -186,8 +167,6 @@ class Push extends BaseOptionedModel implements PushInterface
     }
 
     /**
-     * Set Message.
-     *
      * @param MessageInterface $message Message
      *
      * @return PushInterface
@@ -200,8 +179,6 @@ class Push extends BaseOptionedModel implements PushInterface
     }
 
     /**
-     * Get Devices.
-     *
      * @return DeviceCollection
      */
     public function getDevices()
@@ -210,8 +187,6 @@ class Push extends BaseOptionedModel implements PushInterface
     }
 
     /**
-     * Set Devices.
-     *
      * @param DeviceCollection $devices Devices
      *
      * @return PushInterface
@@ -226,7 +201,6 @@ class Push extends BaseOptionedModel implements PushInterface
     }
 
     /**
-     * Get Responses
      * @return ResponseCollection
      */
     public function getResponses()
@@ -238,7 +212,6 @@ class Push extends BaseOptionedModel implements PushInterface
     }
 
     /**
-     * adds a response
      * @param DeviceInterface $device
      * @param mixed $response
      */
@@ -248,8 +221,6 @@ class Push extends BaseOptionedModel implements PushInterface
     }
 
     /**
-     * Get PushedAt.
-     *
      * @return \DateTime
      */
     public function getPushedAt()
@@ -258,8 +229,6 @@ class Push extends BaseOptionedModel implements PushInterface
     }
 
     /**
-     * Set PushedAt.
-     *
      * @param \DateTime $pushedAt PushedAt
      *
      * @return PushInterface

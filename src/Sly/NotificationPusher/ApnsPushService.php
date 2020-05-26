@@ -17,10 +17,8 @@ use Sly\NotificationPusher\Model\ResponseInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
- * Facade for simple use cases
- *
- * Class ApnsPushService
  * @package Sly\NotificationPusher
+ * @author Oleg Abrazhaev <seyferseed@gmail.com>
  */
 class ApnsPushService extends AbstractPushService
 {

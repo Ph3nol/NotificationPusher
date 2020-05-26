@@ -14,17 +14,12 @@ namespace Sly\NotificationPusher\Collection;
 use Sly\NotificationPusher\Model\MessageInterface;
 
 /**
- * MessageCollection.
- *
  * @uses \Sly\NotificationPusher\Collection\AbstractCollection
  * @uses \IteratorAggregate
  * @author Cédric Dugat <cedric@dugat.me>
  */
 class MessageCollection extends AbstractCollection
 {
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         $this->coll = new \ArrayIterator();

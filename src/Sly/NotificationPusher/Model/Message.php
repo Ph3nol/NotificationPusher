@@ -12,8 +12,6 @@
 namespace Sly\NotificationPusher\Model;
 
 /**
- * Message.
- *
  * @author Cédric Dugat <cedric@dugat.me>
  */
 class Message extends BaseOptionedModel implements MessageInterface
@@ -24,8 +22,6 @@ class Message extends BaseOptionedModel implements MessageInterface
     protected $text;
 
     /**
-     * Constructor.
-     *
      * @param string $text Text
      * @param array $options Options
      */
@@ -36,8 +32,6 @@ class Message extends BaseOptionedModel implements MessageInterface
     }
 
     /**
-     * Get Text.
-     *
      * @return string
      */
     public function getText()
@@ -46,8 +40,6 @@ class Message extends BaseOptionedModel implements MessageInterface
     }
 
     /**
-     * Set Text.
-     *
      * @param string $text Text
      *
      * @return MessageInterface

@@ -3,11 +3,9 @@
 namespace tests\units\Sly\NotificationPusher\Adapter;
 
 use mageekguy\atoum as Units;
-use Sly\NotificationPusher\PushManager as BasePushManager;
+use Sly\NotificationPusher\PushManager;
 
 /**
- * BaseAdapter.
- *
  * @uses atoum\test
  * @author Cédric Dugat <cedric@dugat.me>
  */
@@ -30,16 +28,16 @@ class BaseAdapter extends Units\Test
         $this->if($this->mockGenerator()->orphanize('__construct'))
             ->and($this->mockClass(\Sly\NotificationPusher\Adapter\Apns::class, '\Mock'))
             ->and($object = new \Mock\Apns())
-            ->when($object->setEnvironment(BasePushManager::ENVIRONMENT_DEV))
+            ->when($object->setEnvironment(PushManager::ENVIRONMENT_DEV))
             ->string($object->getEnvironment())
-            ->isEqualTo(BasePushManager::ENVIRONMENT_DEV)
+            ->isEqualTo(PushManager::ENVIRONMENT_DEV)
             ->boolean($object->isDevelopmentEnvironment())
             ->isTrue()
             ->boolean($object->isProductionEnvironment())
             ->isFalse()
-            ->when($object->setEnvironment(BasePushManager::ENVIRONMENT_PROD))
+            ->when($object->setEnvironment(PushManager::ENVIRONMENT_PROD))
             ->string($object->getEnvironment())
-            ->isEqualTo(BasePushManager::ENVIRONMENT_PROD)
+            ->isEqualTo(PushManager::ENVIRONMENT_PROD)
             ->boolean($object->isProductionEnvironment())
             ->isTrue()
             ->boolean($object->isDevelopmentEnvironment())

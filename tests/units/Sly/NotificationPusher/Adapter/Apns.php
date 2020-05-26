@@ -5,17 +5,16 @@ namespace tests\units\Sly\NotificationPusher\Adapter;
 use mageekguy\atoum as Units;
 use Sly\NotificationPusher\Adapter\Apns as TestedModel;
 use Sly\NotificationPusher\Collection\DeviceCollection;
-use Sly\NotificationPusher\Collection\DeviceCollection as BaseDeviceCollection;
 use Sly\NotificationPusher\Exception\AdapterException;
-use Sly\NotificationPusher\Model\Device as BaseDevice;
-use Sly\NotificationPusher\Model\Message as BaseMessage;
+use Sly\NotificationPusher\Model\Device;
+use Sly\NotificationPusher\Model\Message;
 use Sly\NotificationPusher\Model\Push;
 use Sly\NotificationPusher\Model\Response;
 use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
 use ZendService\Apple\Apns\Client\Feedback;
 use ZendService\Apple\Apns\Client\Message as ZendClientMessage;
-use ZendService\Apple\Apns\Message as BaseServiceMessage;
-use ZendService\Apple\Apns\Response\Message;
+use ZendService\Apple\Apns\Message as ZendServiceMessage;
+use ZendService\Apple\Apns\Response\Message as ZendResponseMessage;
 use ZendService\Apple\Exception\InvalidArgumentException;
 
 /**
@@ -124,15 +123,15 @@ class Apns extends Units\Test
             ->and($this->mockClass(TestedModel::class, '\Mock'))
             ->and($object = new \Mock\Apns())
             ->and($this->mockGenerator()->orphanize('__construct'))
-            ->and($this->mockClass(BaseDevice::class, '\Mock'))
+            ->and($this->mockClass(Device::class, '\Mock'))
             ->and($device = new \Mock\Device())
             ->and($device->getMockController()->getToken = self::APNS_TOKEN_EXAMPLE_64)
             ->and($this->mockGenerator()->orphanize('__construct'))
-            ->and($this->mockClass(BaseMessage::class, '\Mock'))
+            ->and($this->mockClass(Message::class, '\Mock'))
             ->and($message = new \Mock\Message())
             ->and($message->getMockController()->getText = 'Test')
             ->object($object->getServiceMessageFromOrigin($device, $message))
-            ->isInstanceOf(BaseServiceMessage::class);
+            ->isInstanceOf(ZendServiceMessage::class);
     }
 
     public function testPush()
@@ -142,9 +141,9 @@ class Apns extends Units\Test
             ->generate(TestedModel::class, '\Mock', 'Apns'))
             ->and($object = new \Mock\Apns())
             ->and($object->setResponse(new Response()))
-            ->and($this->mockClass(Message::class, '\Mock\ZendService', 'Response'))
+            ->and($this->mockClass(ZendResponseMessage::class, '\Mock\ZendService', 'Response'))
             ->and($serviceResponse = new \Mock\ZendService\Response())
-            ->and($serviceResponse->getMockController()->getCode = Message::RESULT_OK)
+            ->and($serviceResponse->getMockController()->getCode = ZendResponseMessage::RESULT_OK)
             ->and($serviceResponse->getMockController()->getId = 0)
             ->and($this->mockGenerator()->orphanize('__construct')
                 ->orphanize('open')
@@ -155,11 +154,11 @@ class Apns extends Units\Test
             ->and($this->mockGenerator()->orphanize('__construct'))
             ->and($this->mockClass(Push::class, '\Mock'))
             ->and($push = new \Mock\Push())
-            ->and($push->getMockController()->getMessage = new BaseMessage('Test'))
-            ->and($push->getMockController()->getDevices = new BaseDeviceCollection(
-                [new BaseDevice(self::APNS_TOKEN_EXAMPLE_64)]
+            ->and($push->getMockController()->getMessage = new Message('Test'))
+            ->and($push->getMockController()->getDevices = new DeviceCollection(
+                [new Device(self::APNS_TOKEN_EXAMPLE_64)]
             ))
-            ->and($object->getMockController()->getServiceMessageFromOrigin = new BaseServiceMessage())
+            ->and($object->getMockController()->getServiceMessageFromOrigin = new ZendServiceMessage())
             ->and($object->getMockController()->getOpenedClient = $serviceClient)
             ->and($this->calling($object)->getOpenedServiceClient = $serviceClient)
             ->object($result = $object->push($push))
@@ -180,7 +179,7 @@ class Apns extends Units\Test
         $this->if($this->mockGenerator()->orphanize('__construct'))
             ->and($this->mockClass(TestedModel::class, '\Mock'))
             ->and($object = new \Mock\Apns())
-            ->and($this->mockClass(Message::class, '\Mock\ZendService', 'Response'))
+            ->and($this->mockClass(ZendResponseMessage::class, '\Mock\ZendService', 'Response'))
             ->and($serviceResponse = new \Mock\ZendService\Response())
             ->and($this->mockGenerator()->orphanize('__construct'))
             ->and($this->mockGenerator()->orphanize('open'))
@@ -188,7 +187,7 @@ class Apns extends Units\Test
             ->and($this->mockClass(Feedback::class, '\Mock\ZendService'))
             ->and($serviceClient = new \Mock\ZendService\Feedback())
             ->and($serviceClient->getMockController()->feedback = $serviceResponse)
-            ->and($object->getMockController()->getServiceMessageFromOrigin = new BaseServiceMessage())
+            ->and($object->getMockController()->getServiceMessageFromOrigin = new ZendServiceMessage())
             ->and($object->getMockController()->getOpenedClient = $serviceClient)
             ->array($object->getFeedback())
             ->isEmpty();

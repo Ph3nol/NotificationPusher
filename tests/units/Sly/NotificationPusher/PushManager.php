@@ -4,17 +4,15 @@ namespace tests\units\Sly\NotificationPusher;
 
 use mageekguy\atoum as Units;
 use Sly\NotificationPusher\Adapter\Apns;
-use Sly\NotificationPusher\Collection\DeviceCollection as BaseDeviceCollection;
+use Sly\NotificationPusher\Collection\DeviceCollection;
 use Sly\NotificationPusher\Collection\PushCollection;
-use Sly\NotificationPusher\Model\Device as BaseDevice;
-use Sly\NotificationPusher\Model\Message as BaseMessage;
+use Sly\NotificationPusher\Model\Device;
+use Sly\NotificationPusher\Model\Message;
 use Sly\NotificationPusher\Model\Push;
 use Sly\NotificationPusher\Model\Response;
 use Sly\NotificationPusher\PushManager as TestedModel;
 
 /**
- * PushManager.
- *
  * @uses atoum\test
  * @author Cédric Dugat <cedric@dugat.me>
  */
@@ -37,11 +35,11 @@ class PushManager extends Units\Test
         $this->if($this->mockGenerator()->orphanize('__construct'))
             ->and($this->mockClass(Push::class, '\Mock'))
             ->and($push = new \Mock\Push())
-            ->and($push->getMockController()->getMessage = new BaseMessage('Test'))
-            ->and($push->getMockController()->getDevices = new BaseDeviceCollection([new BaseDevice(self::APNS_TOKEN_EXAMPLE)]))
+            ->and($push->getMockController()->getMessage = new Message('Test'))
+            ->and($push->getMockController()->getDevices = new DeviceCollection([new Device(self::APNS_TOKEN_EXAMPLE)]))
             ->and($push2 = new \Mock\Push())
-            ->and($push2->getMockController()->getMessage = new BaseMessage('Test 2'))
-            ->and($push2->getMockController()->getDevices = new BaseDeviceCollection([new BaseDevice(self::APNS_TOKEN_EXAMPLE)]))
+            ->and($push2->getMockController()->getMessage = new Message('Test 2'))
+            ->and($push2->getMockController()->getDevices = new DeviceCollection([new Device(self::APNS_TOKEN_EXAMPLE)]))
             ->and($object = (new TestedModel())->getPushCollection())
             ->when($object->add($push))
             ->object($object)
@@ -70,8 +68,8 @@ class PushManager extends Units\Test
             ->and($this->mockGenerator()->orphanize('__construct'))
             ->and($this->mockClass(Push::class, '\Mock'))
             ->and($push = new \Mock\Push())
-            ->and($push->getMockController()->getMessage = new BaseMessage('Test'))
-            ->and($push->getMockController()->getDevices = new BaseDeviceCollection([new BaseDevice(self::APNS_TOKEN_EXAMPLE)]))
+            ->and($push->getMockController()->getMessage = new Message('Test'))
+            ->and($push->getMockController()->getDevices = new DeviceCollection([new Device(self::APNS_TOKEN_EXAMPLE)]))
             ->and($push->getMockController()->getAdapter = $apnsAdapter)
             ->and($object = new TestedModel())
             ->and($object->add($push))

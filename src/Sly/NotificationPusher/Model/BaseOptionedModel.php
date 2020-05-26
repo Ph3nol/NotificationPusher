@@ -12,8 +12,6 @@
 namespace Sly\NotificationPusher\Model;
 
 /**
- * BaseOptionedModel.
- *
  * @author Cédric Dugat <cedric@dugat.me>
  */
 abstract class BaseOptionedModel
@@ -24,8 +22,6 @@ abstract class BaseOptionedModel
     protected $options = [];
 
     /**
-     * Get options.
-     *
      * @return array
      */
     public function getOptions()
@@ -34,8 +30,6 @@ abstract class BaseOptionedModel
     }
 
     /**
-     * Has option.
-     *
      * @param string $key Key
      *
      * @return boolean
@@ -46,8 +40,6 @@ abstract class BaseOptionedModel
     }
 
     /**
-     * Get option.
-     *
      * @param string $key Key
      * @param mixed $default Default
      *
@@ -59,8 +51,6 @@ abstract class BaseOptionedModel
     }
 
     /**
-     * Set options.
-     *
      * @param array $options Options
      *
      * @return BaseOptionedModel
@@ -73,8 +63,6 @@ abstract class BaseOptionedModel
     }
 
     /**
-     * Set option.
-     *
      * @param string $key Key
      * @param mixed $value Value
      *

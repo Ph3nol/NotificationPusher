@@ -28,8 +28,6 @@ use ZendService\Google\Gcm\Message as ServiceMessage;
 use ZendService\Google\Gcm\Response;
 
 /**
- * GCM adapter.
- *
  * @uses \Sly\NotificationPusher\Adapter\BaseAdapter
  *
  * @author Cédric Dugat <cedric@dugat.me>

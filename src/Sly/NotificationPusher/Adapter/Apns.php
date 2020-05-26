@@ -121,8 +121,6 @@ class Apns extends BaseAdapter implements FeedbackAdapterInterface
     }
 
     /**
-     * Get opened client.
-     *
      * @param ServiceAbstractClient|null $client Client
      *
      * @return ServiceAbstractClient
@@ -143,8 +141,6 @@ class Apns extends BaseAdapter implements FeedbackAdapterInterface
     }
 
     /**
-     * Get opened ServiceClient
-     *
      * @return ServiceClient
      */
     protected function getOpenedServiceClient()
@@ -157,8 +153,6 @@ class Apns extends BaseAdapter implements FeedbackAdapterInterface
     }
 
     /**
-     * Get opened ServiceFeedbackClient
-     *
      * @return ServiceFeedbackClient
      */
     private function getOpenedFeedbackClient()
@@ -171,8 +165,6 @@ class Apns extends BaseAdapter implements FeedbackAdapterInterface
     }
 
     /**
-     * Get service message from origin.
-     *
      * @param DeviceInterface $device Device
      * @param BaseOptionedModel|MessageInterface $message Message
      *

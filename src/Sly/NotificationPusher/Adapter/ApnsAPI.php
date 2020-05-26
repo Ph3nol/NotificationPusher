@@ -14,15 +14,13 @@ use Sly\NotificationPusher\Model\PushInterface;
 
 /**
  * @package Sly\Sly\NotificationPusher\Adapter
- *
+ * @author Oleg Abrazhaev <seyferseed@gmail.com>
  * todo: implement with edamov/pushok
  */
 class ApnsAPI extends BaseAdapter
 {
 
     /**
-     * Push.
-     *
      * @param PushInterface $push Push
      *
      * @return DeviceCollection
@@ -33,8 +31,6 @@ class ApnsAPI extends BaseAdapter
     }
 
     /**
-     * Supports.
-     *
      * @param string $token Token
      *
      * @return boolean
@@ -45,8 +41,6 @@ class ApnsAPI extends BaseAdapter
     }
 
     /**
-     * Get defined parameters.
-     *
      * @return array
      */
     public function getDefinedParameters()
@@ -55,8 +49,6 @@ class ApnsAPI extends BaseAdapter
     }
 
     /**
-     * Get default parameters.
-     *
      * @return array
      */
     public function getDefaultParameters()
@@ -65,8 +57,6 @@ class ApnsAPI extends BaseAdapter
     }
 
     /**
-     * Get required parameters.
-     *
      * @return array
      */
     public function getRequiredParameters()

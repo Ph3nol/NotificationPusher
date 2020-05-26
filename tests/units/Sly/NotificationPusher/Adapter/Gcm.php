@@ -4,21 +4,19 @@ namespace tests\units\Sly\NotificationPusher\Adapter;
 
 use mageekguy\atoum as Units;
 use Sly\NotificationPusher\Adapter\Gcm as TestedModel;
-use Sly\NotificationPusher\Collection\DeviceCollection as BaseDeviceCollection;
-use Sly\NotificationPusher\Model\Device as BaseDevice;
+use Sly\NotificationPusher\Collection\DeviceCollection;
+use Sly\NotificationPusher\Model\Device;
 use Sly\NotificationPusher\Model\GcmMessage;
-use Sly\NotificationPusher\Model\Message as BaseMessage;
+use Sly\NotificationPusher\Model\Message;
 use Sly\NotificationPusher\Model\Push;
 use Sly\NotificationPusher\Model\Response;
 use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
 use ZendService\Google\Exception\InvalidArgumentException;
-use ZendService\Google\Gcm\Client as BaseServiceClient;
-use ZendService\Google\Gcm\Message as BaseServiceMessage;
+use ZendService\Google\Gcm\Client as ZendServiceClient;
+use ZendService\Google\Gcm\Message as ZendServiceMessage;
 use ZendService\Google\Gcm\Response as ZendResponseAlias;
 
 /**
- * Gcm.
- *
  * @uses atoum\test
  * @author Cédric Dugat <cedric@dugat.me>
  */
@@ -109,11 +107,11 @@ class Gcm extends Units\Test
             ->and($object = new \Mock\Gcm())
             ->and($this->mockGenerator()->orphanize('__construct'))
             ->and($this->mockGenerator()->orphanize('open'))
-            ->and($this->mockClass(BaseServiceClient::class, '\Mock\ZendService'))
+            ->and($this->mockClass(ZendServiceClient::class, '\Mock\ZendService'))
             ->and($serviceClient = new \Mock\ZendService\Client())
             ->and($object->getMockController()->getParameters = [])
             ->exception(function () use ($object) {
-                $object->getOpenedClient(new BaseServiceClient());
+                $object->getOpenedClient(new ZendServiceClient());
             })
             ->isInstanceOf(InvalidArgumentException::class)
             ->message
@@ -128,7 +126,7 @@ class Gcm extends Units\Test
             ->and($this->mockClass(TestedModel::class, '\Mock'))
             ->and($object = new \Mock\Gcm())
             ->and($this->mockGenerator()->orphanize('__construct'))
-            ->and($this->mockClass(BaseMessage::class, '\Mock'))
+            ->and($this->mockClass(Message::class, '\Mock'))
             ->and($message = new \Mock\Message())
             ->and($message->getMockController()->getOptions = [
                 'param' => 'test',
@@ -136,7 +134,7 @@ class Gcm extends Units\Test
             ])
             ->and($message->getMockController()->getText = 'Test')
             ->object($originalMessage = $object->getServiceMessageFromOrigin([self::GCM_TOKEN_EXAMPLE], $message))
-            ->isInstanceOf(BaseServiceMessage::class)
+            ->isInstanceOf(ZendServiceMessage::class)
             ->array($originalMessage->getData())
             ->notHasKey('notificationData')
             ->array($originalMessage->getNotification())
@@ -157,7 +155,7 @@ class Gcm extends Units\Test
             ])
             ->and($message->getMockController()->getText = 'Test')
             ->object($originalMessage = $object->getServiceMessageFromOrigin([self::GCM_TOKEN_EXAMPLE], $message))
-            ->isInstanceOf(BaseServiceMessage::class)
+            ->isInstanceOf(ZendServiceMessage::class)
             ->array($originalMessage->getData())
             ->notHasKey('notificationData')
             ->array($originalMessage->getNotification())
@@ -176,18 +174,18 @@ class Gcm extends Units\Test
             ->and($this->mockGenerator()->orphanize('__construct'))
             ->and($this->mockGenerator()->orphanize('open'))
             ->and($this->mockGenerator()->orphanize('send'))
-            ->and($this->mockClass(BaseServiceClient::class, '\Mock\ZendService'))
+            ->and($this->mockClass(ZendServiceClient::class, '\Mock\ZendService'))
             ->and($serviceClient = new \Mock\ZendService\Message())
             ->and($serviceClient->getMockController()->send = new $serviceResponse)
             ->and($this->mockGenerator()->orphanize('__construct'))
             ->and($this->mockClass(Push::class, '\Mock'))
             ->and($push = new \Mock\Push())
-            ->and($push->getMockController()->getMessage = new BaseMessage('Test'))
-            ->and($push->getMockController()->getDevices = new BaseDeviceCollection([new BaseDevice(self::GCM_TOKEN_EXAMPLE)]))
-            ->and($object->getMockController()->getServiceMessageFromOrigin = new BaseServiceMessage())
+            ->and($push->getMockController()->getMessage = new Message('Test'))
+            ->and($push->getMockController()->getDevices = new DeviceCollection([new Device(self::GCM_TOKEN_EXAMPLE)]))
+            ->and($object->getMockController()->getServiceMessageFromOrigin = new ZendServiceMessage())
             ->and($object->getMockController()->getOpenedClient = $serviceClient)
             ->object($object->push($push))
-            ->isInstanceOf(BaseDeviceCollection::class)
+            ->isInstanceOf(DeviceCollection::class)
             ->hasSize(1);
     }
 }

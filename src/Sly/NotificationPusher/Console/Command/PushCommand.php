@@ -26,8 +26,6 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * PushCommand.
- *
  * @uses \Symfony\Component\Console\Command\Command
  * @author Cédric Dugat <cedric@dugat.me>
  */
@@ -97,8 +95,6 @@ class PushCommand extends Command
     }
 
     /**
-     * Get adapter class from argument.
-     *
      * @param string $argument Given argument
      *
      * @return string

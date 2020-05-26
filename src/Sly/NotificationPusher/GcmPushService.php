@@ -20,6 +20,7 @@ use Sly\NotificationPusher\Model\ResponseInterface;
  *
  * Class GcmPushService
  * @package Sly\NotificationPusher
+ * @author Oleg Abrazhaev <seyferseed@gmail.com>
  */
 class GcmPushService extends AbstractPushService
 {
@@ -29,7 +30,6 @@ class GcmPushService extends AbstractPushService
     private $apiKey = '';
 
     /**
-     * GcmPushService constructor.
      * @param string $environment
      * @param string $apiKey
      */
@@ -129,7 +129,7 @@ class GcmPushService extends AbstractPushService
 
         foreach ($this->response->getParsedResponses() as $token => $response) {
             if (array_key_exists('error', $response) && !array_key_exists('message_id', $response)) {
-                array_push($tokens, $token);
+                $tokens[] = $token;
             }
         }
 
@@ -149,7 +149,7 @@ class GcmPushService extends AbstractPushService
 
         foreach ($this->response->getParsedResponses() as $token => $response) {
             if (!array_key_exists('error', $response) && array_key_exists('message_id', $response)) {
-                array_push($tokens, $token);
+                $tokens[] = $token;
             }
         }
 

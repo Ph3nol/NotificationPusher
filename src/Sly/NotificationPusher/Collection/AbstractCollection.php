@@ -18,8 +18,6 @@ use SeekableIterator;
 use Sly\NotificationPusher\Model\MessageInterface;
 
 /**
- * AbstractCollection.
- *
  * @uses \IteratorAggregate
  * @author Cédric Dugat <cedric@dugat.me>
  */
@@ -55,8 +53,6 @@ abstract class AbstractCollection implements IteratorAggregate, Countable
     }
 
     /**
-     * isEmpty.
-     *
      * @return boolean
      */
     public function isEmpty()

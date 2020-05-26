@@ -20,8 +20,6 @@ use Sly\NotificationPusher\Model\PushInterface;
 use Sly\NotificationPusher\Model\ResponseInterface;
 
 /**
- * PushManager.
- *
  * @uses \Sly\NotificationPusher\Collection\PushCollection
  * @author Cédric Dugat <cedric@dugat.me>
  */
@@ -46,8 +44,6 @@ class PushManager
     private $response;
 
     /**
-     * Constructor.
-     *
      * @param string $environment Environment
      */
     public function __construct($environment = self::ENVIRONMENT_DEV)
@@ -65,8 +61,6 @@ class PushManager
     }
 
     /**
-     * Get environment.
-     *
      * @return string
      */
     public function getEnvironment()
@@ -75,8 +69,6 @@ class PushManager
     }
 
     /**
-     * Push.
-     *
      * @return PushCollection
      */
     public function push()
@@ -101,8 +93,6 @@ class PushManager
     }
 
     /**
-     * Get feedback.
-     *
      * @param AdapterInterface $adapter Adapter
      *
      * @return array

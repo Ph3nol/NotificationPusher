@@ -10,6 +10,9 @@ namespace Sly\NotificationPusher\Model;
 
 use Sly\NotificationPusher\Collection\PushCollection;
 
+/**
+ * @author Oleg Abrazhaev <seyferseed@gmail.com>
+ */
 interface ResponseInterface
 {
     /**

@@ -18,8 +18,6 @@ use Sly\NotificationPusher\PushManager;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * BaseAdapter.
- *
  * @author Cédric Dugat <cedric@dugat.me>
  */
 abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterface
@@ -72,8 +70,6 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
     }
 
     /**
-     * __toString.
-     *
      * @return string
      */
     public function __toString()
@@ -82,8 +78,6 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
     }
 
     /**
-     * Get AdapterKey.
-     *
      * @return string
      */
     public function getAdapterKey()
@@ -92,8 +86,6 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
     }
 
     /**
-     * Get Environment.
-     *
      * @return string
      */
     public function getEnvironment()
@@ -102,8 +94,6 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
     }
 
     /**
-     * Set Environment.
-     *
      * @param string $environment Environment value to set
      *
      * @return AdapterInterface
@@ -116,8 +106,6 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
     }
 
     /**
-     * isDevelopmentEnvironment.
-     *
      * @return boolean
      */
     public function isDevelopmentEnvironment()
@@ -126,8 +114,6 @@ abstract class BaseAdapter extends BaseParameteredModel implements AdapterInterf
     }
 
     /**
-     * isProductionEnvironment.
-     *
      * @return boolean
      */
     public function isProductionEnvironment()

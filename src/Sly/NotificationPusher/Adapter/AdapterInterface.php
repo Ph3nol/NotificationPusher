@@ -16,8 +16,6 @@ use Sly\NotificationPusher\Model\PushInterface;
 use Sly\NotificationPusher\Model\ResponseInterface;
 
 /**
- * AdapterInterface.
- *
  * @author Cédric Dugat <cedric@dugat.me>
  */
 interface AdapterInterface

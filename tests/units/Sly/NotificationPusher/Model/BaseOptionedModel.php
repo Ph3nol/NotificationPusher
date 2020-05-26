@@ -6,8 +6,6 @@ use mageekguy\atoum as Units;
 use Sly\NotificationPusher\Model\Message;
 
 /**
- * BaseOptionedModel.
- *
  * @uses atoum\test
  * @author Cédric Dugat <cedric@dugat.me>
  */
