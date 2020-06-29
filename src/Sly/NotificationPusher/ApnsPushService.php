@@ -52,8 +52,8 @@ class ApnsPushService extends AbstractPushService
     }
 
     /**
-     * @param array $tokens
-     * @param array $notifications
+     * @param array $tokens List of targets
+     * @param array $notifications Message(s) to send to each token
      * @param array $params
      * @return ResponseInterface
      */

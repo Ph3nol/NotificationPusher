@@ -22,7 +22,7 @@ $response->getPushCollection();
 $android_api_key = 'key';
 
 //get tokens list from your service
-$tokensA = ['token1', 'token2'];
+$tokensA = ['token1', 'token2', 'token3'];
 
 //get messages
 $messages = [
@@ -61,7 +61,7 @@ $certificatePath = 'cert.pem';
 $passPhrase      = '';
 
 //get tokens list
-$tokensA = ['token1', 'token2'];
+$tokensA = ['token1', 'token2', 'token3'];
 
 //get messages
 $messages = [
