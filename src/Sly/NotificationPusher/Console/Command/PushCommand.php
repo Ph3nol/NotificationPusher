@@ -92,6 +92,7 @@ class PushCommand extends Command
         $pushManager->add($push);
 
         $pushManager->push();
+        return 0;
     }
 
     /**

@@ -8,6 +8,10 @@ php:
     - 7.3
     - 7.4
 
+env:
+    global:
+        - XDEBUG_MODE=coverage
+
 before_script:
     - composer self-update || true
     - composer install --dev --prefer-source
