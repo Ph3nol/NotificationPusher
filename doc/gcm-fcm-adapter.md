@@ -46,7 +46,7 @@ $devices = new DeviceCollection(array(
 $params = [];
 
 NOTE: if you need to pass not only data, but also notification array
-use key notificationData in params, like $params[notificationData] = []
+use key notificationData in params, like $params['notificationData'] = ['title' => 'Title text','body' => 'Body text']
 OR you could use optional GcmMessage class instead of Message and
 use it's setter setNotificationData()
 
